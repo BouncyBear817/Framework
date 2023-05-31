@@ -1,19 +1,15 @@
-using System;
+﻿using System;
 
 namespace Framework
 {
-    /// <summary>
-    /// 对象池
-    /// </summary>
-    /// <typeparam name="T">需实现IPoolable</typeparam>
-    public class ObjectPool<T> : Pool<T>, ISingleton where T : IPoolable, new()
+    public class NonPublicObjectPool<T> : Pool<T>, ISingleton where T : class, IPoolable
     {
-        public ObjectPool()
-        {
-            mFactory = new DefaultObjectFactory<T>();
-        }
+        public static NonPublicObjectPool<T> Instance => SingletonProperty<NonPublicObjectPool<T>>.Instance;
 
-        public static ObjectPool<T> Instance => SingletonProperty<ObjectPool<T>>.Instance;
+        private NonPublicObjectPool()
+        {
+            mFactory = new NonPublicObjectFactory<T>();
+        }
 
         public int MaxCacheCount
         {
@@ -53,7 +49,7 @@ namespace Framework
             {
                 for (var i = CurrentCacheCount; i < initCount; ++i)
                 {
-                    Recycle(new T());
+                    Recycle(mFactory.Create());
                 }
             }
         }
@@ -97,7 +93,7 @@ namespace Framework
 
         public void OnDispose()
         {
-            SingletonProperty<ObjectPool<T>>.Instance.OnDispose();
+            SingletonProperty<NonPublicObjectPool<T>>.Instance.OnDispose();
         }
     }
 }

@@ -1,19 +1,13 @@
-
 using System;
 using UnityEngine;
 
 namespace Framework
 {
-    internal interface ISingleton
-    {
-        void OnSingletonInit();
-    }
-
-    internal abstract class Singleton<T> : ISingleton where T : Singleton<T>
+    public abstract class Singleton<T> : ISingleton where T : Singleton<T>
     {
         protected static T mInstance;
 
-        static object mLock = new object();
+        private static readonly object mLock = new object();
 
         public static T Instance
         {
@@ -27,15 +21,36 @@ namespace Framework
             }
         }
 
-        public void OnSingletonInit()
+        public abstract void OnSingletonInit();
+    }
+
+    public static class SingletonProperty<T> where T : class, ISingleton
+    {
+        private static T mInstance;
+
+        private static readonly object mLock = new object();
+
+        public static T Instance
         {
-            
+            get
+            {
+                lock (mLock)
+                {
+                    mInstance ??= SingletonCreator.CreateSingleton<T>();
+                    return mInstance;
+                }
+            }
+        }
+
+        public static void OnDispose()
+        {
+            mInstance = null;
         }
     }
 
-    internal class SingletonCreator
+    public static class SingletonCreator
     {
-        static T CreateNonPublicConstructObject<T>() where T : class
+        private static T CreateNonPublicConstructObject<T>() where T : class
         {
             var type = typeof(T);
 
@@ -51,11 +66,9 @@ namespace Framework
             return ctor.Invoke(null) as T;
         }
 
-        static T CreateMonoSingleton<T>() where T : class, ISingleton
+        private static T CreateMonoSingleton<T>() where T : class, ISingleton
         {
-            T instance = null;
-
-            instance = UnityEngine.Object.FindObjectOfType(typeof(T)) as T;
+            var instance = UnityEngine.Object.FindObjectOfType(typeof(T)) as T;
             if (instance != null)
             {
                 instance.OnSingletonInit();
@@ -65,7 +78,7 @@ namespace Framework
             var obj = new GameObject(typeof(T).Name);
             UnityEngine.Object.DontDestroyOnLoad(obj);
             instance = obj.AddComponent(typeof(T)) as T;
-            instance.OnSingletonInit();
+            instance?.OnSingletonInit();
 
             return instance;
         }
@@ -82,7 +95,7 @@ namespace Framework
             else
             {
                 var instance = CreateNonPublicConstructObject<T>();
-                instance.OnSingletonInit();
+                instance?.OnSingletonInit();
                 return instance;
             }
         }

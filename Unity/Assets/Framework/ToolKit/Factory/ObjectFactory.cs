@@ -2,12 +2,7 @@
 using System;
 namespace Framework
 {
-    internal interface IObjectFactory<T>
-    {
-        T Create();
-    }
-
-    internal class DefaultObjectFactory<T> : IObjectFactory<T> where T : new()
+    public class DefaultObjectFactory<T> : IObjectFactory<T> where T : new()
     {
         public T Create()
         {
@@ -19,11 +14,11 @@ namespace Framework
     /// 定义工厂对象方法，可自定义返回对象方法
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    internal class CustomObjectFactory<T> : IObjectFactory<T>
+    public class CustomObjectFactory<T> : IObjectFactory<T>
     {
-        protected Func<T> mFactoryMethod;
+        protected readonly Func<T> mFactoryMethod;
 
-        public CustomObjectFactory(Func<T> facoryMethod) => mFactoryMethod = facoryMethod;
+        public CustomObjectFactory(Func<T> factoryMethod) => mFactoryMethod = factoryMethod;
 
         public T Create()
         {
@@ -31,7 +26,7 @@ namespace Framework
         }
     }
 
-    internal class ObjectFactory
+    public class ObjectFactory
     {
         public static object Create(Type type, params object[] constructorArgs)
         {
