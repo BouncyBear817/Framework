@@ -5,7 +5,7 @@ namespace Framework
 {
     public abstract class MgrBehaviour : MgrBaseBehaviour
     {
-        private readonly EventListener mEventListener = NonPublicObjectPool<EventListener>.Instance.Allocate();
+        private EventListener mEventListener = NonPublicObjectPool<EventListener>.Instance.Allocate();
 
         public bool RegisterEvent<T>(T msgEvent, OnEvent process) where T : IConvertible
         {

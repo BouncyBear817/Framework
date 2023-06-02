@@ -16,13 +16,13 @@ namespace Framework
     /// <typeparam name="T"></typeparam>
     public class CustomObjectFactory<T> : IObjectFactory<T>
     {
-        protected readonly Func<T> mFactoryMethod;
+        protected readonly Func<T> FactoryMethod;
 
-        public CustomObjectFactory(Func<T> factoryMethod) => mFactoryMethod = factoryMethod;
+        public CustomObjectFactory(Func<T> factoryMethod) => this.FactoryMethod = factoryMethod;
 
         public T Create()
         {
-            return mFactoryMethod();
+            return FactoryMethod();
         }
     }
 

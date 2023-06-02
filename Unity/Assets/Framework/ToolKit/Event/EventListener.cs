@@ -11,7 +11,7 @@ namespace Framework
     /// </summary>
     public class EventListener : ISingleton, IPoolable
     {
-        private readonly Dictionary<int, EventWrap> allEventMap = new Dictionary<int, EventWrap>();
+        private Dictionary<int, EventWrap> mAllEventMap = new Dictionary<int, EventWrap>();
 
         public static EventListener Instance => SingletonProperty<EventListener>.Instance;
 
@@ -24,11 +24,11 @@ namespace Framework
         /// </summary>
         private class EventWrap
         {
-            private readonly LinkedList<OnEvent> eventList = new LinkedList<OnEvent>();
+            private readonly LinkedList<OnEvent> mEventList = new LinkedList<OnEvent>();
 
             public bool Execute(int eventId, params object[] param)
             {
-                var next = eventList.First;
+                var next = mEventList.First;
 
                 while (next != null)
                 {
@@ -44,9 +44,9 @@ namespace Framework
 
             public bool Add(OnEvent process)
             {
-                if (!eventList.Contains(process))
+                if (!mEventList.Contains(process))
                 {
-                    eventList.AddLast(process);
+                    mEventList.AddLast(process);
                     return true;
                 }
 
@@ -55,15 +55,15 @@ namespace Framework
 
             public void Remove(OnEvent process)
             {
-                if (eventList.Contains(process))
+                if (mEventList.Contains(process))
                 {
-                    eventList.Remove(process);
+                    mEventList.Remove(process);
                 }
             }
 
             public void RemoveAll()
             {
-                eventList.Clear();
+                mEventList.Clear();
             }
         }
         
@@ -71,10 +71,10 @@ namespace Framework
         {
             var key = msgEvent.ToInt32(null);
 
-            if (!allEventMap.TryGetValue(key, out var wrap))
+            if (!mAllEventMap.TryGetValue(key, out var wrap))
             {
                 wrap = new EventWrap();
-                allEventMap.Add(key, wrap);
+                mAllEventMap.Add(key, wrap);
             }
 
             if (wrap.Add(process))
@@ -82,13 +82,13 @@ namespace Framework
                 return true;
             }
 
-            Framework.Logger.Warning("Already Register Same Event : " + typeof(T).Name);
+            Logger.Warning("Already Register Same Event : " + typeof(T).Name);
             return false;
         }
 
         public void UnRegister<T>(T msgEvent, OnEvent process) where T : IConvertible
         {
-            if (allEventMap.TryGetValue(msgEvent.ToInt32(null), out var wrap))
+            if (mAllEventMap.TryGetValue(msgEvent.ToInt32(null), out var wrap))
             {
                 wrap.Remove(process);
             }
@@ -97,18 +97,18 @@ namespace Framework
         public void UnRegister<T>(T msgEvent) where T : IConvertible
         {
             var key = msgEvent.ToInt32(null);
-            if (allEventMap.TryGetValue(key, out var wrap))
+            if (mAllEventMap.TryGetValue(key, out var wrap))
             {
                 wrap.RemoveAll();
 
-                allEventMap.Remove(key);
+                mAllEventMap.Remove(key);
             }
         }
 
         public bool Send<T>(T msgEvent, params object[] param) where T : IConvertible
         {
             var key = msgEvent.ToInt32(null);
-            if (allEventMap.TryGetValue(key, out var wrap))
+            if (mAllEventMap.TryGetValue(key, out var wrap))
             {
                 return wrap.Execute(key, param);
             }
@@ -148,7 +148,7 @@ namespace Framework
 
         public void OnRecycle()
         {
-            allEventMap.Clear();
+            mAllEventMap.Clear();
         }
 
         public void OnSingletonInit()

@@ -5,9 +5,9 @@ namespace Framework
 {
     public abstract class Singleton<T> : ISingleton where T : Singleton<T>
     {
-        protected static T mInstance;
+        private static T mInstance;
 
-        private static readonly object mLock = new object();
+        private static object mLock = new object();
 
         public static T Instance
         {
@@ -28,7 +28,7 @@ namespace Framework
     {
         private static T mInstance;
 
-        private static readonly object mLock = new object();
+        private static object mLock = new object();
 
         public static T Instance
         {

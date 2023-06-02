@@ -7,8 +7,8 @@ namespace Framework
     {
         public T Create()
         {
-            var ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
-            var ctor = Array.Find(ctors, c => c.GetParameters().Length == 0);
+            var constructors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
+            var ctor = Array.Find(constructors, c => c.GetParameters().Length == 0);
 
             if (ctor == null)
             {

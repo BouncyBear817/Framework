@@ -8,24 +8,24 @@ namespace Framework
 
         private NonPublicObjectPool()
         {
-            mFactory = new NonPublicObjectFactory<T>();
+            Factory = new NonPublicObjectFactory<T>();
         }
 
         public int MaxCacheCount
         {
-            get => mMaxCount;
+            get => MaxCount;
             set
             {
-                mMaxCount = value;
+                MaxCount = value;
 
-                if (mCacheStack == null) return;
+                if (CacheStack == null) return;
                 
-                if (mMaxCount <= 0 || mMaxCount >= mCacheStack.Count) return;
+                if (MaxCount <= 0 || MaxCount >= CacheStack.Count) return;
                 
-                var removeCount = mCacheStack.Count - mMaxCount;
+                var removeCount = CacheStack.Count - MaxCount;
                 while (removeCount > 0)
                 {
-                    mCacheStack.Pop();
+                    CacheStack.Pop();
                     --removeCount;
                 }
             }
@@ -49,7 +49,7 @@ namespace Framework
             {
                 for (var i = CurrentCacheCount; i < initCount; ++i)
                 {
-                    Recycle(mFactory.Create());
+                    Recycle(Factory.Create());
                 }
             }
         }
@@ -72,9 +72,9 @@ namespace Framework
         {
             if (t == null) return false;
 
-            if (mMaxCount > 0)
+            if (MaxCount > 0)
             {
-                if (mCacheStack.Count >= mMaxCount)
+                if (CacheStack.Count >= MaxCount)
                 {
                     t.OnRecycle();
                     return true;
@@ -82,7 +82,7 @@ namespace Framework
             }
 
             t.OnRecycle();
-            mCacheStack.Push(t);
+            CacheStack.Push(t);
             return true;
         }
 

@@ -5,14 +5,13 @@ namespace Framework
 {
     public abstract class MgrBaseBehaviour : MonoBehaviour
     {
-        protected bool mReceiveMsgInActive = true;
+        protected bool ReceiveMsgInActive = true;
 
-        public void Process(int eventId, params object[] param)
+        protected void Process(int eventId, params object[] param)
         {
-            if (mReceiveMsgInActive && gameObject.activeInHierarchy || !mReceiveMsgInActive)
+            if (ReceiveMsgInActive && gameObject.activeInHierarchy || !ReceiveMsgInActive)
             {
-                var msg = param[0] as IMsg;
-                if (msg != null)
+                if (param[0] is IMsg msg)
                 {
                     ProcessMsg(eventId, msg as Msg);
                     msg.Processed = true;

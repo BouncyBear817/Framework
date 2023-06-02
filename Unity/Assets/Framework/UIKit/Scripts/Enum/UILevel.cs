@@ -8,7 +8,6 @@ namespace Framework
     {
         Bg = -1,
         Common = 0,
-        Pop = 1,
-        Top = 2
+        Pop = 1
     }
 }

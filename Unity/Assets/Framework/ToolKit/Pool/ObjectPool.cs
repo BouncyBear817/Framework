@@ -10,26 +10,26 @@ namespace Framework
     {
         public ObjectPool()
         {
-            mFactory = new DefaultObjectFactory<T>();
+            Factory = new DefaultObjectFactory<T>();
         }
 
         public static ObjectPool<T> Instance => SingletonProperty<ObjectPool<T>>.Instance;
 
         public int MaxCacheCount
         {
-            get => mMaxCount;
+            get => MaxCount;
             set
             {
-                mMaxCount = value;
+                MaxCount = value;
 
-                if (mCacheStack == null) return;
+                if (CacheStack == null) return;
                 
-                if (mMaxCount <= 0 || mMaxCount >= mCacheStack.Count) return;
+                if (MaxCount <= 0 || MaxCount >= CacheStack.Count) return;
                 
-                var removeCount = mCacheStack.Count - mMaxCount;
+                var removeCount = CacheStack.Count - MaxCount;
                 while (removeCount > 0)
                 {
-                    mCacheStack.Pop();
+                    CacheStack.Pop();
                     --removeCount;
                 }
             }
@@ -59,15 +59,6 @@ namespace Framework
         }
 
         /// <summary>
-        /// 分配对象
-        /// </summary>
-        /// <returns></returns>
-        public override T Allocate()
-        {
-            return base.Allocate();
-        }
-
-        /// <summary>
         /// 回收对象进池中
         /// </summary>
         /// <param name="t"></param>
@@ -76,9 +67,9 @@ namespace Framework
         {
             if (t == null) return false;
 
-            if (mMaxCount > 0)
+            if (MaxCount > 0)
             {
-                if (mCacheStack.Count >= mMaxCount)
+                if (CacheStack.Count >= MaxCount)
                 {
                     t.OnRecycle();
                     return true;
@@ -86,7 +77,7 @@ namespace Framework
             }
 
             t.OnRecycle();
-            mCacheStack.Push(t);
+            CacheStack.Push(t);
             return true;
         }
 
