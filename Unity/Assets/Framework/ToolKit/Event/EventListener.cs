@@ -85,7 +85,13 @@ namespace Framework
             Logger.Warning("Already Register Same Event : " + typeof(T).Name);
             return false;
         }
-
+        
+        /// <summary>
+        /// 卸载指定的事件监听
+        /// </summary>
+        /// <param name="msgEvent"></param>
+        /// <param name="process"></param>
+        /// <typeparam name="T"></typeparam>
         public void UnRegister<T>(T msgEvent, OnEvent process) where T : IConvertible
         {
             if (mAllEventMap.TryGetValue(msgEvent.ToInt32(null), out var wrap))
@@ -93,7 +99,12 @@ namespace Framework
                 wrap.Remove(process);
             }
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msgEvent"></param>
+        /// <typeparam name="T"></typeparam>
         public void UnRegister<T>(T msgEvent) where T : IConvertible
         {
             var key = msgEvent.ToInt32(null);

@@ -6,13 +6,22 @@ namespace Framework
     {
         int EventId { get; set; }
         
+        int ManagerId { get; set; }
+        
         bool Processed { get; set; }
+
+        void OnRecycle();
     }
     
     public class Msg : IMsg, IPoolable
     {
         public int EventId { get; set; }
+        public int ManagerId { get; set; }
         public bool Processed { get; set; }
+        void IMsg.OnRecycle()
+        {
+            ObjectPool<Msg>.Instance.Recycle(this);
+        }
 
         public static Msg Allocate<T>(T eventId) where T : IConvertible
         {
@@ -21,8 +30,8 @@ namespace Framework
 
             return msg;
         }
-        
-        public void OnRecycle()
+
+        void IPoolable.OnRecycle()
         {
             Processed = false;
         }

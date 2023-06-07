@@ -16,6 +16,7 @@ namespace Framework
         public RectTransform Bg;
         public RectTransform Common;
         public RectTransform PopUI;
+        public RectTransform DesignRoot;
 
         private static UIRoot mInstance;
 
@@ -39,7 +40,12 @@ namespace Framework
                 return mInstance;
             }
         }
-        
+
+        private void Awake()
+        {
+            DesignRoot.SetActive(false);
+        }
+
         public void SetResolution(int width, int height, float matchWidthOrHeight)
         {
             UICanvasScaler.referenceResolution = new Vector2(width, height);

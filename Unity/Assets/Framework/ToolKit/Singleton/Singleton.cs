@@ -47,6 +47,50 @@ namespace Framework
             mInstance = null;
         }
     }
+    
+    /// <summary>
+    /// 静态类：MonoBehaviour类的单例
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class MonoSingleton<T> : MonoBehaviour, ISingleton where T : MonoSingleton<T>
+    {
+        private static T mInstance;
+        
+        private static object mLock = new object();
+        
+        public static T Instance
+        {
+            get
+            {
+                lock (mLock)
+                {
+                    mInstance ??= SingletonCreator.CreateSingleton<T>();
+                    return mInstance;
+                }
+            }
+        }
+        public void OnSingletonInit()
+        {
+        }
+        
+        /// <summary>
+        /// 应用程序退出：释放当前对象并销毁相关GameObject
+        /// </summary>
+        protected virtual void OnApplicationQuit()
+        {
+            if (mInstance == null) return;
+            Destroy(mInstance.gameObject);
+            mInstance = null;
+        }
+
+        /// <summary>
+        /// 释放当前对象
+        /// </summary>
+        protected virtual void OnDestroy()
+        {
+            mInstance = null;
+        }
+    }
 
     public static class SingletonCreator
     {

@@ -3,36 +3,34 @@ using UnityEngine;
 
 namespace Framework
 {
-    public abstract class MgrBehaviour : MgrBaseBehaviour
+    public abstract class MgrBehaviour : MgrBaseBehaviour, IManager
     {
         private EventListener mEventListener = NonPublicObjectPool<EventListener>.Instance.Allocate();
 
-        public bool RegisterEvent<T>(T msgEvent, OnEvent process) where T : IConvertible
+        public void Init()
         {
-            return mEventListener.Register(msgEvent, process);
         }
 
-        public void UnRegisterEvent<T>(T msgEvent) where T : IConvertible
+        public void RegisterEvent<T>(T msgEvent, OnEvent onEvent) where T : IConvertible
         {
-            mEventListener.UnRegister(msgEvent);
+            mEventListener.Register(msgEvent, onEvent);
         }
 
-        public bool SendEvent<T>(T msgEvent, params object[] param) where T : IConvertible
+        public void UnRegisterEvent<T>(T msgEvent, OnEvent onEvent) where T : IConvertible
         {
-            SendMsg(Msg.Allocate(msgEvent));
-            return true;
+            mEventListener.UnRegister(msgEvent, onEvent);
+        }
+
+        public override IManager Manager => this;
+
+        public void SendEvent<T>(T msgEvent, params object[] param) where T : IConvertible
+        {
+            mEventListener.Send(msgEvent, param);
         }
 
         public void SendMsg(IMsg msg)
         {
             Process(msg.EventId, msg);
         }
-
-        protected override void ProcessMsg(int eventId, Msg msg)
-        {
-            mEventListener.Send(eventId, msg);
-        }
-        
-        
     }
 }
