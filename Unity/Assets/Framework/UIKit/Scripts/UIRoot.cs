@@ -32,7 +32,7 @@ namespace Framework
                 if (mInstance == null)
                 {
                     Instantiate(Resources.Load<GameObject>(UIRootPath));
-                    mInstance = SingletonProperty<UIRoot>.Instance;
+                    mInstance = MonoSingletonProperty<UIRoot>.Instance;
                     mInstance.name = "UIRoot";
                     DontDestroyOnLoad(mInstance);
                 }

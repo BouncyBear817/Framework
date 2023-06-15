@@ -6,11 +6,11 @@ namespace Framework
     {
         void Init();
 
-        void RegisterEvent<T>(T msgEvent, OnEvent onEvent) where T : IConvertible;
+        void RegisterEvent<T>(T eventId, OnEvent onEvent) where T : IConvertible;
         
-        void UnRegisterEvent<T>(T msgEvent, OnEvent onEvent) where T : IConvertible;
+        void UnRegisterEvent<T>(T eventId, OnEvent onEvent) where T : IConvertible;
         
-        void SendEvent<T>(T msgEvent, params object[] param) where T : IConvertible;
+        void SendEvent<T>(T eventId, params object[] param) where T : IConvertible;
 
         void SendMsg(IMsg msg);
     }

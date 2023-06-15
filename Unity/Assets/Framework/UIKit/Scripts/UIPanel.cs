@@ -11,7 +11,7 @@ namespace Framework
         public Transform Transform => transform;
         public IUIPanelLoader Loader { get; set; }
         public UIPanelState State { get; set; }
-
+        
         public void Init()
         {
             OnInit();
@@ -52,5 +52,6 @@ namespace Framework
         protected virtual void OnUpdate() {}
         protected virtual void OnHide() {}
         protected virtual void OnRecycle() {}
+       
     }
 }

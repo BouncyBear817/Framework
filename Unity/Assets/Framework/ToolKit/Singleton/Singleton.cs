@@ -1,8 +1,13 @@
 using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace Framework
 {
+    /// <summary>
+    /// 普通类单例
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class Singleton<T> : ISingleton where T : Singleton<T>
     {
         private static T mInstance;
@@ -23,7 +28,11 @@ namespace Framework
 
         public abstract void OnSingletonInit();
     }
-
+    
+    /// <summary>
+    /// 属性单例类
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public static class SingletonProperty<T> where T : class, ISingleton
     {
         private static T mInstance;
@@ -48,6 +57,37 @@ namespace Framework
         }
     }
     
+    /// <summary>
+    /// 继承Momo的属性单例
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public static class MonoSingletonProperty<T> where T : MonoBehaviour, ISingleton
+    {
+        private static T mInstance;
+
+        private static object mLock = new object();
+
+        public static T Instance
+        {
+            get
+            {
+                lock (mLock)
+                {
+                    mInstance ??= SingletonCreator.CreateSingleton<T>();
+                    return mInstance;
+                }
+            }
+        }
+
+        public static void OnDispose()
+        {
+            if (mInstance != null)
+            {
+                UnityEngine.Object.Destroy(mInstance.gameObject);
+                mInstance = null;
+            }
+        }
+    }
     /// <summary>
     /// 静态类：MonoBehaviour类的单例
     /// </summary>
@@ -91,7 +131,10 @@ namespace Framework
             mInstance = null;
         }
     }
-
+    
+    /// <summary>
+    /// 单例创建类
+    /// </summary>
     public static class SingletonCreator
     {
         private static T CreateNonPublicConstructObject<T>() where T : class
@@ -118,10 +161,30 @@ namespace Framework
                 instance.OnSingletonInit();
                 return instance;
             }
+            
+            //MemberInfo：获取有关成员属性的信息并提供对成员元数据的访问
+            MemberInfo info = typeof(T);
+            //获取T类型 自定义属性，并找到相关路径属性，利用该属性创建T实例
+            var attributes = info.GetCustomAttributes(true);
+            foreach (var attribute in attributes)
+            {
+                if (!(attribute is MonoSingletonPath defineAttribute))
+                {
+                    continue;
+                }
 
-            var obj = new GameObject(typeof(T).Name);
-            UnityEngine.Object.DontDestroyOnLoad(obj);
-            instance = obj.AddComponent(typeof(T)) as T;
+                instance = GameObjectHelper.CreateComponentOnGameObject<T>(defineAttribute.PathInHierarchy, true);
+                break;
+            }
+
+            //如果还是无法找到instance  则主动去创建同名Obj 并挂载相关脚本 组件
+            if (instance == null)
+            {
+                var obj = new GameObject(typeof(T).Name);
+                UnityEngine.Object.DontDestroyOnLoad(obj);
+                instance = obj.AddComponent(typeof(T)) as T;
+            }
+
             instance?.OnSingletonInit();
 
             return instance;

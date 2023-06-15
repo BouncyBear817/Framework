@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor.MPE;
 using UnityEngine;
 
 namespace Framework
@@ -8,7 +9,7 @@ namespace Framework
     {
         protected bool ReceiveMsgInActive = true;
 
-        private List<ushort> mCacheEventIds = new List<ushort>();
+        private List<int> mCacheEventIds = new List<int>();
 
         protected void Process(int eventId, params object[] param)
         {
@@ -20,10 +21,28 @@ namespace Framework
                     msg.Processed = true;
                     msg.OnRecycle();
                 }
+                else
+                {
+                    ProcessEvent(eventId, param);
+                }
             }
         }
-
+        
+        /// <summary>
+        /// 用于接受外部消息（manager外）
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="msg"></param>
         protected virtual void ProcessMsg(int eventId, Msg msg)
+        {
+        }
+        
+        /// <summary>
+        /// 用于接收内部消息（manager内）
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="param"></param>
+        protected virtual void ProcessEvent(int eventId, params object[] param)
         {
         }
 
@@ -31,22 +50,30 @@ namespace Framework
 
         protected void RegisterEvent<T>(T eventId) where T : IConvertible
         {
-            mCacheEventIds.Add(eventId.ToUInt16(null));
+            mCacheEventIds.Add(eventId.ToInt32(null));
             Manager.RegisterEvent(eventId, Process);
         }
 
         protected void UnRegisterEvent<T>(T eventId) where T : IConvertible
         {
-            mCacheEventIds.Remove(eventId.ToUInt16(null));
+            mCacheEventIds.Remove(eventId.ToInt32(null));
             Manager.UnRegisterEvent(eventId, Process);
         }
 
-        public void SendEvent<T>(T eventId, params object[] param) where T : IConvertible
+        protected void UnRegisterAllEvent()
+        {
+            if (mCacheEventIds != null)
+            {
+                mCacheEventIds.ForEach(eventId => { Manager.UnRegisterEvent(eventId, Process); });
+            }
+        }
+
+        public void Send<T>(T eventId, params object[] param) where T : IConvertible
         {
             Manager.SendEvent(eventId, param);
         }
 
-        public void SendMsg(IMsg msg)
+        public void Send(IMsg msg)
         {
             Manager.SendMsg(msg);
         }
@@ -55,12 +82,11 @@ namespace Framework
         {
             if (Application.isPlaying)
             {
-                mCacheEventIds.ForEach(eventId =>
-                {
-                    Manager.UnRegisterEvent(eventId, Process);
-                });
-                mCacheEventIds.Clear();
+                OnBeforeDestroy();
+                UnRegisterAllEvent();
             }
         }
+        
+        protected virtual void OnBeforeDestroy() {}
     }
 }

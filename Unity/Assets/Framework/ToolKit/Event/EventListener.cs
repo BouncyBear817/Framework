@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Framework
 {
-    public delegate void OnEvent(int eventId, params object[] param);
-    
+    public delegate void OnEvent(int key, params object[] param);
+
     /// <summary>
     /// 事件监听器，事件广播
     /// </summary>
@@ -26,7 +26,7 @@ namespace Framework
         {
             private readonly LinkedList<OnEvent> mEventList = new LinkedList<OnEvent>();
 
-            public bool Execute(int eventId, params object[] param)
+            public bool Execute(int key, params object[] param)
             {
                 var next = mEventList.First;
 
@@ -34,7 +34,7 @@ namespace Framework
                 {
                     var call = next.Value;
 
-                    call(eventId, param);
+                    call(key, param);
 
                     next = next.Next;
                 }
@@ -42,22 +42,22 @@ namespace Framework
                 return true;
             }
 
-            public bool Add(OnEvent process)
+            public bool Add(OnEvent onEvent)
             {
-                if (!mEventList.Contains(process))
+                if (!mEventList.Contains(onEvent))
                 {
-                    mEventList.AddLast(process);
+                    mEventList.AddLast(onEvent);
                     return true;
                 }
 
                 return false;
             }
 
-            public void Remove(OnEvent process)
+            public void Remove(OnEvent onEvent)
             {
-                if (mEventList.Contains(process))
+                if (mEventList.Contains(onEvent))
                 {
-                    mEventList.Remove(process);
+                    mEventList.Remove(onEvent);
                 }
             }
 
@@ -67,17 +67,17 @@ namespace Framework
             }
         }
         
-        public bool Register<T>(T msgEvent, OnEvent process) where T : IConvertible
+        public bool Register<T>(T eventId, OnEvent onEvent) where T : IConvertible
         {
-            var key = msgEvent.ToInt32(null);
+            var id = eventId.ToInt32(null);
 
-            if (!mAllEventMap.TryGetValue(key, out var wrap))
+            if (!mAllEventMap.TryGetValue(id, out var wrap))
             {
                 wrap = new EventWrap();
-                mAllEventMap.Add(key, wrap);
+                mAllEventMap.Add(id, wrap);
             }
 
-            if (wrap.Add(process))
+            if (wrap.Add(onEvent))
             {
                 return true;
             }
@@ -89,12 +89,14 @@ namespace Framework
         /// <summary>
         /// 卸载指定的事件监听
         /// </summary>
-        /// <param name="msgEvent"></param>
+        /// <param name="eventId"></param>
         /// <param name="process"></param>
         /// <typeparam name="T"></typeparam>
-        public void UnRegister<T>(T msgEvent, OnEvent process) where T : IConvertible
+        public void UnRegister<T>(T eventId, OnEvent process) where T : IConvertible
         {
-            if (mAllEventMap.TryGetValue(msgEvent.ToInt32(null), out var wrap))
+            var id = eventId.ToInt32(null);
+            
+            if (mAllEventMap.TryGetValue(id, out var wrap))
             {
                 wrap.Remove(process);
             }
@@ -103,25 +105,26 @@ namespace Framework
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="msgEvent"></param>
+        /// <param name="eventId"></param>
         /// <typeparam name="T"></typeparam>
-        public void UnRegister<T>(T msgEvent) where T : IConvertible
+        public void UnRegister<T>(T eventId) where T : IConvertible
         {
-            var key = msgEvent.ToInt32(null);
-            if (mAllEventMap.TryGetValue(key, out var wrap))
+            var id = eventId.ToInt32(null);
+            if (mAllEventMap.TryGetValue(id, out var wrap))
             {
                 wrap.RemoveAll();
 
-                mAllEventMap.Remove(key);
+                mAllEventMap.Remove(id);
             }
         }
 
-        public bool Send<T>(T msgEvent, params object[] param) where T : IConvertible
+        public bool Send<T>(T eventId, params object[] param) where T : IConvertible
         {
-            var key = msgEvent.ToInt32(null);
-            if (mAllEventMap.TryGetValue(key, out var wrap))
+            var id = eventId.ToInt32(null);
+            if (mAllEventMap.TryGetValue(id, out var wrap))
             {
-                return wrap.Execute(key, param);
+                // 默认onEvent中key为eventId
+                return wrap.Execute(id, param);
             }
 
             Debug.LogWarning("No Register Event : " + typeof(T).Name);
@@ -130,24 +133,24 @@ namespace Framework
 
         #region 事件监听器静态方法
 
-        public static bool RegisterEvent<T>(T msgEvent, OnEvent process) where T : IConvertible
+        public static bool RegisterEvent<T>(T eventId, OnEvent process) where T : IConvertible
         {
-            return Instance.Register<T>(msgEvent, process);
+            return Instance.Register<T>(eventId, process);
         }
 
-        public static void UnRegisterEvent<T>(T msgEvent, OnEvent process) where T : IConvertible
+        public static void UnRegisterEvent<T>(T eventId, OnEvent process) where T : IConvertible
         {
-            Instance.UnRegister<T>(msgEvent, process);
+            Instance.UnRegister<T>(eventId, process);
         }
 
-        public static void UnRegisterEvent<T>(T msgEvent) where T : IConvertible
+        public static void UnRegisterEvent<T>(T eventId) where T : IConvertible
         {
-            Instance.UnRegister<T>(msgEvent);
+            Instance.UnRegister<T>(eventId);
         }
 
-        public static bool SendEvent<T>(T msgEvent, int eventId, params object[] param) where T : IConvertible
+        public static bool SendEvent<T>(T eventId, params object[] param) where T : IConvertible
         {
-            return Instance.Send(msgEvent, eventId, param);
+            return Instance.Send(eventId, param);
         }
 
         public static void RecycleAll()
