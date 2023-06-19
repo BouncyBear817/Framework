@@ -10,6 +10,7 @@ namespace Framework
     {
         public Transform Transform => transform;
         public IUIPanelLoader Loader { get; set; }
+        public UIPanelInfo PanelInfo { get; set; }
         public UIPanelState State { get; set; }
         
         public void Init()

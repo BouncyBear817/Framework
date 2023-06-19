@@ -10,9 +10,7 @@ namespace Framework
 
         public override IManager Manager => this;
 
-        public void Init()
-        {
-        }
+        public virtual void Init() {}
 
         public void RegisterEvent<T>(T eventId, OnEvent onEvent) where T : IConvertible
         {

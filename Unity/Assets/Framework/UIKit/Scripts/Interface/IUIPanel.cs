@@ -9,6 +9,8 @@ namespace Framework
         
         IUIPanelLoader Loader { get; set; }
         
+        UIPanelInfo PanelInfo { get; set; }
+        
         UIPanelState State { get; set; }
 
         void Init();
