@@ -2,7 +2,7 @@
 
 namespace Framework
 {
-    public class GameObjectHelper
+    public static class GameObjectHelper
     {
         /// <summary>
         /// 查找GameObject,已经拆分好的路径

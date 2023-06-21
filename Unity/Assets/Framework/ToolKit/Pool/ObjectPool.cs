@@ -6,9 +6,9 @@ namespace Framework
     /// 对象池
     /// </summary>
     /// <typeparam name="T">需实现IPoolable</typeparam>
-    public class ObjectPool<T> : Pool<T>, ISingleton where T : IPoolable, new()
+    public abstract class ObjectPool<T> : Pool<T>, ISingleton where T : IPoolable, new()
     {
-        public ObjectPool()
+        protected ObjectPool()
         {
             Factory = new DefaultObjectFactory<T>();
         }

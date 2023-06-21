@@ -2,9 +2,12 @@
 
 namespace Framework
 {
-    public class LoggerHelper : ILogHelper
+    /// <summary>
+    /// 日志助手，可继承复写
+    /// </summary>
+    public abstract class LoggerHelper : ILogHelper
     {
-        public void Log(LogLevel logLevel, object message)
+        public virtual void Log(LogLevel logLevel, object message)
         {
             switch (logLevel)
             {
@@ -23,7 +26,7 @@ namespace Framework
             }
         }
 
-        public void Log(LogLevel logLevel, string format, params object[] args)
+        public virtual void Log(LogLevel logLevel, string format, params object[] args)
         {
             switch (logLevel)
             {
