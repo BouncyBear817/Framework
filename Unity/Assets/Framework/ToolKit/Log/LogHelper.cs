@@ -5,7 +5,7 @@ namespace Framework
     /// <summary>
     /// 日志助手，可继承复写
     /// </summary>
-    public abstract class LoggerHelper : ILogHelper
+    public abstract class LogHelper : ILogHelper
     {
         public virtual void Log(LogLevel logLevel, object message)
         {

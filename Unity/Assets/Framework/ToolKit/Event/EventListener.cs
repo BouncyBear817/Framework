@@ -82,7 +82,7 @@ namespace Framework
                 return true;
             }
 
-            Logger.Warning("Already Register Same Event : " + typeof(T).Name);
+            Log.Warning("Already Register Same Event : " + typeof(T).Name);
             return false;
         }
         

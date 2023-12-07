@@ -6,9 +6,9 @@ namespace Framework
     {
         private IUIPanelLoaderPool mPanelLoaderPool;
 
-        public UIPanelGenerator(IUIPanelLoaderPool mPanelLoaderPool)
+        public UIPanelGenerator(IUIPanelLoaderPool panelLoaderPool)
         {
-            this.mPanelLoaderPool = mPanelLoaderPool;
+            this.mPanelLoaderPool = panelLoaderPool;
         }
 
         public IUIPanel LoadUIPanel(UIPanelInfo panelInfo)

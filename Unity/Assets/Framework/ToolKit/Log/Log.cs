@@ -4,7 +4,7 @@ namespace Framework
     /// <summary>
     /// 日志记录类
     /// </summary>
-    public static class Logger
+    public static class Log
     {
         private static ILogHelper mLogHelper = null;
 

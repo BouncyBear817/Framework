@@ -173,7 +173,7 @@ namespace Framework
                     continue;
                 }
 
-                instance = GameObjectHelper.CreateComponentOnGameObject<T>(defineAttribute.PathInHierarchy, true);
+                instance = Utility.GameObj.CreateComponentOnGameObject<T>(defineAttribute.PathInHierarchy, true);
                 break;
             }
 
