@@ -1,4 +1,12 @@
-﻿using System;
+/************************************************************
+* Unity Version: 2022.3.0f1c1
+* Author:        bear
+* CreateTime:    2023/12/18 11:05:27
+* Description:   
+* Modify Record: 
+*************************************************************/
+
+using System;
 
 namespace Framework
 {
@@ -95,5 +103,10 @@ namespace Framework
         {
             SingletonProperty<NonPublicObjectPool<T>>.Instance.OnDispose();
         }
+    }
+
+    public interface IPoolable
+    {
+        void OnRecycle();
     }
 }

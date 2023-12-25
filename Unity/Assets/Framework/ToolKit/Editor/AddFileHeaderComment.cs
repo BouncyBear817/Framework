@@ -25,7 +25,7 @@ public class AddFileHeaderComment : AssetModificationProcessor
         var newFilePath = newFileMeta.Replace(".meta", "");
         var subIndex = Application.dataPath.LastIndexOf("Assets", StringComparison.Ordinal);
         var rootPath = Application.dataPath.Substring(0, subIndex);
-        var filePath = string.Format("{0}{1}", rootPath, newFilePath);
+        var filePath = $"{rootPath}{newFilePath}";
         AddHeaderComment(filePath);
     }
     
@@ -35,6 +35,14 @@ public class AddFileHeaderComment : AssetModificationProcessor
         var objs = Selection.GetFiltered<TextAsset>(SelectionMode.DeepAssets);
         foreach (var obj in objs)
         {
+            if (obj.text.Contains("Author"))
+            {
+                continue;
+            }
+
+            var filePath = AssetDatabase.GetAssetPath(obj);
+            AddHeaderComment(filePath);
+            Debug.Log($"Script ({obj.name}) Add Header Comment is success.");
         }
     }
 
@@ -44,20 +52,26 @@ public class AddFileHeaderComment : AssetModificationProcessor
         {
             if (filePath.EndsWith(".cs"))
             {
-                var scriptContent = mStr;
-                
-                //这里实现自定义的一些规则
-                scriptContent = scriptContent.Replace("#VERSION#", Application.unityVersion);
-                scriptContent = scriptContent.Replace("#AUTHOR#", "bear");
-                // 替换字符串为系统时间
-                scriptContent =
-                    scriptContent.Replace("#CreateTime#", System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
-                
+                var scriptContent = GetHeaderComment();
                 scriptContent += File.ReadAllText(filePath);
                 File.WriteAllText(filePath, scriptContent);
                 AssetDatabase.Refresh();
                 scriptContent = "";
             }
         }
+    }
+
+    private static string GetHeaderComment()
+    {
+        var scriptContent = mStr;
+                
+        //这里实现自定义的一些规则
+        scriptContent = scriptContent.Replace("#VERSION#", Application.unityVersion);
+        scriptContent = scriptContent.Replace("#AUTHOR#", "bear");
+        // 替换字符串为系统时间
+        scriptContent =
+            scriptContent.Replace("#CreateTime#", System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+
+        return scriptContent;
     }
 }

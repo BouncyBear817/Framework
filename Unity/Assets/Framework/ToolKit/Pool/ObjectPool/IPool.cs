@@ -1,4 +1,12 @@
-﻿namespace Framework
+/************************************************************
+* Unity Version: 2022.3.0f1c1
+* Author:        bear
+* CreateTime:    2023/12/08 11:36:07
+* Description:   
+* Modify Record: 
+*************************************************************/
+
+namespace Framework
 {
     /// <summary>
     /// 对象池接口
@@ -20,8 +28,5 @@
         bool Recycle(T t);
     }
 
-    public interface IPoolable
-    {
-        void OnRecycle();
-    }
+    
 }

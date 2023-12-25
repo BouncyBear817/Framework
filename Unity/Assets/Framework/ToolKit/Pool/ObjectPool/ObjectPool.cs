@@ -1,3 +1,11 @@
+/************************************************************
+* Unity Version: 2022.3.0f1c1
+* Author:        bear
+* CreateTime:    2023/12/18 11:05:27
+* Description:   对象池
+* Modify Record: 
+*************************************************************/
+
 using System;
 
 namespace Framework
@@ -14,7 +22,10 @@ namespace Framework
         }
 
         public static ObjectPool<T> Instance => SingletonProperty<ObjectPool<T>>.Instance;
-
+        
+        /// <summary>
+        /// 对象最大缓存数量
+        /// </summary>
         public int MaxCacheCount
         {
             get => MaxCount;
