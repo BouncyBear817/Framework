@@ -63,7 +63,8 @@ public class AddFileHeaderComment : AssetModificationProcessor
 
     private static string GetHeaderComment()
     {
-        var scriptContent = mStr;
+        var scriptContent = "";
+        scriptContent += mStr;
                 
         //这里实现自定义的一些规则
         scriptContent = scriptContent.Replace("#VERSION#", Application.unityVersion);
