@@ -17,6 +17,9 @@ namespace Framework
 
         private readonly T mOwner;
 
+        private readonly LoadAssetCallbacks mLoadAssetCallbacks;
+        private readonly LoadBinaryCallbacks mLoadBinaryCallbacks;
+
         private IDataProviderHelper<T> mDataProviderHelper;
 
         private EventHandler<ReadDataSuccessEventArgs> mReadDataSuccessEventHandler;
@@ -27,6 +30,9 @@ namespace Framework
         public DataProvider(T owner)
         {
             mOwner = owner;
+            mLoadAssetCallbacks = new LoadAssetCallbacks(LoadAssetSuccessCallback, LoadAssetOrBinaryFailureCallback,
+                LoadAssetUpdateCallback, LoadAssetDependencyCallback);
+            mLoadBinaryCallbacks = new LoadBinaryCallbacks(LoadBinarySuccessCallback, LoadAssetOrBinaryFailureCallback);
             mDataProviderHelper = null;
             mReadDataSuccessEventHandler = null;
             mReadDataFailureEventHandler = null;
@@ -116,17 +122,27 @@ namespace Framework
             {
                 throw new Exception("Data bytes is invalid.");
             }
-            
+
             return ParseData(dataBytes, 0, dataBytes.Length, userData);
         }
 
         public bool ParseData(byte[] dataBytes, int startIndex, int length, object userData)
         {
+            if (mDataProviderHelper == null)
+            {
+                throw new Exception("You must set data provider helper first.");
+            }
+
             if (dataBytes == null)
             {
                 throw new Exception("Data bytes is invalid.");
             }
-            
+
+            if (startIndex < 0 || length < 0 || startIndex + length > dataBytes.Length)
+            {
+                throw new Exception("Start index or length is invalid.");
+            }
+
             try
             {
                 return mDataProviderHelper.ParseData(mOwner, dataBytes, startIndex, length, userData);
@@ -140,6 +156,105 @@ namespace Framework
         public void SetDataProviderHelper(IDataProviderHelper<T> dataProviderHelper)
         {
             mDataProviderHelper = dataProviderHelper ?? throw new Exception("Data Provider Helper is invalid.");
+        }
+
+        private void LoadAssetSuccessCallback(string assetName, object asset, float duration, object userData)
+        {
+            try
+            {
+                if (!mDataProviderHelper.ReadData(mOwner, assetName, asset, userData))
+                {
+                    throw new Exception($"Read Data failure in data provider helper, data asset name : {assetName}");
+                }
+
+                if (mReadDataSuccessEventHandler != null)
+                {
+                    var eventArgs = ReadDataSuccessEventArgs.Create(assetName, duration, userData);
+                    mReadDataSuccessEventHandler(this, eventArgs);
+                    ReferencePool.Release(eventArgs);
+                }
+            }
+            catch (Exception e)
+            {
+                if (mReadDataFailureEventHandler != null)
+                {
+                    var eventArgs = ReadDataFailureEventArgs.Create(assetName, e.ToString(), userData);
+                    mReadDataFailureEventHandler(this, eventArgs);
+                    ReferencePool.Release(eventArgs);
+                }
+            }
+            finally
+            {
+                mDataProviderHelper.ReleaseDataAsset(mOwner, asset);
+            }
+        }
+
+        private void LoadAssetOrBinaryFailureCallback(string assetName, LoadResourceStatus status, string errorMessage,
+            object userData)
+        {
+            string appendErrorMessage =
+                $"Load data failure, data asset Name ({assetName}), status ({status}), error message ({errorMessage})";
+            if (mReadDataFailureEventHandler != null)
+            {
+                var eventArgs = ReadDataFailureEventArgs.Create(assetName, appendErrorMessage, userData);
+                mReadDataFailureEventHandler(this, eventArgs);
+                ReferencePool.Release(eventArgs);
+                return;
+            }
+
+            throw new Exception(appendErrorMessage);
+        }
+
+        private void LoadAssetUpdateCallback(string assetName, float progress, object userData)
+        {
+            if (mReadDataUpdateEventHandler != null)
+            {
+                var eventArgs = ReadDataUpdateEventArgs.Create(assetName, progress, userData);
+                mReadDataUpdateEventHandler(this, eventArgs);
+                ReferencePool.Release(eventArgs);
+            }
+        }
+
+        private void LoadAssetDependencyCallback(string assetName, string dependencyAssetName, int loadedCount,
+            int totalCount, object userData)
+        {
+            if (mReadDataDependencyAssetEventHandler != null)
+            {
+                var eventArgs = ReadDataDependencyAssetEventArgs.Create(assetName, dependencyAssetName, loadedCount,
+                    totalCount, userData);
+                mReadDataDependencyAssetEventHandler(this, eventArgs);
+                ReferencePool.Release(eventArgs);
+            }
+        }
+
+        private void LoadBinarySuccessCallback(string binaryAssetName, byte[] binaryBytes, float duration,
+            object userData)
+        {
+            try
+            {
+                if (!mDataProviderHelper.ReadData(mOwner, binaryAssetName, binaryBytes, 0, binaryBytes.Length,
+                        userData))
+                {
+                    throw new Exception(
+                        $"Read Data failure in data provider helper, data asset name : {binaryAssetName}");
+                }
+
+                if (mReadDataSuccessEventHandler != null)
+                {
+                    var eventArgs = ReadDataSuccessEventArgs.Create(binaryAssetName, duration, userData);
+                    mReadDataSuccessEventHandler(this, eventArgs);
+                    ReferencePool.Release(eventArgs);
+                }
+            }
+            catch (Exception e)
+            {
+                if (mReadDataFailureEventHandler != null)
+                {
+                    var eventArgs = ReadDataFailureEventArgs.Create(binaryAssetName, e.ToString(), userData);
+                    mReadDataFailureEventHandler(this, eventArgs);
+                    ReferencePool.Release(eventArgs);
+                }
+            }
         }
     }
 }

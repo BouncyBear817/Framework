@@ -20,6 +20,8 @@ namespace Framework
         bool ParseData(T dataProviderOwner, byte[] dataBytes, int startIndex, int length, object userData);
 
         bool ParseData(T dataProviderOwner, object dataAsset);
+
+        void ReleaseDataAsset(T dataProviderOwner, object dataAsset);
     }
 }
 
