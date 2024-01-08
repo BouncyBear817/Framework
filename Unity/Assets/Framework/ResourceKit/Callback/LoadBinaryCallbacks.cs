@@ -1,10 +1,10 @@
 /************************************************************
-* Unity Version: 2022.3.0f1c1
-* Author:        bear
-* CreateTime:    2023/12/29 16:18:55
-* Description:   
-* Modify Record: 
-*************************************************************/
+ * Unity Version: 2022.3.0f1c1
+ * Author:        bear
+ * CreateTime:    2023/12/29 16:18:55
+ * Description:
+ * Modify Record:
+ *************************************************************/
 
 using System;
 
@@ -33,15 +33,16 @@ namespace Framework
         public LoadBinaryCallbacks(LoadBinarySuccessCallback loadBinarySuccessCallback,
             LoadBinaryFailureCallback loadBinaryFailureCallback = null)
         {
-            mLoadBinarySuccessCallback = loadBinarySuccessCallback ?? throw new Exception("Load binary Asset callback is invalid.");
+            mLoadBinarySuccessCallback = loadBinarySuccessCallback ??
+                                         throw new Exception("Load binary Asset callback is invalid.");
             mLoadBinaryFailureCallback = loadBinaryFailureCallback;
         }
-        
+
         /// <summary>
         /// 加载二进制资源成功回调函数
         /// </summary>
         public LoadBinarySuccessCallback LoadBinarySuccessCallback => mLoadBinarySuccessCallback;
-        
+
         /// <summary>
         /// 加载二进制资源失败回调函数
         /// </summary>
