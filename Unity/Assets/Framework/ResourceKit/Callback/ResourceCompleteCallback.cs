@@ -15,4 +15,9 @@ namespace Framework
     /// 使用可更新模式并校验资源完成时的回调函数
     /// </summary>
     public delegate void VerifyResourceCompleteCallback(bool result);
+
+    /// <summary>
+    /// 使用可更新模式并更新资源完成时的回调函数
+    /// </summary>
+    public delegate void UpdateResourceCompleteCallback(IResourceGroup resourceGroup, bool result);
 }
