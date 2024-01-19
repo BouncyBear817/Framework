@@ -10,12 +10,12 @@
         private readonly int mCompressedLength;
         private readonly int mCompressedHashCode;
 
-        public VersionListInfo(int mLength, int mHashCode, int mCompressedLength, int mCompressedHashCode)
+        public VersionListInfo(int length, int hashCode, int compressedLength, int compressedHashCode)
         {
-            this.mLength = mLength;
-            this.mHashCode = mHashCode;
-            this.mCompressedLength = mCompressedLength;
-            this.mCompressedHashCode = mCompressedHashCode;
+            this.mLength = length;
+            this.mHashCode = hashCode;
+            this.mCompressedLength = compressedLength;
+            this.mCompressedHashCode = compressedHashCode;
         }
         
         /// <summary>

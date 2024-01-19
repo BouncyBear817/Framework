@@ -50,7 +50,7 @@ namespace Framework
         /// 当前资源适用的版号
         /// </summary>
         public string ApplicableVersion => mApplicableVersion;
-        
+
         /// <summary>
         /// 当前资源的内部版本号
         /// </summary>

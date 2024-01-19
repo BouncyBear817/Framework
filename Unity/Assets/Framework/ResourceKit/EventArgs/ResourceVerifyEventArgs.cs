@@ -52,7 +52,7 @@ namespace Framework
             TotalLength = 0L;
         }
     }
-
+    
     /// <summary>
     /// 资源校验成功事件
     /// </summary>

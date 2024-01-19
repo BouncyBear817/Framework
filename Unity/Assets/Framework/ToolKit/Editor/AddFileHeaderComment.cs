@@ -7,12 +7,12 @@ public class AddFileHeaderComment : AssetModificationProcessor
 {
     // 添加脚本注释模板
     private const string Comment = "/************************************************************\r\n" +
-                                "* Unity Version: #VERSION#\r\n" + 
-                                "* Author:        #AUTHOR#\r\n" +
-                                "* CreateTime:    #CreateTime#\r\n" + 
-                                "* Description:   \r\n" +
-                                "* Modify Record: \r\n" +
-                                "*************************************************************/\r\n\r\n";
+                                " * Unity Version: #VERSION#\r\n" + 
+                                " * Author:        #AUTHOR#\r\n" +
+                                " * CreateTime:    #CreateTime#\r\n" + 
+                                " * Description:   \r\n" +
+                                " * Modify Record: \r\n" +
+                                " *************************************************************/\r\n\r\n";
 
     /// <summary>
     /// 此函数在asset被创建完，文件已经生成到磁盘上，但是没有生成.meta文件和import之前被调用
