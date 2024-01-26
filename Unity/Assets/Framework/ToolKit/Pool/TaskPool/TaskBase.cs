@@ -53,7 +53,11 @@ namespace Framework
         /// <summary>
         /// 任务是否完成
         /// </summary>
-        public bool Done => mDone;
+        public bool Done
+        {
+            get => mDone;
+            set => mDone = value;
+        }
 
         /// <summary>
         /// 任务描述
@@ -79,7 +83,7 @@ namespace Framework
         /// <summary>
         /// 清理任务基类
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
             mSerialId = 0;
             mTag = null;

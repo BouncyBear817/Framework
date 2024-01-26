@@ -1,39 +1,34 @@
-/************************************************************
- * Unity Version: 2022.3.15f1c1
- * Author:        bear
- * CreateTime:    2024/01/19 11:15:53
- * Description:
- * Modify Record:
- *************************************************************/
-
 using System;
+using UnityEngine;
 
 namespace Framework
 {
     /// <summary>
-    /// 下载代理辅助器接口
+    /// 下载代理辅助器基类
     /// </summary>
-    public interface IDownloadAgentHelper
+    public abstract class DownloadAgentHelperBase : MonoBehaviour, IDownloadAgentHelper
     {
+        protected const long RangeNotSatisfiableErrorCode = 416;
+        
         /// <summary>
         /// 下载代理辅助器完成事件
         /// </summary>
-        event EventHandler<DownloadAgentHelperCompleteEventArgs> DownloadAgentHelperComplete;
+        public abstract event EventHandler<DownloadAgentHelperCompleteEventArgs> DownloadAgentHelperComplete;
 
         /// <summary>
         /// 下载代理辅助器失败事件
         /// </summary>
-        event EventHandler<DownloadAgentHelperErrorEventArgs> DownloadAgentHelperError;
+        public abstract event EventHandler<DownloadAgentHelperErrorEventArgs> DownloadAgentHelperError;
 
         /// <summary>
         /// 下载代理辅助器更新数据流事件
         /// </summary>
-        event EventHandler<DownloadAgentHelperUpdateBytesEventArgs> DownloadAgentHelperUpdateBytes;
+        public abstract event EventHandler<DownloadAgentHelperUpdateBytesEventArgs> DownloadAgentHelperUpdateBytes;
 
         /// <summary>
         /// 下载代理辅助器更新大小事件
         /// </summary>
-        event EventHandler<DownloadAgentHelperUpdateLengthEventArgs> DownloadAgentHelperUpdateLength;
+        public abstract event EventHandler<DownloadAgentHelperUpdateLengthEventArgs> DownloadAgentHelperUpdateLength;
 
         /// <summary>
         /// 通过下载代理辅助器下载指定地址的数据
@@ -42,11 +37,11 @@ namespace Framework
         /// <param name="userData">自定义数据</param>
         /// <param name="fromPosition">下载数据起始位置</param>
         /// <param name="toPosition">下载数据结束位置</param>
-        void Download(string downloadUri, object userData, long fromPosition = 0L, long toPosition = 0L);
+        public abstract void Download(string downloadUri, object userData, long fromPosition = 0, long toPosition = 0);
 
         /// <summary>
         /// 重置下载代理辅助器
         /// </summary>
-        void Reset();
+        public abstract void Reset();
     }
 }

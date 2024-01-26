@@ -1,18 +1,14 @@
-/************************************************************
- * Unity Version: 2022.3.15f1c1
- * Author:        bear
- * CreateTime:    2024/01/19 11:15:53
- * Description:
- * Modify Record:
- *************************************************************/
+using Framework;
 
-namespace Framework
+namespace Runtime
 {
     /// <summary>
     /// 下载开始事件
     /// </summary>
-    public sealed class DownloadStartEventArgs : FrameworkEventArgs
+    public sealed class DownloadStartEventArgs : BaseEventArgs
     {
+        private static readonly int sEventId = typeof(DownloadStartEventArgs).GetHashCode();
+
         public DownloadStartEventArgs()
         {
             SerialId = 0;
@@ -21,6 +17,11 @@ namespace Framework
             CurrentLength = 0L;
             UserData = null;
         }
+
+        /// <summary>
+        /// 事件编号
+        /// </summary>
+        public override int Id => sEventId;
 
         /// <summary>
         /// 下载任务的序列编号
@@ -50,21 +51,16 @@ namespace Framework
         /// <summary>
         /// 创建下载开始事件
         /// </summary>
-        /// <param name="serialId">下载任务的序列编号</param>
-        /// <param name="downloadPath">下载任务的存放地址</param>
-        /// <param name="downloadUri">下载地址</param>
-        /// <param name="currentLength">下载任务的大小</param>
-        /// <param name="userData">下载任务的自定义数据</param>
+        /// <param name="e">内部事件</param>
         /// <returns>下载开始事件</returns>
-        public static DownloadStartEventArgs Create(int serialId, string downloadPath, string downloadUri,
-            long currentLength, object userData)
+        public static DownloadStartEventArgs Create(Framework.DownloadStartEventArgs e)
         {
             var eventArgs = ReferencePool.Acquire<DownloadStartEventArgs>();
-            eventArgs.SerialId = serialId;
-            eventArgs.DownloadPath = downloadPath;
-            eventArgs.DownloadUri = downloadUri;
-            eventArgs.CurrentLength = currentLength;
-            eventArgs.UserData = userData;
+            eventArgs.SerialId = e.SerialId;
+            eventArgs.DownloadPath = e.DownloadPath;
+            eventArgs.DownloadUri = e.DownloadUri;
+            eventArgs.CurrentLength = e.CurrentLength;
+            eventArgs.UserData = e.UserData;
             return eventArgs;
         }
 
@@ -79,19 +75,15 @@ namespace Framework
             CurrentLength = 0L;
             UserData = null;
         }
-
-        public override string ToString()
-        {
-            return
-                $"{nameof(SerialId)}: {SerialId}, {nameof(DownloadPath)}: {DownloadPath}, {nameof(DownloadUri)}: {DownloadUri}, {nameof(CurrentLength)}: {CurrentLength}";
-        }
     }
 
     /// <summary>
     /// 下载更新事件
     /// </summary>
-    public sealed class DownloadUpdateEventArgs : FrameworkEventArgs
+    public sealed class DownloadUpdateEventArgs : BaseEventArgs
     {
+        private static readonly int sEventId = typeof(DownloadUpdateEventArgs).GetHashCode();
+
         public DownloadUpdateEventArgs()
         {
             SerialId = 0;
@@ -100,6 +92,11 @@ namespace Framework
             CurrentLength = 0L;
             UserData = null;
         }
+
+        /// <summary>
+        /// 事件编号
+        /// </summary>
+        public override int Id => sEventId;
 
         /// <summary>
         /// 下载任务的序列编号
@@ -129,21 +126,16 @@ namespace Framework
         /// <summary>
         /// 创建下载更新事件
         /// </summary>
-        /// <param name="serialId">下载任务的序列编号</param>
-        /// <param name="downloadPath">下载任务的存放地址</param>
-        /// <param name="downloadUri">下载地址</param>
-        /// <param name="currentLength">下载任务的大小</param>
-        /// <param name="userData">下载任务的自定义数据</param>
+        /// <param name="e">内部事件</param>
         /// <returns>下载更新事件</returns>
-        public static DownloadUpdateEventArgs Create(int serialId, string downloadPath, string downloadUri,
-            long currentLength, object userData)
+        public static DownloadUpdateEventArgs Create(Framework.DownloadUpdateEventArgs e)
         {
             var eventArgs = ReferencePool.Acquire<DownloadUpdateEventArgs>();
-            eventArgs.SerialId = serialId;
-            eventArgs.DownloadPath = downloadPath;
-            eventArgs.DownloadUri = downloadUri;
-            eventArgs.CurrentLength = currentLength;
-            eventArgs.UserData = userData;
+            eventArgs.SerialId = e.SerialId;
+            eventArgs.DownloadPath = e.DownloadPath;
+            eventArgs.DownloadUri = e.DownloadUri;
+            eventArgs.CurrentLength = e.CurrentLength;
+            eventArgs.UserData = e.UserData;
             return eventArgs;
         }
 
@@ -158,19 +150,15 @@ namespace Framework
             CurrentLength = 0L;
             UserData = null;
         }
-
-        public override string ToString()
-        {
-            return
-                $"{nameof(SerialId)}: {SerialId}, {nameof(DownloadPath)}: {DownloadPath}, {nameof(DownloadUri)}: {DownloadUri}, {nameof(CurrentLength)}: {CurrentLength}";
-        }
     }
 
     /// <summary>
     /// 下载成功事件
     /// </summary>
-    public sealed class DownloadSuccessEventArgs : FrameworkEventArgs
+    public sealed class DownloadSuccessEventArgs : BaseEventArgs
     {
+        private static readonly int sEventId = typeof(DownloadSuccessEventArgs).GetHashCode();
+
         public DownloadSuccessEventArgs()
         {
             SerialId = 0;
@@ -179,6 +167,11 @@ namespace Framework
             CurrentLength = 0L;
             UserData = null;
         }
+
+        /// <summary>
+        /// 事件编号
+        /// </summary>
+        public override int Id => sEventId;
 
         /// <summary>
         /// 下载任务的序列编号
@@ -208,21 +201,16 @@ namespace Framework
         /// <summary>
         /// 创建下载成功事件
         /// </summary>
-        /// <param name="serialId">下载任务的序列编号</param>
-        /// <param name="downloadPath">下载任务的存放地址</param>
-        /// <param name="downloadUri">下载地址</param>
-        /// <param name="currentLength">下载任务的大小</param>
-        /// <param name="userData">下载任务的自定义数据</param>
+        /// <param name="e">内部事件</param>
         /// <returns>下载成功事件</returns>
-        public static DownloadSuccessEventArgs Create(int serialId, string downloadPath, string downloadUri,
-            long currentLength, object userData)
+        public static DownloadSuccessEventArgs Create(Framework.DownloadSuccessEventArgs e)
         {
             var eventArgs = ReferencePool.Acquire<DownloadSuccessEventArgs>();
-            eventArgs.SerialId = serialId;
-            eventArgs.DownloadPath = downloadPath;
-            eventArgs.DownloadUri = downloadUri;
-            eventArgs.CurrentLength = currentLength;
-            eventArgs.UserData = userData;
+            eventArgs.SerialId = e.SerialId;
+            eventArgs.DownloadPath = e.DownloadPath;
+            eventArgs.DownloadUri = e.DownloadUri;
+            eventArgs.CurrentLength = e.CurrentLength;
+            eventArgs.UserData = e.UserData;
             return eventArgs;
         }
 
@@ -237,19 +225,15 @@ namespace Framework
             CurrentLength = 0L;
             UserData = null;
         }
-
-        public override string ToString()
-        {
-            return
-                $"{nameof(SerialId)}: {SerialId}, {nameof(DownloadPath)}: {DownloadPath}, {nameof(DownloadUri)}: {DownloadUri}, {nameof(CurrentLength)}: {CurrentLength}";
-        }
     }
 
     /// <summary>
     /// 下载失败事件
     /// </summary>
-    public sealed class DownloadFailureEventArgs : FrameworkEventArgs
+    public sealed class DownloadFailureEventArgs : BaseEventArgs
     {
+        private static readonly int sEventId = typeof(DownloadFailureEventArgs).GetHashCode();
+
         public DownloadFailureEventArgs()
         {
             SerialId = 0;
@@ -258,6 +242,11 @@ namespace Framework
             ErrorMessage = null;
             UserData = null;
         }
+
+        /// <summary>
+        /// 事件编号
+        /// </summary>
+        public override int Id => sEventId;
 
         /// <summary>
         /// 下载任务的序列编号
@@ -287,21 +276,16 @@ namespace Framework
         /// <summary>
         /// 创建下载失败事件
         /// </summary>
-        /// <param name="serialId">下载任务的序列编号</param>
-        /// <param name="downloadPath">下载任务的存放地址</param>
-        /// <param name="downloadUri">下载地址</param>
-        /// <param name="errorMessage">下载任务的错误信息</param>
-        /// <param name="userData">下载任务的自定义数据</param>
+        /// <param name="e">内部事件</param>
         /// <returns>下载失败事件</returns>
-        public static DownloadFailureEventArgs Create(int serialId, string downloadPath, string downloadUri,
-            string errorMessage, object userData)
+        public static DownloadFailureEventArgs Create(Framework.DownloadFailureEventArgs e)
         {
             var eventArgs = ReferencePool.Acquire<DownloadFailureEventArgs>();
-            eventArgs.SerialId = serialId;
-            eventArgs.DownloadPath = downloadPath;
-            eventArgs.DownloadUri = downloadUri;
-            eventArgs.ErrorMessage = errorMessage;
-            eventArgs.UserData = userData;
+            eventArgs.SerialId = e.SerialId;
+            eventArgs.DownloadPath = e.DownloadPath;
+            eventArgs.DownloadUri = e.DownloadUri;
+            eventArgs.ErrorMessage = e.ErrorMessage;
+            eventArgs.UserData = e.UserData;
             return eventArgs;
         }
 
@@ -315,12 +299,6 @@ namespace Framework
             DownloadUri = null;
             ErrorMessage = null;
             UserData = null;
-        }
-
-        public override string ToString()
-        {
-            return
-                $"{nameof(SerialId)}: {SerialId}, {nameof(DownloadPath)}: {DownloadPath}, {nameof(DownloadUri)}: {DownloadUri}, {nameof(ErrorMessage)}: {ErrorMessage}";
         }
     }
 }

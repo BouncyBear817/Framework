@@ -7,6 +7,7 @@
  *************************************************************/
 
 using System;
+
 namespace Framework
 {
     /// <summary>
@@ -137,10 +138,12 @@ namespace Framework
             {
                 throw new Exception("Bytes is invalid.");
             }
+
             if (offset < 0 || offset >= bytes.Length)
             {
                 throw new Exception("Offset is invalid.");
             }
+
             if (length <= 0 || offset + length > bytes.Length)
             {
                 throw new Exception("Length is invalid.");

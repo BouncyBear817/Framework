@@ -392,7 +392,9 @@ namespace Framework
             {
                 var agent = mAvailableAgents.Pop();
                 var agentNode = mWorkingAgents.AddLast(agent);
-                var task = agent.Task;
+                
+                var task = current.Value;
+                var next = current.Next;
                 var status = agent.Start(task);
                 if (status == StartTaskStatus.Done || status == StartTaskStatus.HasToWait ||
                     status == StartTaskStatus.UnknownError)
@@ -412,6 +414,8 @@ namespace Framework
                 {
                     ReferencePool.Release(task);
                 }
+
+                current = next;
             }
         }
     }
