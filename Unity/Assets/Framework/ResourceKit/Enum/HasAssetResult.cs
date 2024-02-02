@@ -34,11 +34,6 @@ namespace Framework
         AssetOnFileSystem,
 
         /// <summary>
-        /// 存在资源且存储在网络上
-        /// </summary>
-        AssetOnNetwork,
-
-        /// <summary>
         /// 存在二进制资源且存储在磁盘上
         /// </summary>
         BinaryOnDisk,
@@ -46,11 +41,6 @@ namespace Framework
         /// <summary>
         /// 存在二进制资源且存储在文件系统上
         /// </summary>
-        BinaryOnFileSystem,
-
-        /// <summary>
-        /// 存在二进制资源且存储在网络上
-        /// </summary>
-        BinaryOnNetwork
+        BinaryOnFileSystem
     }
 }

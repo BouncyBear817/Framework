@@ -208,7 +208,7 @@ namespace Framework
             /// <summary>
             /// 释放资源
             /// </summary>
-            /// <param name="disposing"></param>
+            /// <param name="disposing">是否释放</param>
             private void Dispose(bool disposing)
             {
                 if (mDisposed)

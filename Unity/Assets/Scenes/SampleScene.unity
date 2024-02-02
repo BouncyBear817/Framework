@@ -363,10 +363,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161438867}
+  - component: {fileID: 1161438871}
   - component: {fileID: 1161438870}
   - component: {fileID: 1161438869}
   - component: {fileID: 1161438868}
-  - component: {fileID: 1161438871}
+  - component: {fileID: 1161438873}
+  - component: {fileID: 1161438872}
   m_Layer: 0
   m_Name: Component
   m_TagString: Untagged
@@ -447,7 +449,34 @@ MonoBehaviour:
   mGameSpeed: 1
   mRunInBackground: 1
   mNeverSleep: 1
+  mVersionHelperTypeName: Runtime.DefaultVersionHelper
   mLogHelperTypeName: Runtime.DefaultLogHelper
+--- !u!114 &1161438872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161438866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e388ab665c403582f6219489332501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mAvailableProcedureTypeNames: []
+  mEntranceProcedureTypeName: 
+--- !u!114 &1161438873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161438866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f22c2c41c2e4cd796c09ebf2d4f0a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
