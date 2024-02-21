@@ -41,6 +41,7 @@ public class AddFileHeaderComment : AssetModificationProcessor
 
             var filePath = AssetDatabase.GetAssetPath(obj);
             AddHeaderComment(filePath);
+            AssetDatabase.Refresh();
             Debug.Log($"Script ({obj.name}) Add Header Comment is success.");
         }
     }
@@ -54,7 +55,6 @@ public class AddFileHeaderComment : AssetModificationProcessor
                 var scriptContent = GetHeaderComment();
                 scriptContent += File.ReadAllText(filePath);
                 File.WriteAllText(filePath, scriptContent);
-                AssetDatabase.Refresh();
                 scriptContent = null;
             }
         }

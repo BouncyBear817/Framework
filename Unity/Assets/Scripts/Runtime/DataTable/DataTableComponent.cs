@@ -50,6 +50,15 @@ namespace Runtime
             }
         }
 
+        private void Start()
+        {
+            mEventComponent = MainEntry.Helper.GetComponent<EventComponent>();
+            if (mEventComponent == null)
+            {
+                Log.Error("Event component is invalid.");
+            }
+        }
+
         /// <summary>
         /// 设置资源管理器
         /// </summary>
