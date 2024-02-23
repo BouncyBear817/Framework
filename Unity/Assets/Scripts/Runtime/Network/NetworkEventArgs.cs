@@ -16,7 +16,7 @@ namespace Runtime
     /// </summary>
     public sealed class NetworkConnectedEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(NetworkConnectedEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(NetworkConnectedEventArgs).GetHashCode();
 
         public NetworkConnectedEventArgs()
         {
@@ -27,7 +27,7 @@ namespace Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 网络频道
@@ -67,7 +67,7 @@ namespace Runtime
     /// </summary>
     public sealed class NetworkClosedEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(NetworkConnectedEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(NetworkConnectedEventArgs).GetHashCode();
 
         public NetworkClosedEventArgs()
         {
@@ -77,7 +77,7 @@ namespace Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 网络频道
@@ -110,7 +110,7 @@ namespace Runtime
     /// </summary>
     public sealed class NetworkCustomErrorEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(NetworkConnectedEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(NetworkConnectedEventArgs).GetHashCode();
 
         public NetworkCustomErrorEventArgs()
         {
@@ -121,7 +121,7 @@ namespace Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 网络频道
@@ -161,7 +161,7 @@ namespace Runtime
     /// </summary>
     public sealed class NetworkErrorEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(NetworkConnectedEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(NetworkConnectedEventArgs).GetHashCode();
 
         public NetworkErrorEventArgs()
         {
@@ -174,7 +174,7 @@ namespace Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 网络频道
@@ -228,7 +228,7 @@ namespace Runtime
     /// </summary>
     public sealed class NetworkMissHeartBeatEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(NetworkConnectedEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(NetworkConnectedEventArgs).GetHashCode();
 
         public NetworkMissHeartBeatEventArgs()
         {
@@ -239,7 +239,7 @@ namespace Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 网络频道
