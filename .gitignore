@@ -9,6 +9,7 @@
 /Unity/[Bb]uilds/
 /Unity/[Ll]ogs/
 /Unity/[Mm]emoryCaptures/
+/Unity/[Uu]serSettings/Layouts/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/Unity/[Aa]ssets/**/*.meta
@@ -36,6 +37,7 @@ ExportedObj/
 .consulo/
 *.csproj
 *.unityproj
+*.DotSettings
 *.sln
 *.suo
 *.tmp
@@ -48,6 +50,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+.download
 
 # Unity3D generated meta files
 *.pidb.meta
