@@ -213,6 +213,9 @@ namespace Framework
             networkChannel.NetworkChannelCustomError += OnNetworkChannelCustomError;
             networkChannel.NetworkChannelError += OnNetworkChannelError;
             networkChannel.NetworkChannelMissHeartBeat += OnNetworkChannelMissHeartBeat;
+
+            mNetworkChannels.Add(name, networkChannel);
+
             return networkChannel;
         }
 

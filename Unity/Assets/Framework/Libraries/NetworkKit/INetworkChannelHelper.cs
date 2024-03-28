@@ -16,6 +16,11 @@ namespace Framework
     public interface INetworkChannelHelper
     {
         /// <summary>
+        /// 判定是否为小端字节序
+        /// </summary>
+        bool IsLittleEndian { get; set; }
+        
+        /// <summary>
         /// 消息包头长度
         /// </summary>
         int PacketHeaderLength {get;}

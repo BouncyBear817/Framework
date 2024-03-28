@@ -172,7 +172,7 @@ namespace Framework
             private void SendCallback(IAsyncResult ar)
             {
                 var socket = ar.AsyncState as Socket;
-                if (!socket.Connected)
+                if (socket == null || !socket.Connected)
                 {
                     return;
                 }
@@ -237,7 +237,7 @@ namespace Framework
             private void ReceiveCallback(IAsyncResult ar)
             {
                 var socket = ar.AsyncState as Socket;
-                if (!socket.Connected)
+                if (socket == null || !socket.Connected)
                 {
                     return;
                 }

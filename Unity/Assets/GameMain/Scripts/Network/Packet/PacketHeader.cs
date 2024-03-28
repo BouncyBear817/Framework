@@ -10,15 +10,13 @@ using Framework;
 
 namespace Runtime
 {
-    public abstract class PacketHeaderBase : IPacketHeader, IReference
+    public class PacketHeader : IPacketHeader, IReference
     {
-        public abstract PacketType PacketType { get; }
-
         public int Id { get; set; }
 
         public int PacketLength { get; set; }
 
-        public bool IsValid => PacketType != PacketType.Undefined && Id > 0 && PacketLength >= 0;
+        public bool IsValid => Id > 0 && PacketLength >= 0;
 
         public void Clear()
         {

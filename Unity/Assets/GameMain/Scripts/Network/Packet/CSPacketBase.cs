@@ -8,8 +8,16 @@
 
 namespace Runtime
 {
-    public abstract class CSPacketBase : PacketBase
+    public class CSPacketBase : PacketBase
     {
         public override PacketType PacketType => PacketType.ClientToServer;
+        
+        public int MessageId { get; set; }
+
+        public override int Id => MessageId;
+
+        public override void Clear()
+        {
+        }
     }
 }

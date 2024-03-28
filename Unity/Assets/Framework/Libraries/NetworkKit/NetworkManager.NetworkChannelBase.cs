@@ -69,6 +69,8 @@ namespace Framework
                 NetworkChannelCustomError = null;
                 NetworkChannelError = null;
                 NetworkChannelMissHeartBeat = null;
+                
+                networkChannelHelper.Initialize(this);
             }
 
 
@@ -414,7 +416,7 @@ namespace Framework
                         if (NetworkChannelError != null)
                         {
                             var socketException = e as SocketException;
-                            NetworkChannelError(this, NetworkErrorCode.ConnectError,
+                            NetworkChannelError(this, NetworkErrorCode.SerializeError,
                                 socketException != null ? socketException.SocketErrorCode : SocketError.Success,
                                 e.ToString());
                             return false;
@@ -484,7 +486,7 @@ namespace Framework
                     if (NetworkChannelError != null)
                     {
                         var socketException = e as SocketException;
-                        NetworkChannelError(this, NetworkErrorCode.ConnectError,
+                        NetworkChannelError(this, NetworkErrorCode.DeserializePacketHeaderError,
                             socketException != null ? socketException.SocketErrorCode : SocketError.Success,
                             e.ToString());
                         return false;
@@ -525,7 +527,7 @@ namespace Framework
                     if (NetworkChannelError != null)
                     {
                         var socketException = e as SocketException;
-                        NetworkChannelError(this, NetworkErrorCode.ConnectError,
+                        NetworkChannelError(this, NetworkErrorCode.DeserializePacketError,
                             socketException != null ? socketException.SocketErrorCode : SocketError.Success,
                             e.ToString());
                         return false;

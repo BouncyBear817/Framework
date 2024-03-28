@@ -8,7 +8,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net;
 using Framework;
+using Runtime.Utility;
 using UnityEngine;
 
 namespace Runtime
@@ -114,6 +116,23 @@ namespace Runtime
         public bool DestroyNetworkChannel(string name)
         {
             return mNetworkManager.DestroyNetworkChannel(name);
+        }
+
+        public void Connect(string ip, int port, string name = "Default", object userData = null)
+        {
+            var networkChannel = GetNetworkChannel(name);
+            if (networkChannel == null)
+            {
+                networkChannel = CreateNetworkChannel(name, ServiceType.Tcp, new NetworkChannelHelper());
+            }
+            
+            networkChannel.Connect(IPAddress.Parse(ip), port, userData);
+        }
+
+        public void Close(string name = "Default")
+        {
+            var networkChannel = GetNetworkChannel(name);
+            networkChannel?.Close();
         }
 
         private void OnNetworkConnected(object sender, Framework.NetworkConnectedEventArgs e)

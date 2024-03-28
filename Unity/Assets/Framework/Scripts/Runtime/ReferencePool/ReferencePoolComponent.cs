@@ -6,7 +6,6 @@
  * Modify Record:
  *************************************************************/
 
-using System;
 using Framework;
 using UnityEngine;
 

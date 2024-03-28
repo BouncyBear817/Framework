@@ -14,7 +14,7 @@ using Framework;
 
 namespace Runtime
 {
-    public class NetworkChannelHelper : INetworkChannelHelper
+    public class NetworkChannelHelper : INetworkChannelHelper, IReference
     {
         private const int DefaultCachedSize = 8 * 1024;
         private const int DefaultBufferSize = 64 * 1024;
@@ -23,6 +23,8 @@ namespace Runtime
         private readonly MemoryStream mCachedStream;
         private INetworkChannel mNetworkChannel;
 
+        private byte[] mCachedByte;
+
         public NetworkChannelHelper()
         {
             mSCPacketTypes = new Dictionary<int, Type>();
@@ -30,10 +32,17 @@ namespace Runtime
             mNetworkChannel = null;
         }
 
-        public int PacketHeaderLength => sizeof(int);
+        public bool IsLittleEndian { get; set; }
+        
+        public int PacketHeaderLength => sizeof(int) + sizeof(int);
 
+        /// <summary>
+        /// 初始化网络频道辅助器
+        /// </summary>
+        /// <param name="networkChannel">网络频道辅助器</param>
         public void Initialize(INetworkChannel networkChannel)
         {
+            mCachedByte = new byte[PacketHeaderLength];
             mNetworkChannel = networkChannel;
 
             var packetBaseType = typeof(SCPacketBase);
@@ -41,7 +50,7 @@ namespace Runtime
             var assembly = Assembly.GetExecutingAssembly();
             var types = assembly.GetTypes();
 
-            for (int i = 0; i < types.Length; i++)
+            for (var i = 0; i < types.Length; i++)
             {
                 if (!types[i].IsClass || types[i].IsAbstract)
                 {
@@ -78,6 +87,9 @@ namespace Runtime
             MainEntry.Event.Subscribe(NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
         }
 
+        /// <summary>
+        /// 关闭并清理网络频道辅助器
+        /// </summary>
         public void Shutdown()
         {
             MainEntry.Event.UnSubscribe(NetworkConnectedEventArgs.EventId, OnNetworkConnected);
@@ -91,18 +103,31 @@ namespace Runtime
             mNetworkChannel = null;
         }
 
+        /// <summary>
+        /// 准备进行连接
+        /// </summary>
         public void PrepareForConnecting()
         {
             mNetworkChannel.Socket.ReceiveBufferSize = DefaultBufferSize;
             mNetworkChannel.Socket.SendBufferSize = DefaultBufferSize;
         }
 
+        /// <summary>
+        /// 发送心跳包
+        /// </summary>
         public bool SendHeartBeat()
         {
             mNetworkChannel.Send(ReferencePool.Acquire<CSHeartBeat>());
             return true;
         }
 
+        /// <summary>
+        /// 序列化消息包
+        /// </summary>
+        /// <param name="packet">消息包</param>
+        /// <param name="destination">要序列化的目标流</param>
+        /// <typeparam name="T">消息包类型</typeparam>
+        /// <returns></returns>
         public bool Serialize<T>(T packet, Stream destination) where T : Packet
         {
             var packetImp = packet as PacketBase;
@@ -117,21 +142,99 @@ namespace Runtime
                 Log.Warning("Send Packet invalid.");
                 return false;
             }
-            
-            mCachedStream.SetLength(mCachedStream.Capacity);
-            mCachedStream.Position = 0L;
 
+            mCachedStream.SetLength(0);
+            mCachedStream.Position = 0L;
+            Array.Clear(mCachedByte, 0, mCachedByte.Length);
+            mCachedByte.WriteTo(0, packetImp.MessageBody == null ? 0 : packetImp.MessageBody.Length, IsLittleEndian);
+            mCachedByte.WriteTo(sizeof(int), packetImp.Id, IsLittleEndian);
+
+            mCachedStream.Write(mCachedByte, 0, mCachedByte.Length);
+            if (packetImp.MessageBody != null)
+            {
+                mCachedStream.Write(packetImp.MessageBody, 0, packetImp.MessageBody.Length);
+            }
+            mCachedStream.WriteTo(destination);
+            
+            Log.Info($"Network channel ({mNetworkChannel.Name}) send packet, id is {packetImp.Id}.");
+
+            ReferencePool.Release(packet);
             return true;
         }
 
+        /// <summary>
+        /// 反序列化消息包头
+        /// </summary>
+        /// <param name="source">要反序列化的来源流</param>
+        /// <param name="customErrorData">自定义错误信息</param>
+        /// <returns>反序列化的消息包头</returns>
         public IPacketHeader DeserializePacketHeader(Stream source, out object customErrorData)
         {
-            throw new System.NotImplementedException();
+            customErrorData = null;
+
+            var packetHeader = ReferencePool.Acquire<PacketHeader>();
+            if (source is MemoryStream memoryStream)
+            {
+                var bytes = memoryStream.GetBuffer();
+                packetHeader.PacketLength = bytes.ReadTo(0, IsLittleEndian);
+                packetHeader.Id = bytes.ReadTo(sizeof(int), IsLittleEndian);
+                Log.Info($"Network channel ({mNetworkChannel.Name}) deserialize packet header, id is {packetHeader.Id}, packet length is {packetHeader.PacketLength}.");
+                return packetHeader;
+            }
+
+            return null;
         }
 
+        /// <summary>
+        /// 反序列化消息包
+        /// </summary>
+        /// <param name="packetHeader">消息包头</param>
+        /// <param name="source">要反序列化的来源流</param>
+        /// <param name="customErrorData">自定义错误信息</param>
+        /// <returns>反序列化的消息包</returns>
         public Packet DeserializePacket(IPacketHeader packetHeader, Stream source, out object customErrorData)
         {
-            throw new System.NotImplementedException();
+            customErrorData = null;
+
+            var scPacketHeader = packetHeader as PacketHeader;
+            if (scPacketHeader == null)
+            {
+                Log.Warning("Packet header is invalid.");
+                return null;
+            }
+
+            PacketBase packet = null;
+            if (scPacketHeader.IsValid)
+            {
+                var packetType = GetSCPacketType(scPacketHeader.Id);
+                if (packetType != null)
+                {
+                    packet = ReferencePool.Acquire(packetType) as PacketBase;
+                    if (source is MemoryStream memoryStream)
+                    {
+                        if (packet != null)
+                        {
+                            packet.MessageBody = memoryStream.ToArray();
+                            Log.Info($"Network channel ({mNetworkChannel.Name}) deserialize packet, packet length is {packet.MessageBody.Length}.");
+                        }
+                    }
+                    else
+                    {
+                        Log.Warning($"Network channel ({mNetworkChannel.Name}) deserialize packet for packet id ({scPacketHeader.Id}), source is null.");
+                    }
+                }
+                else
+                {
+                    Log.Warning($"Can not deserialize packet for packet id ({scPacketHeader.Id}).");
+                }
+            }
+            else
+            {
+                Log.Warning("Packet header is invalid.");
+            }
+
+            ReferencePool.Release(scPacketHeader);
+            return packet;
         }
 
         private Type GetSCPacketType(int packetBaseId)
@@ -146,22 +249,67 @@ namespace Runtime
             {
                 return;
             }
+
+            Log.Info(
+                $"Network channel ({eventArgs.NetworkChannel.Name}) connected, local address ({eventArgs.NetworkChannel.Socket.LocalEndPoint}), remote address ({eventArgs.NetworkChannel.Socket.RemoteEndPoint}).");
         }
 
         private void OnNetworkClosed(object sender, BaseEventArgs e)
         {
+            var eventArgs = e as NetworkClosedEventArgs;
+            if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
+            {
+                return;
+            }
+
+            Log.Info($"Network channel ({eventArgs.NetworkChannel.Name}) closed.");
         }
 
         private void OnNetworkCustomError(object sender, BaseEventArgs e)
         {
+            var eventArgs = e as NetworkCustomErrorEventArgs;
+            if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
+            {
+                return;
+            }
         }
 
         private void OnNetworkError(object sender, BaseEventArgs e)
         {
+            var eventArgs = e as NetworkErrorEventArgs;
+            if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
+            {
+                return;
+            }
+
+            Log.Info(
+                $"Network channel ({eventArgs.NetworkChannel.Name}) error, error code is ({eventArgs.ErrorCode}), error message is ({eventArgs.ErrorMessage}).");
+
+            eventArgs.NetworkChannel.Close();
         }
 
         private void OnNetworkMissHeartBeat(object sender, BaseEventArgs e)
         {
+            var eventArgs = e as NetworkMissHeartBeatEventArgs;
+            if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
+            {
+                return;
+            }
+
+            Log.Info(
+                $"Network channel ({eventArgs.NetworkChannel.Name}) miss heart beat ({eventArgs.MissCount}) times.");
+
+            if (eventArgs.MissCount < 2)
+            {
+                return;
+            }
+
+            eventArgs.NetworkChannel.Close();
+        }
+
+        public void Clear()
+        {
+            
         }
     }
 }

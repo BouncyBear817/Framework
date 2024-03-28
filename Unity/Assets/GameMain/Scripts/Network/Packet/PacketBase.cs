@@ -14,6 +14,6 @@ namespace Runtime
     {
         public abstract PacketType PacketType { get; }
         
-        public byte[] ProtoBody { get; set; }
+        public byte[] MessageBody { get; set; }
     }
 }

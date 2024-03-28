@@ -1,15 +1,22 @@
 /************************************************************
  * Unity Version: 2022.3.15f1c1
  * Author:        bear
- * CreateTime:    2024/2/23 10:36:41
+ * CreateTime:    2024/3/26 14:20:24
  * Description:
  * Modify Record:
  *************************************************************/
 
 namespace Runtime
 {
-    public sealed class CSPacketHeader : PacketHeaderBase
+    /// <summary>
+    /// 数据传输格式
+    /// </summary>
+    public enum DataTransferFormat
     {
-        public override PacketType PacketType => PacketType.ClientToServer;
+        None = 0,
+        
+        Protobuf,
+        
+        Json
     }
 }

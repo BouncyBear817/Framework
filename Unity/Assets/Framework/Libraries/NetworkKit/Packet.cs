@@ -13,5 +13,6 @@ namespace Framework
     /// </summary>
     public abstract class Packet : BaseEventArgs
     {
+        
     }
 }

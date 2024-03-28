@@ -21,6 +21,8 @@ namespace Runtime
         public static EventComponent Event { get; private set; }
 
         public static FsmComponent Fsm { get; private set; }
+        
+        public static NetworkComponent Network { get; private set; }
 
         public static ObjectPoolComponent ObjectPool { get; private set; }
 
@@ -39,6 +41,8 @@ namespace Runtime
             Event = Helper.GetComponent<EventComponent>();
 
             Fsm = Helper.GetComponent<FsmComponent>();
+
+            Network = Helper.GetComponent<NetworkComponent>();
 
             ObjectPool = Helper.GetComponent<ObjectPoolComponent>();
 

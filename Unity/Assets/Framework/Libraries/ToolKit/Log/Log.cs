@@ -5,7 +5,7 @@ namespace Framework
     /// </summary>
     public static class Log
     {
-        private static ILogHelper mLogHelper = null;
+        private static ILogHelper sLogHelper = null;
 
         /// <summary>
         /// 设置日志辅助器
@@ -13,7 +13,7 @@ namespace Framework
         /// <param name="logHelper"></param>
         public static void SetLogHelper(ILogHelper logHelper)
         {
-            mLogHelper = logHelper;
+            sLogHelper = logHelper;
         }
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace Framework
         /// <param name="message">日志内容</param>
         public static void Debug(object message)
         {
-            mLogHelper?.Log(LogLevel.Debug, message);
+            sLogHelper?.Log(LogLevel.Debug, message);
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Framework
         /// <param name="args">格式参数</param>
         public static void Debug(string format, params object[] args)
         {
-            mLogHelper?.Log(LogLevel.Debug, format, args);
+            sLogHelper?.Log(LogLevel.Debug, format, args);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Framework
         /// <param name="message">日志内容</param>
         public static void Info(object message)
         {
-            mLogHelper?.Log(LogLevel.Info, message);
+            sLogHelper?.Log(LogLevel.Info, message);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Framework
         /// <param name="args">格式参数</param>
         public static void Info(string format, params object[] args)
         {
-            mLogHelper?.Log(LogLevel.Info, format, args);
+            sLogHelper?.Log(LogLevel.Info, format, args);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Framework
         /// <param name="message">日志内容</param>
         public static void Warning(object message)
         {
-            mLogHelper?.Log(LogLevel.Warning, message);
+            sLogHelper?.Log(LogLevel.Warning, message);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Framework
         /// <param name="args">格式参数</param>
         public static void Warning(string format, params object[] args)
         {
-            mLogHelper?.Log(LogLevel.Warning, format, args);
+            sLogHelper?.Log(LogLevel.Warning, format, args);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Framework
         /// <param name="message">日志内容</param>
         public static void Error(object message)
         {
-            mLogHelper?.Log(LogLevel.Error, message);
+            sLogHelper?.Log(LogLevel.Error, message);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Framework
         /// <param name="args">格式参数</param>
         public static void Error(string format, params object[] args)
         {
-            mLogHelper?.Log(LogLevel.Error, format, args);
+            sLogHelper?.Log(LogLevel.Error, format, args);
         }
 
     }
