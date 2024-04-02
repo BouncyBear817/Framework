@@ -9,7 +9,7 @@
 using Framework;
 using UnityEngine;
 
-namespace Runtime.Utility
+namespace Runtime
 {
     /// <summary>
     /// 辅助器创建器相关的实用函数

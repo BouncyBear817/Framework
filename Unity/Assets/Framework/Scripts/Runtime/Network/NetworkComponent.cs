@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using Framework;
-using Runtime.Utility;
+using Runtime;
 using UnityEngine;
 
 namespace Runtime

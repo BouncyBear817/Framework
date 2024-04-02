@@ -6,7 +6,6 @@
  * Modify Record:
  *************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.Net;
 using Framework;
@@ -18,12 +17,14 @@ namespace Runtime
     [AddComponentMenu("Custom/NetConnector")]
     public class NetConnectorComponent : FrameworkComponent
     {
-        private readonly Dictionary<string, INetworkChannel> mNetworkChannels = new Dictionary<string, INetworkChannel>();
+        private readonly Dictionary<string, INetworkChannel> mNetworkChannels =
+            new Dictionary<string, INetworkChannel>();
+
         private NetworkChannelHelper mNetworkChannelHelper;
 
-        public bool mIsLittleEndian = false;
+        [SerializeField] private bool mIsLittleEndian = false;
 
-        public DataTransferFormat mDataTransferFormat = DataTransferFormat.None;
+        [SerializeField] private DataTransferFormat mDataTransferFormat = DataTransferFormat.None;
 
         public INetworkChannel CreateTcpNetworkChannel(string name = "Default")
         {

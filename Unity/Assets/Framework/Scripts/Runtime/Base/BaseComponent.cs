@@ -16,6 +16,8 @@ namespace Runtime
     [AddComponentMenu("Framework/Base")]
     public sealed class BaseComponent : FrameworkComponent
     {
+        private float mGameSpeedBeforePause = 0f;
+        
         [SerializeField] private int mFrameRate = 30;
 
         [SerializeField] private float mGameSpeed = 1f;
@@ -37,7 +39,7 @@ namespace Runtime
         public float GameSpeed
         {
             get => mGameSpeed;
-            set => mGameSpeed = value;
+            set => Time.timeScale = mGameSpeed = value >= 0f ? value : 0f;
         }
 
         public bool IsGamePause => mGameSpeed <= 0f;
@@ -88,6 +90,51 @@ namespace Runtime
         private void OnDestroy()
         {
             FrameworkEntry.Shutdown();
+        }
+
+        /// <summary>
+        /// 暂停游戏
+        /// </summary>
+        public void PauseGame()
+        {
+            if (IsGamePause)
+            {
+                return;
+            }
+
+            mGameSpeedBeforePause = mGameSpeed;
+            mGameSpeed = 0f;
+        }
+
+        /// <summary>
+        /// 恢复游戏
+        /// </summary>
+        public void ResumeGame()
+        {
+            if (!IsGamePause)
+            {
+                return;
+            }
+
+            GameSpeed = mGameSpeedBeforePause;
+        }
+
+        /// <summary>
+        /// 重置为正常游戏速度
+        /// </summary>
+        public void ResetNormalGameSpeed()
+        {
+            if (IsGamePause)
+            {
+                return;
+            }
+
+            GameSpeed = 1f;
+        }
+
+        public void Shutdown()
+        {
+            Destroy(gameObject);
         }
 
         private void InitLogHelper()

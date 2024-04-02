@@ -1,10 +1,10 @@
 /************************************************************
-* Unity Version: 2022.3.0f1c1
-* Author:        bear
-* CreateTime:    2024/01/05 11:21:26
-* Description:   
-* Modify Record: 
-*************************************************************/
+ * Unity Version: 2022.3.0f1c1
+ * Author:        bear
+ * CreateTime:    2024/01/05 11:21:26
+ * Description:
+ * Modify Record:
+ *************************************************************/
 
 using System;
 
@@ -43,9 +43,9 @@ namespace Framework
         private readonly LoadSceneFailureCallback mLoadSceneFailureCallback;
 
         public LoadSceneCallbacks(LoadSceneSuccessCallback loadSceneSuccessCallback,
+            LoadSceneFailureCallback loadSceneFailureCallback = null,
             LoadSceneUpdateCallback loadSceneUpdateCallback = null,
-            LoadSceneDependencyAssetCallback loadSceneDependencyAssetCallback = null,
-            LoadSceneFailureCallback loadSceneFailureCallback = null)
+            LoadSceneDependencyAssetCallback loadSceneDependencyAssetCallback = null)
         {
             mLoadSceneSuccessCallback = loadSceneSuccessCallback ??
                                         throw new Exception("Load scene success callback is invalid.");

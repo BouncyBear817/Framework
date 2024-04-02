@@ -6,6 +6,7 @@
  * Modify Record:
  *************************************************************/
 
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -16,7 +17,7 @@ using UnityEngine;
 
 namespace Framework.Editor
 {
-    public class LogRedirection
+    public static class LogRedirection
     {
         private static readonly Regex sLogRegex = new Regex(@" \(at (.+)\:(\d+)\)\r?\n");
 
@@ -68,13 +69,7 @@ namespace Framework.Editor
 
         private static string GetSelectedStackTrace()
         {
-            var editorWindowAssembly = typeof(EditorWindow).Assembly;
-            if (editorWindowAssembly == null)
-            {
-                return null;
-            }
-
-            var consoleWindowType = editorWindowAssembly.GetType("UnityEditor.ConsoleWindow");
+            var consoleWindowType = typeof(EditorWindow).Assembly.GetType("UnityEditor.ConsoleWindow");
             if (consoleWindowType == null)
             {
                 return null;
