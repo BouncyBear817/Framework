@@ -44,17 +44,17 @@ namespace Framework
         /// <summary>
         /// 对象池中自动释放可释放对象的间隔秒数
         /// </summary>
-        float AutoReleaseInterval { get; }
+        float AutoReleaseInterval { get; set; }
 
         /// <summary>
         /// 对象池容量
         /// </summary>
-        int Capacity { get; }
+        int Capacity { get; set; }
 
         /// <summary>
         /// 对象池的优先级
         /// </summary>
-        int Priority { get; }
+        int Priority { get; set; }
 
         /// <summary>
         /// 创建对象

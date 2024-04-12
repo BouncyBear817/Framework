@@ -2,8 +2,8 @@
  * Unity Version: 2022.3.15f1c1
  * Author:        bear
  * CreateTime:    2024/01/30 16:12:04
- * Description:   
- * Modify Record: 
+ * Description:
+ * Modify Record:
  *************************************************************/
 
 using System;
@@ -12,12 +12,17 @@ using UnityEngine;
 
 namespace Runtime
 {
+    /// <summary>
+    /// 基础组件
+    /// </summary>
     [DisallowMultipleComponent]
     [AddComponentMenu("Framework/Base")]
     public sealed class BaseComponent : FrameworkComponent
     {
         private float mGameSpeedBeforePause = 0f;
-        
+
+        [SerializeField] private bool mEditorResourceMode = true;
+
         [SerializeField] private int mFrameRate = 30;
 
         [SerializeField] private float mGameSpeed = 1f;
@@ -30,28 +35,55 @@ namespace Runtime
 
         [SerializeField] private string mLogHelperTypeName = "Runtime.DefaultLogHelper";
 
+        /// <summary>
+        /// 是否使用编辑器资源模式（仅编辑器内有效）
+        /// </summary>
+        public bool EditorResourceMode
+        {
+            get => mEditorResourceMode;
+            set => mEditorResourceMode = value;
+        }
+
+        /// <summary>
+        /// 游戏帧率
+        /// </summary>
         public int FrameRate
         {
             get => mFrameRate;
             set => mFrameRate = value;
         }
 
+        /// <summary>
+        /// 游戏速度
+        /// </summary>
         public float GameSpeed
         {
             get => mGameSpeed;
             set => Time.timeScale = mGameSpeed = value >= 0f ? value : 0f;
         }
 
+        /// <summary>
+        /// 游戏是否暂停
+        /// </summary>
         public bool IsGamePause => mGameSpeed <= 0f;
 
+        /// <summary>
+        /// 是否正常游戏速度
+        /// </summary>
         public bool IsNormalGameSpeed => mGameSpeed == 1f;
 
+        /// <summary>
+        /// 是否允许后台运行
+        /// </summary>
         public bool RunInBackground
         {
             get => mRunInBackground;
             set => Application.runInBackground = mRunInBackground = value;
         }
 
+        /// <summary>
+        /// 是否禁止休眠
+        /// </summary>
         public bool NeverSleep
         {
             get => mNeverSleep;
@@ -155,7 +187,7 @@ namespace Runtime
             {
                 throw new Exception($"Can not create log helper instance ({mLogHelperTypeName}).");
             }
-            
+
             Log.SetLogHelper(logHelper);
         }
 
@@ -177,7 +209,7 @@ namespace Runtime
             {
                 throw new Exception($"Can not create version helper instance ({mVersionHelperTypeName}).");
             }
-            
+
             Framework.Version.SetVersionHelper(versionHelper);
         }
 

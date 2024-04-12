@@ -3,9 +3,9 @@
 namespace Framework
 {
     [MonoSingletonPath("UIRoot/Manager")]
-    public sealed class UIManager : MgrBehaviour, ISingleton
+    public sealed partial class UIManager_Old : MgrBehaviour, ISingleton
     {
-        public static UIManager Instance => MonoSingletonProperty<UIManager>.Instance;
+        public static UIManager_Old Instance => MonoSingletonProperty<UIManager_Old>.Instance;
         
         public void OnSingletonInit() {}
 
@@ -20,7 +20,7 @@ namespace Framework
         /// </summary>
         private void OnApplicationQuit()
         {
-            MonoSingletonProperty<UIManager>.OnDispose();
+            MonoSingletonProperty<UIManager_Old>.OnDispose();
         }
     }
 }
