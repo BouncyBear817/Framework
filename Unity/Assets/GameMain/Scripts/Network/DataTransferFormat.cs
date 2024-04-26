@@ -6,17 +6,14 @@
  * Modify Record:
  *************************************************************/
 
-namespace Runtime
+/// <summary>
+/// 数据传输格式
+/// </summary>
+public enum DataTransferFormat
 {
-    /// <summary>
-    /// 数据传输格式
-    /// </summary>
-    public enum DataTransferFormat
-    {
-        None = 0,
-        
-        Protobuf,
-        
-        Json
-    }
+    None = 0,
+
+    Protobuf,
+
+    Json
 }

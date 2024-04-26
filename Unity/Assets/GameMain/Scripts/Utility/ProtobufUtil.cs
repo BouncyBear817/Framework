@@ -8,20 +8,17 @@
 
 using Google.Protobuf;
 
-namespace Runtime
+public static class ProtobufUtil
 {
-    public static class ProtobufUtil
-    {
-        public static byte[] Serialize(object message)
-        {
-            return ((IMessage)message).ToByteArray();
-        }
+ public static byte[] Serialize(object message)
+ {
+  return ((IMessage)message).ToByteArray();
+ }
 
-        public static T Deserialize<T>(byte[] dataBytes) where T : class, IMessage, new()
-        {
-            var msg = new T();
-            msg = msg.Descriptor.Parser.ParseFrom(dataBytes) as T;
-            return msg;
-        }
-    }
+ public static T Deserialize<T>(byte[] dataBytes) where T : class, IMessage, new()
+ {
+  var msg = new T();
+  msg = msg.Descriptor.Parser.ParseFrom(dataBytes) as T;
+  return msg;
+ }
 }

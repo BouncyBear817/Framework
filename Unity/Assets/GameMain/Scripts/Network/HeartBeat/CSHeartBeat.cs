@@ -6,14 +6,11 @@
  * Modify Record:
  *************************************************************/
 
-namespace Runtime
+public class CSHeartBeat : CSPacketBase
 {
-    public class CSHeartBeat : CSPacketBase
-    {
-        public override int Id => 1;
+    public override int Id => 1;
 
-        public override void Clear()
-        {
-        }
+    public override void Clear()
+    {
     }
 }

@@ -15,7 +15,7 @@ namespace Runtime
     {
         protected virtual void Awake()
         {
-            MainEntry.Helper.RegisterComponent(this);
+            MainEntryHelper.RegisterComponent(this);
         }
     }
 }

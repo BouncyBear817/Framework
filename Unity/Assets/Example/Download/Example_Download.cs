@@ -12,7 +12,7 @@ namespace Example.Download
         {
             yield return new WaitForSeconds(2f);
 
-            var downloadComponent = MainEntry.Helper.GetComponent<DownloadComponent>();
+            var downloadComponent = MainEntryHelper.GetComponent<DownloadComponent>();
             //
             // for (int i = 1; i <= 5; i++)
             // {

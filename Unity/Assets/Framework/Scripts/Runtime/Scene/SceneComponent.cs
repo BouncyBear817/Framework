@@ -61,7 +61,7 @@ namespace Runtime
             mSceneManager.UnloadSceneSuccess += OnUnloadSceneSuccess;
             mSceneManager.UnloadSceneFailure += OnUnloadSceneFailure;
 
-            mFrameworkScene = SceneManager.GetSceneAt(MainEntry.FrameworkSceneId);
+            mFrameworkScene = SceneManager.GetSceneAt(MainEntryHelper.FrameworkSceneId);
             if (!mFrameworkScene.IsValid())
             {
                 Log.Error("Framework scene is invalid.");
@@ -70,14 +70,14 @@ namespace Runtime
 
         private void Start()
         {
-            var baseComponent = MainEntry.Helper.GetComponent<BaseComponent>();
+            var baseComponent = MainEntryHelper.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
                 Log.Error("Base component is invalid.");
                 return;
             }
 
-            mEventComponent = MainEntry.Helper.GetComponent<EventComponent>();
+            mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
                 Log.Error("Event component is invalid.");

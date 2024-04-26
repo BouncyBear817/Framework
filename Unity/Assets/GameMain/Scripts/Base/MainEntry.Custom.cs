@@ -6,17 +6,16 @@
  * Modify Record:
  *************************************************************/
 
+
+using Runtime;
 using UnityEngine;
 
-namespace Runtime
+public sealed partial class MainEntry : MonoBehaviour
 {
-    public sealed partial class MainEntry : MonoBehaviour
-    {
-        public static NetConnectorComponent NetConnector { get; private set; }
+    public static NetConnectorComponent NetConnector { get; private set; }
 
-        private static void InitCustomComponents()
-        {
-            NetConnector = MainEntry.Helper.GetComponent<NetConnectorComponent>();
-        }
+    private static void InitCustomComponents()
+    {
+        NetConnector = MainEntryHelper.GetComponent<NetConnectorComponent>();
     }
 }

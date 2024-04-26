@@ -217,7 +217,7 @@ namespace Runtime
         {
             Log.Info("Low Memory reported...");
 
-            var objectPoolComponent = MainEntry.Helper.GetComponent<ObjectPoolComponent>();
+            var objectPoolComponent = MainEntryHelper.GetComponent<ObjectPoolComponent>();
             if (objectPoolComponent != null)
             {
                 objectPoolComponent.Release();

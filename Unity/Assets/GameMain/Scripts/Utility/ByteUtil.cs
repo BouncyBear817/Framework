@@ -6,14 +6,11 @@
  * Modify Record:
  *************************************************************/
 
-using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Runtime
-{
-    public static class ByteUtil
+public static class ByteUtil
     {
         /// <summary>
         /// 将对象转换为byte数组
@@ -89,4 +86,3 @@ namespace Runtime
             return value;
         }
     }
-}

@@ -109,14 +109,14 @@ namespace Runtime
 
         private void Start()
         {
-            var baseComponent = MainEntry.Helper.GetComponent<BaseComponent>();
+            var baseComponent = MainEntryHelper.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
                 Log.Error("Base component is invalid.");
                 return;
             }
 
-            var eventComponent = MainEntry.Helper.GetComponent<EventComponent>();
+            var eventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (eventComponent == null)
             {
                 Log.Error("Event component is invalid.");
@@ -281,7 +281,14 @@ namespace Runtime
         /// <returns>界面</returns>
         public UIForm[] GetUIForms(string uiFormAssetName)
         {
-            return mUIManager.GetUIForms(uiFormAssetName) as UIForm[];
+            var uiForms = mUIManager.GetUIForms(uiFormAssetName);
+            var uiFormImpls = new UIForm[uiForms.Length];
+            for (var i = 0; i < uiForms.Length; i++)
+            {
+                uiFormImpls[i] = uiForms[i] as UIForm;
+            }
+
+            return uiFormImpls;
         }
 
         /// <summary>
@@ -311,7 +318,14 @@ namespace Runtime
         /// <returns>所有已加载的界面</returns>
         public UIForm[] GetAllLoadedUIForms()
         {
-            return mUIManager.GetAllLoadedUIForms() as UIForm[];
+            var uiForms = mUIManager.GetAllLoadedUIForms();
+            var uiFormImpls = new UIForm[uiForms.Length];
+            for (var i = 0; i < uiForms.Length; i++)
+            {
+                uiFormImpls[i] = uiForms[i] as UIForm;
+            }
+
+            return uiFormImpls;
         }
 
         /// <summary>
@@ -377,7 +391,7 @@ namespace Runtime
         /// </summary>
         /// <param name="uiForm">界面</param>
         /// <returns>是否是有效的界面</returns>
-        public bool IsValidUIForm(IUIForm uiForm)
+        public bool IsValidUIForm(UIForm uiForm)
         {
             return mUIManager.IsValidUIForm(uiForm);
         }
@@ -435,7 +449,7 @@ namespace Runtime
         {
             return mUIManager.OpenUIForm(uiFormAssetName, uiGroupName, priority, PauseCoveredUIForm, userData);
         }
-
+        
         /// <summary>
         /// 关闭界面
         /// </summary>
@@ -445,13 +459,13 @@ namespace Runtime
         {
             mUIManager.CloseUIForm(serialId, userData);
         }
-
+        
         /// <summary>
         /// 关闭界面
         /// </summary>
         /// <param name="uiForm">界面</param>
         /// <param name="userData">用户自定义数据</param>
-        public void CloseUIForm(IUIForm uiForm, object userData = null)
+        public void CloseUIForm(UIForm uiForm, object userData = null)
         {
             mUIManager.CloseUIForm(uiForm, userData);
         }
@@ -478,7 +492,7 @@ namespace Runtime
         /// </summary>
         /// <param name="uiForm">界面</param>
         /// <param name="userData">用户自定义数据</param>
-        public void RefocusUIForm(IUIForm uiForm, object userData = null)
+        public void RefocusUIForm(UIForm uiForm, object userData = null)
         {
             mUIManager.RefocusUIForm(uiForm, userData);
         }
@@ -486,21 +500,33 @@ namespace Runtime
         /// <summary>
         /// 设置界面实例是否加锁
         /// </summary>
-        /// <param name="uiFormInstance">界面实例</param>
+        /// <param name="uiForm">界面实例</param>
         /// <param name="locked">是否加锁</param>
-        public void SetUIFormInstanceLocked(object uiFormInstance, bool locked)
+        public void SetUIFormInstanceLocked(UIForm uiForm, bool locked)
         {
-            mUIManager.SetUIFormInstanceLocked(uiFormInstance, locked);
+            if (uiForm == null)
+            {
+                Log.Warning("UI form is invalid.");
+                return;
+            }
+
+            mUIManager.SetUIFormInstanceLocked(uiForm, locked);
         }
 
         /// <summary>
         /// 设置界面实例优先级
         /// </summary>
-        /// <param name="uiFormInstance">界面实例</param>
+        /// <param name="uiForm">界面实例</param>
         /// <param name="priority">界面优先级</param>
-        public void SetUIFormInstancePriority(object uiFormInstance, int priority)
+        public void SetUIFormInstancePriority(UIForm uiForm, int priority)
         {
-            mUIManager.SetUIFormInstancePriority(uiFormInstance, priority);
+            if (uiForm == null)
+            {
+                Log.Warning("UI form is invalid.");
+                return;
+            }
+
+            mUIManager.SetUIFormInstancePriority(uiForm, priority);
         }
 
         private void OnOpenUIFormSuccess(object sender, Framework.OpenUIFormSuccessEventArgs e)

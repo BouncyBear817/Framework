@@ -6,18 +6,15 @@
  * Modify Record:
  *************************************************************/
 
-namespace Runtime
+public class CSPacketBase : PacketBase
 {
-    public class CSPacketBase : PacketBase
-    {
-        public override PacketType PacketType => PacketType.ClientToServer;
+ public override PacketType PacketType => PacketType.ClientToServer;
         
-        public int MessageId { get; set; }
+ public int MessageId { get; set; }
 
-        public override int Id => MessageId;
+ public override int Id => MessageId;
 
-        public override void Clear()
-        {
-        }
-    }
+ public override void Clear()
+ {
+ }
 }

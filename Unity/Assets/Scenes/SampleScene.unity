@@ -931,6 +931,10 @@ MonoBehaviour:
   mInstanceCapacity: 16
   mInstancePriority: 0
   mInstanceRoot: {fileID: 0}
+  mUIFormHelperTypeName: Runtime.DefaultUIFormHelper
+  mCustomUIFormHelper: {fileID: 0}
+  mUIGroupHelperTypeName: Runtime.DefaultUIGroupHelper
+  mCustomUIGroupHelper: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

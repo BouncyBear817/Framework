@@ -8,12 +8,9 @@
 
 using Framework;
 
-namespace Runtime
+public abstract class PacketBase : Packet
 {
-    public abstract class PacketBase : Packet
-    {
-        public abstract PacketType PacketType { get; }
+ public abstract PacketType PacketType { get; }
         
-        public byte[] MessageBody { get; set; }
-    }
+ public byte[] MessageBody { get; set; }
 }

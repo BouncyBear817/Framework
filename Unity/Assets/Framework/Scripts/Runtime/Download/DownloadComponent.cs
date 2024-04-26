@@ -112,7 +112,7 @@ namespace Runtime
 
         private void Start()
         {
-            mEventComponent = MainEntry.Helper.GetComponent<EventComponent>();
+            mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
                 Log.Error("Event component is invalid.");
