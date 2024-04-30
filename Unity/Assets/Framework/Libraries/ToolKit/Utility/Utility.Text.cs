@@ -2,7 +2,7 @@ namespace Framework
 {
     public static partial class Utility
     {
-        public static partial class Text
+        public static class Text
         {
             
         }

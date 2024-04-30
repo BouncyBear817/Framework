@@ -234,7 +234,6 @@ public class UIAutoBindToolInspector : Editor
                 return;
             }
 
-            //Avoid forgetting to reset bind data.
             GenerateAutoBindCode();
         }
 
@@ -263,7 +262,6 @@ public class UIAutoBindToolInspector : Editor
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
         foreach (var assembly in assemblies)
         {
-            
             var types = assembly.GetTypes();
             foreach (var type in types)
             {
@@ -273,9 +271,8 @@ public class UIAutoBindToolInspector : Editor
                 }
             }
         }
-        
+
         return null;
-        
     }
 
     private void GenerateAutoBindCode()

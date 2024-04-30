@@ -6,7 +6,6 @@
  * Modify Record:
  *************************************************************/
 
-using System;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -17,13 +16,27 @@ using UnityEngine;
 
 namespace Framework.Editor
 {
+    /// <summary>
+    /// 日志重定向
+    /// </summary>
     public static class LogRedirection
     {
         private static readonly Regex sLogRegex = new Regex(@" \(at (.+)\:(\d+)\)\r?\n");
+        private const string LogHelperName = "DefaultLogHelper.cs";
 
         [OnOpenAsset(0)]
         private static bool OnOpenAsset(int instanceId, int line)
         {
+            var instance = EditorUtility.InstanceIDToObject(instanceId);
+            var instancePath = AssetDatabase.GetAssetPath(instance);
+            if (instancePath.EndsWith(".cs") && !instancePath.Contains(LogHelperName))
+            {
+                InternalEditorUtility.OpenFileAtLineExternal(
+                    Path.Combine(Application.dataPath, instancePath.Substring(7)),
+                    line);
+                return true;
+            }
+
             var selectedStackTrace = GetSelectedStackTrace();
             if (string.IsNullOrEmpty(selectedStackTrace))
             {
@@ -41,7 +54,7 @@ namespace Framework.Editor
                 return false;
             }
 
-            if (!match.Groups[1].Value.Contains("DefaultLogHelper.cs"))
+            if (!match.Groups[1].Value.Contains(LogHelperName))
             {
                 return false;
             }

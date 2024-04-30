@@ -19,7 +19,6 @@ public class Example_Network : MonoBehaviour
 
     void Connect(string ip, string port, string channelName)
     {
-        MainEntry.NetConnector.CreateTcpNetworkChannel(channelName);
         MainEntry.NetConnector.Connect(ip, int.Parse(port), channelName);
         MainEntry.NetConnector.SetHeartBeatInterval(mChannelName, 20f);
     }

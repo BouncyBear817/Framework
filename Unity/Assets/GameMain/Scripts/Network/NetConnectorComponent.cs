@@ -44,8 +44,12 @@ public class NetConnectorComponent : FrameworkComponent
         var networkChannel = mNetworkChannels.GetValueOrDefault(name);
         if (networkChannel == null)
         {
-            Log.Error($"Connect failed, channel name ({name}) is null.");
-            return;
+            networkChannel = CreateTcpNetworkChannel(name);
+            if (networkChannel == null)
+            {
+                Log.Error($"Connect failed, channel name ({name}) is null.");
+                return;
+            }
         }
 
         networkChannel.Connect(IPAddress.Parse(ip), port, userData);
