@@ -56,7 +56,7 @@ namespace Framework
         /// 多值字典中是否包含指定主键
         /// </summary>
         /// <param name="key">主键</param>
-        /// <returns></returns>
+        /// <returns>多值字典中是否包含指定主键</returns>
         public bool Contains(TKey key)
         {
             return mDictionary.ContainsKey(key);
@@ -67,7 +67,7 @@ namespace Framework
         /// </summary>
         /// <param name="key">主键</param>
         /// <param name="value">值</param>
-        /// <returns></returns>
+        /// <returns>多值字典中是否包含指定主键与指定值</returns>
         public bool Contains(TKey key, TValue value)
         {
             if (mDictionary.TryGetValue(key, out var linkedList))
@@ -83,7 +83,7 @@ namespace Framework
         /// </summary>
         /// <param name="key">主键</param>
         /// <param name="linkedList">主键的范围</param>
-        /// <returns></returns>
+        /// <returns>是否存在多值字典中指定主键的值</returns>
         public bool TryGetValue(TKey key, out LinkedList<TValue> linkedList)
         {
             return mDictionary.TryGetValue(key, out linkedList);
@@ -113,7 +113,7 @@ namespace Framework
         /// </summary>
         /// <param name="key">主键</param>
         /// <param name="value">值</param>
-        /// <returns></returns>
+        /// <returns>是否成功移除多值字典中指定主键的值</returns>
         public bool Remove(TKey key, TValue value)
         {
             if (mDictionary.TryGetValue(key, out var linkedList))
@@ -134,10 +134,10 @@ namespace Framework
         }
 
         /// <summary>
-        /// 移除多值字典中指定主键的 所有值
+        /// 移除多值字典中指定主键的所有值
         /// </summary>
         /// <param name="key"></param>
-        /// <returns></returns>
+        /// <returns>是否成功移除多值字典中指定主键的所有值</returns>
         public bool RemoveAll(TKey key)
         {
             if (mDictionary.TryGetValue(key, out var linkedList))
@@ -209,7 +209,7 @@ namespace Framework
             /// <summary>
             /// 获取下一个节点
             /// </summary>
-            /// <returns></returns>
+            /// <returns>是否成功获取下一个节点</returns>
             public bool MoveNext()
             {
                 return mEnumerator.MoveNext();

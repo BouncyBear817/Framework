@@ -35,7 +35,7 @@ namespace Framework
             /// </summary>
             /// <param name="sender"></param>
             /// <param name="e"></param>
-            /// <returns></returns>
+            /// <returns>事件</returns>
             public static Event Create(object sender, T e)
             {
                 var eventNode = ReferencePool.Acquire<Event>();

@@ -166,7 +166,7 @@ namespace Framework
         /// <summary>
         /// 获取数据头标识
         /// </summary>
-        /// <returns></returns>
+        /// <returns>数据头标识</returns>
         protected abstract byte[] GetHeader();
     }
 }

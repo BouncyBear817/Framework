@@ -63,7 +63,7 @@ namespace Framework
         /// 获取指定类型的引用集合
         /// </summary>
         /// <param name="referenceType"></param>
-        /// <returns></returns>
+        /// <returns>指定类型的引用集合</returns>
         /// <exception cref="Exception"></exception>
         private static ReferenceCollection GetReferenceCollection(Type referenceType)
         {
@@ -118,7 +118,7 @@ namespace Framework
         /// <summary>
         /// 获取所有引用池信息
         /// </summary>
-        /// <returns></returns>
+        /// <returns>所有引用池信息</returns>
         public static ReferencePoolInfo[] GetAllReferencePoolInfos()
         {
             var index = 0;

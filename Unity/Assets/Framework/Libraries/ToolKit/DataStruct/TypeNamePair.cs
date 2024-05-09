@@ -52,7 +52,7 @@ namespace Framework
         /// <summary>
         /// 获取类型和名称的组合值的字符串
         /// </summary>
-        /// <returns></returns>
+        /// <returns>类型和名称的组合值的字符串</returns>
         /// <exception cref="Exception"></exception>
         public override string ToString()
         {

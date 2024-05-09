@@ -66,7 +66,7 @@ namespace Framework
         /// <summary>
         /// 检查对象
         /// </summary>
-        /// <returns></returns>
+        /// <returns>检查的对象是否存在</returns>
         bool CanSpawn();
 
         /// <summary>

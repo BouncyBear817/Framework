@@ -81,7 +81,7 @@ namespace Framework
         /// <summary>
         /// 获取所有对象信息
         /// </summary>
-        /// <returns></returns>
+        /// <returns>所有对象信息</returns>
         public abstract ObjectInfo[] GetAllObjectInfos();
 
         /// <summary>

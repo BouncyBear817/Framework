@@ -404,7 +404,7 @@ namespace Framework
             /// <summary>
             /// 获取所有对象信息
             /// </summary>
-            /// <returns></returns>
+            /// <returns>所有对象信息</returns>
             public override ObjectInfo[] GetAllObjectInfos()
             {
                 var results = new List<ObjectInfo>();
@@ -443,7 +443,7 @@ namespace Framework
             /// 获取对象
             /// </summary>
             /// <param name="target">对象</param>
-            /// <returns></returns>
+            /// <returns>对象</returns>
             /// <exception cref="Exception"></exception>
             private Object<T> GetObject(object target)
             {

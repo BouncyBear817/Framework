@@ -12,13 +12,13 @@ namespace Framework
     {
         private static T mInstance;
 
-        private static object mLock = new object();
+        private static object sLock = new object();
 
         public static T Instance
         {
             get
             {
-                lock (mLock)
+                lock (sLock)
                 {
                     mInstance ??= SingletonCreator.CreateSingleton<T>();
                     return mInstance;
@@ -28,7 +28,7 @@ namespace Framework
 
         public abstract void OnSingletonInit();
     }
-    
+
     /// <summary>
     /// 属性单例类
     /// </summary>
@@ -37,13 +37,13 @@ namespace Framework
     {
         private static T mInstance;
 
-        private static object mLock = new object();
+        private static object sLock = new object();
 
         public static T Instance
         {
             get
             {
-                lock (mLock)
+                lock (sLock)
                 {
                     mInstance ??= SingletonCreator.CreateSingleton<T>();
                     return mInstance;
@@ -56,7 +56,7 @@ namespace Framework
             mInstance = null;
         }
     }
-    
+
     /// <summary>
     /// 继承Momo的属性单例
     /// </summary>
@@ -65,13 +65,13 @@ namespace Framework
     {
         private static T mInstance;
 
-        private static object mLock = new object();
+        private static object sLock = new object();
 
         public static T Instance
         {
             get
             {
-                lock (mLock)
+                lock (sLock)
                 {
                     mInstance ??= SingletonCreator.CreateSingleton<T>();
                     return mInstance;
@@ -88,6 +88,7 @@ namespace Framework
             }
         }
     }
+
     /// <summary>
     /// 静态类：MonoBehaviour类的单例
     /// </summary>
@@ -95,24 +96,25 @@ namespace Framework
     public abstract class MonoSingleton<T> : MonoBehaviour, ISingleton where T : MonoSingleton<T>
     {
         private static T mInstance;
-        
-        private static object mLock = new object();
-        
+
+        private static object sLock = new object();
+
         public static T Instance
         {
             get
             {
-                lock (mLock)
+                lock (sLock)
                 {
                     mInstance ??= SingletonCreator.CreateSingleton<T>();
                     return mInstance;
                 }
             }
         }
+
         public void OnSingletonInit()
         {
         }
-        
+
         /// <summary>
         /// 应用程序退出：释放当前对象并销毁相关GameObject
         /// </summary>
@@ -131,7 +133,7 @@ namespace Framework
             mInstance = null;
         }
     }
-    
+
     /// <summary>
     /// 单例创建类
     /// </summary>
@@ -141,7 +143,9 @@ namespace Framework
         {
             var type = typeof(T);
 
-            var constructorInfos = type.GetConstructors(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            var constructorInfos =
+                type.GetConstructors(System.Reflection.BindingFlags.Instance |
+                                     System.Reflection.BindingFlags.NonPublic);
 
             var ctor = Array.Find(constructorInfos, c => c.GetParameters().Length == 0);
 
@@ -161,7 +165,7 @@ namespace Framework
                 instance.OnSingletonInit();
                 return instance;
             }
-            
+
             //MemberInfo：获取有关成员属性的信息并提供对成员元数据的访问
             MemberInfo info = typeof(T);
             //获取T类型 自定义属性，并找到相关路径属性，利用该属性创建T实例

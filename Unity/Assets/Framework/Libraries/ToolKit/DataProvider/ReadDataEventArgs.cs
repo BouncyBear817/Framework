@@ -114,7 +114,7 @@ namespace Framework
         /// <param name="dataAssetName"></param>
         /// <param name="duration"></param>
         /// <param name="userData"></param>
-        /// <returns></returns>
+        /// <returns>读取数据成功事件</returns>
         public static ReadDataSuccessEventArgs Create(string dataAssetName, float duration, object userData)
         {
             var eventArgs = ReferencePool.Acquire<ReadDataSuccessEventArgs>();
@@ -222,7 +222,7 @@ namespace Framework
         /// <param name="dataAssetName">资源名称</param>
         /// <param name="progress">读取数据进度</param>
         /// <param name="userData">用户自定义数据</param>
-        /// <returns></returns>
+        /// <returns>读取数据更新事件</returns>
         public static ReadDataUpdateEventArgs Create(string dataAssetName, float progress, object userData)
         {
             var eventArgs = ReferencePool.Acquire<ReadDataUpdateEventArgs>();

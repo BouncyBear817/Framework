@@ -14,7 +14,7 @@ namespace Framework
             /// <param name="index">拆分后的路径索引</param>
             /// <param name="build">是否需要创建GameObject</param>
             /// <param name="dontDestroy">是否不要销毁</param>
-            /// <returns></returns>
+            /// <returns>指定的GameObject</returns>
             public static GameObject FindGameObject(GameObject parent, string[] subPath, int index, bool build,
                 bool dontDestroy)
             {
@@ -62,7 +62,7 @@ namespace Framework
             /// <param name="path">路径</param>
             /// <param name="build">是否需要创建GameObject</param>
             /// <param name="dontDestroy">是否不要销毁</param>
-            /// <returns></returns>
+            /// <returns>指定的GameObject</returns>
             public static GameObject FindGameObject(string path, bool build, bool dontDestroy)
             {
                 if (string.IsNullOrEmpty(path))
@@ -81,7 +81,7 @@ namespace Framework
             /// <param name="path">GameObject路径</param>
             /// <param name="dontDestroy">是否不要销毁</param>
             /// <typeparam name="T"></typeparam>
-            /// <returns></returns>
+            /// <returns>T组件</returns>
             public static T CreateComponentOnGameObject<T>(string path, bool dontDestroy) where T : class
             {
                 var obj = FindGameObject(path, true, dontDestroy);
