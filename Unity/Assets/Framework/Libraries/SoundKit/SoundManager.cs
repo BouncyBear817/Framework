@@ -419,6 +419,17 @@ namespace Framework
         }
 
         /// <summary>
+        /// 停止所有正在加载的声音
+        /// </summary>
+        public void StopAllLoadingSounds()
+        {
+            foreach (var serialId in mSoundsBeingLoaded)
+            {
+                mSoundsToReleaseOnLoad.Add(serialId);
+            }
+        }
+
+        /// <summary>
         /// 暂停播放声音
         /// </summary>
         /// <param name="serialId">声音序列编号</param>

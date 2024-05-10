@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 178417966}
   - component: {fileID: 178417967}
   m_Layer: 0
-  m_Name: FsmComponent
+  m_Name: Fsm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +212,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f22c2c41c2e4cd796c09ebf2d4f0a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &205652819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205652820}
+  - component: {fileID: 205652821}
+  m_Layer: 0
+  m_Name: Sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &205652820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205652819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 911095657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205652821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205652819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0c1b7e230e4f3f85b35dbea18ce9d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mEnablePlaySoundUpdateEvent: 0
+  mEnablePlaySoundDependencyEvent: 0
+  mInstanceRoot: {fileID: 0}
+  mAudioMixer: {fileID: 0}
+  mSoundHelperTypeName: Runtime.DefaultSoundHelper
+  mCustomSoundHelper: {fileID: 0}
+  mSoundGroupHelperTypeName: Runtime.DefaultSoundGroupHelper
+  mCustomSoundGroupHelper: {fileID: 0}
+  mSoundAgentHelperTypeName: Runtime.DefaultSoundAgentHelper
+  mCustomSoundAgentHelper: {fileID: 0}
+  mSoundGroups:
+  - mName: UI Sound
+    mAvoidBeingReplacedBySamePriority: 0
+    mMute: 0
+    mVolume: 0.543
+    mAgentHelperCount: 1
+  - mName: World Sound
+    mAvoidBeingReplacedBySamePriority: 0
+    mMute: 0
+    mVolume: 0.533
+    mAgentHelperCount: 3
 --- !u!1 &455930090
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +288,7 @@ GameObject:
   - component: {fileID: 455930091}
   - component: {fileID: 455930092}
   m_Layer: 0
-  m_Name: ReferencePoolComponent
+  m_Name: ReferencePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +333,7 @@ GameObject:
   - component: {fileID: 460259505}
   - component: {fileID: 460259506}
   m_Layer: 0
-  m_Name: NetworkComponent
+  m_Name: Network
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,6 +501,7 @@ Transform:
   - {fileID: 455930091}
   - {fileID: 913268823}
   - {fileID: 2081227517}
+  - {fileID: 205652820}
   m_Father: {fileID: 135966929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913268822
@@ -449,7 +515,7 @@ GameObject:
   - component: {fileID: 913268823}
   - component: {fileID: 913268824}
   m_Layer: 0
-  m_Name: SceneComponent
+  m_Name: Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,7 +561,6 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -503,14 +568,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -588,7 +645,7 @@ GameObject:
   - component: {fileID: 1263171991}
   - component: {fileID: 1263171992}
   m_Layer: 0
-  m_Name: DataTableComponent
+  m_Name: DataTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +694,7 @@ GameObject:
   - component: {fileID: 1557808335}
   - component: {fileID: 1557808336}
   m_Layer: 0
-  m_Name: ProcedureComponent
+  m_Name: Procedure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,7 +740,7 @@ GameObject:
   - component: {fileID: 1664022323}
   - component: {fileID: 1664022324}
   m_Layer: 0
-  m_Name: ObjectPoolComponent
+  m_Name: ObjectPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -727,7 +784,7 @@ GameObject:
   - component: {fileID: 1797556186}
   - component: {fileID: 1797556187}
   m_Layer: 0
-  m_Name: BaseComponent
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +835,7 @@ GameObject:
   - component: {fileID: 1847502401}
   - component: {fileID: 1847502402}
   m_Layer: 0
-  m_Name: ConfigComponent
+  m_Name: Config
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -827,7 +884,7 @@ GameObject:
   - component: {fileID: 1987410740}
   - component: {fileID: 1987410741}
   m_Layer: 0
-  m_Name: EventComponent
+  m_Name: Event
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,7 +928,7 @@ GameObject:
   - component: {fileID: 2022161672}
   - component: {fileID: 2022161673}
   m_Layer: 0
-  m_Name: DownloadComponent
+  m_Name: Download
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -921,7 +978,7 @@ GameObject:
   - component: {fileID: 2081227517}
   - component: {fileID: 2081227518}
   m_Layer: 0
-  m_Name: UIComponent
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

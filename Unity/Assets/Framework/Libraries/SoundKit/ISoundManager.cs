@@ -152,6 +152,11 @@ namespace Framework
         void StopAllLoadedSounds(float fadeOutSeconds = 0f);
 
         /// <summary>
+        /// 停止所有正在加载的声音
+        /// </summary>
+        void StopAllLoadingSounds();
+
+        /// <summary>
         /// 暂停播放声音
         /// </summary>
         /// <param name="serialId">声音序列编号</param>
