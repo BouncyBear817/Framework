@@ -16,6 +16,8 @@ namespace Runtime
     /// </summary>
     public class DefaultUIFormHelper : UIFormHelperBase
     {
+        //TODO: need resource component
+
         /// <summary>
         /// 实例化界面
         /// </summary>

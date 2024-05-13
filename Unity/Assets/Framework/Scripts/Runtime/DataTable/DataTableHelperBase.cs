@@ -6,9 +6,10 @@
  * Modify Record: 
  *************************************************************/
 
+using Framework;
 using UnityEngine;
 
-namespace Framework
+namespace Runtime
 {
     /// <summary>
     /// 数据表辅助器基类

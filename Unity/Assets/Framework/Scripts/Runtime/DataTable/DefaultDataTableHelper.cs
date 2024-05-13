@@ -17,6 +17,8 @@ namespace Runtime
     public class DefaultDataTableHelper : DataTableHelperBase
     {
         private static readonly string sBytesAssetExtension = ".byte";
+        
+        //TODO: need resource component
 
         /// <summary>
         /// 读取数据

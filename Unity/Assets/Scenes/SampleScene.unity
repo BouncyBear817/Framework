@@ -259,7 +259,7 @@ MonoBehaviour:
   mEnablePlaySoundUpdateEvent: 0
   mEnablePlaySoundDependencyEvent: 0
   mInstanceRoot: {fileID: 0}
-  mAudioMixer: {fileID: 0}
+  mAudioMixer: {fileID: 24100000, guid: 1ffd8e9e7d1c7b14aa1e1ae2f0c464cf, type: 2}
   mSoundHelperTypeName: Runtime.DefaultSoundHelper
   mCustomSoundHelper: {fileID: 0}
   mSoundGroupHelperTypeName: Runtime.DefaultSoundGroupHelper
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eb420f81224f9e845214ff8a15256d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mEnableStrictCheck: 0
+  mEnableStrictCheck: 2
 --- !u!1 &460259504
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,6 +824,7 @@ MonoBehaviour:
   mNeverSleep: 1
   mVersionHelperTypeName: Runtime.DefaultVersionHelper
   mLogHelperTypeName: Runtime.DefaultLogHelper
+  mJsonHelperTypeName: Runtime.DefaultJsonHelper
 --- !u!1 &1847502400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +1030,6 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 135966929}
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 135966929}

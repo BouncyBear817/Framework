@@ -19,11 +19,8 @@ namespace Runtime
         private static readonly string[] sColumnSplitSeparator = new string[] { "\t" };
         private static readonly string sBytesAssetExtension = ".bytes";
         private const int ColumnCount = 4;
-
-        private void Start()
-        {
-            
-        }
+        
+        //TODO: need resource component
 
         public override bool ReadData(IConfigManager dataProviderOwner, string dataAssetName, object dataAsset,
             object userData)

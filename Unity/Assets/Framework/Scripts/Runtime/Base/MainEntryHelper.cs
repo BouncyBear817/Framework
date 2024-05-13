@@ -1,10 +1,10 @@
-// /************************************************************
-//  * Unity Version: 2022.3.15f1c1
-//  * Author:        bear
-//  * CreateTime:    2024/4/18 16:18:50
-//  * Description:
-//  * Modify Record:
-//  *************************************************************/
+/************************************************************
+ * Unity Version: 2022.3.15f1c1
+ * Author:        bear
+ * CreateTime:    2024/4/18 16:18:50
+ * Description:
+ * Modify Record:
+ *************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -96,7 +96,6 @@ namespace Runtime
             if (baseComponent != null)
             {
                 baseComponent.Shutdown();
-                baseComponent = null;
             }
 
             sFrameworkComponents.Clear();

@@ -19,6 +19,8 @@ namespace Runtime
     [AddComponentMenu("Framework/Base")]
     public sealed class BaseComponent : FrameworkComponent
     {
+        private const int DefaultDpi = 96;
+
         private float mGameSpeedBeforePause = 0f;
 
         [SerializeField] private bool mEditorResourceMode = true;
@@ -34,6 +36,8 @@ namespace Runtime
         [SerializeField] private string mVersionHelperTypeName = "Runtime.DefaultVersionHelper";
 
         [SerializeField] private string mLogHelperTypeName = "Runtime.DefaultLogHelper";
+
+        [SerializeField] private string mJsonHelperTypeName = "Runtime.DefaultJsonHelper";
 
         /// <summary>
         /// 是否使用编辑器资源模式（仅编辑器内有效）
@@ -100,6 +104,23 @@ namespace Runtime
 
             InitLogHelper();
             InitVersionHelper();
+            InitJsonHelper();
+
+            Log.Info($"Framework Version : {Framework.Version.FrameworkVersion}");
+            Log.Info($"Game Version : {Framework.Version.GameVersion} ({Framework.Version.InternalGameVersion})");
+            Log.Info($"Unity Version : {Application.unityVersion}");
+
+            Utility.Converter.ScreenDpi = Screen.dpi;
+            if (Utility.Converter.ScreenDpi <= 0)
+            {
+                Utility.Converter.ScreenDpi = DefaultDpi;
+            }
+
+            mEditorResourceMode &= Application.isEditor;
+            if (mEditorResourceMode)
+            {
+                Log.Info("Framework will use editor resource files!");
+            }
 
             Application.targetFrameRate = mFrameRate;
             Time.timeScale = mGameSpeed;
@@ -211,6 +232,28 @@ namespace Runtime
             }
 
             Framework.Version.SetVersionHelper(versionHelper);
+        }
+
+        private void InitJsonHelper()
+        {
+            if (string.IsNullOrEmpty(mJsonHelperTypeName))
+            {
+                return;
+            }
+
+            var jsonHelperType = Framework.Utility.Assembly.GetType(mJsonHelperTypeName);
+            if (jsonHelperType == null)
+            {
+                throw new Exception($"Can not find json helper type ({mJsonHelperTypeName}).");
+            }
+
+            var jsonHelper = Activator.CreateInstance(jsonHelperType) as Utility.Json.IJsonHelper;
+            if (jsonHelper == null)
+            {
+                throw new Exception($"Can not create json helper instance ({mJsonHelperTypeName}).");
+            }
+
+            Utility.Json.SetJsonHelper(jsonHelper);
         }
 
         private void OnLowMemory()

@@ -17,8 +17,16 @@ namespace Example.ReferencePool
 
             eventPool.Subscribe(eventArgs.Id, Handler);
             eventPool.Subscribe(eventArgs.Id, Handler1);
-            
+
             eventPool.FireNow(this, eventArgs);
+
+            MainEntry.Event.Subscribe(eventArgs.Id, Handler1);
+            MainEntry.Event.FireNow(this, eventArgs);
+        }
+
+        private void Handler1(object sender, BaseEventArgs e)
+        {
+            Debug.Log("test");
         }
 
         private void Handler1(object sender, ExampleEventArgs e)
@@ -31,12 +39,11 @@ namespace Example.ReferencePool
             Debug.Log(e.Name);
         }
     }
-    
+
     public class ExampleEventArgs : BaseEventArgs
     {
         public override void Clear()
         {
-            
         }
 
         public override int Id => 5;

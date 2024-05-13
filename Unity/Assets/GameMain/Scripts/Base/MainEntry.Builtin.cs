@@ -29,6 +29,10 @@ public sealed partial class MainEntry : MonoBehaviour
 
     public static ReferencePoolComponent ReferencePool { get; private set; }
 
+    public static SceneComponent Scene { get; private set; }
+
+    public static SoundComponent Sound { get; private set; }
+
     public static UIComponent UI { get; private set; }
 
     private static void InitBuiltinComponents()
@@ -50,6 +54,10 @@ public sealed partial class MainEntry : MonoBehaviour
         Procedure = MainEntryHelper.GetComponent<ProcedureComponent>();
 
         ReferencePool = MainEntryHelper.GetComponent<ReferencePoolComponent>();
+
+        Scene = MainEntryHelper.GetComponent<SceneComponent>();
+
+        Sound = MainEntryHelper.GetComponent<SoundComponent>();
 
         UI = MainEntryHelper.GetComponent<UIComponent>();
     }
