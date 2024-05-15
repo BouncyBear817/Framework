@@ -10,12 +10,12 @@ using Framework;
 
 public class SCHeartBeatHandler : PacketHandlerBase
 {
- public override int Id => 2;
+    public override int Id => 1;
 
- public override void Handle(object sender, Packet packet)
- {
-  var packetImp = packet as SCHeartBeat;
-  if (packetImp != null)
-   Log.Info($"Receive packet ({packetImp.Id.ToString()}).");
- }
+    public override void Handle(object sender, Packet packet)
+    {
+        var packetImp = packet as SCHeartBeat;
+        if (packetImp != null)
+            Log.Info($"Receive packet (heart beat : {packetImp.Id.ToString()}).");
+    }
 }

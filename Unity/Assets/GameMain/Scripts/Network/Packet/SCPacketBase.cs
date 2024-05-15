@@ -8,13 +8,13 @@
 
 public class SCPacketBase : PacketBase
 {
- public override PacketType PacketType => PacketType.ServerToClient;
+    public override PacketType PacketType => PacketType.ServerToClient;
 
- public int MessageId { get; set; }
+    
 
- public override int Id => MessageId;
+    public override int Id => MessageId;
 
- public override void Clear()
- {
- }
+    public override void Clear()
+    {
+    }
 }

@@ -46,7 +46,7 @@ namespace Runtime
             mDataTableManager = FrameworkEntry.GetModule<IDataTableManager>();
             if (mDataTableManager == null)
             {
-                Log.Error("Data table manager is invalid.");
+                Log.Fatal("Data table manager is invalid.");
             }
         }
 
@@ -55,7 +55,7 @@ namespace Runtime
             mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
-                Log.Error("Event component is invalid.");
+                Log.Fatal("Event component is invalid.");
             }
         }
 

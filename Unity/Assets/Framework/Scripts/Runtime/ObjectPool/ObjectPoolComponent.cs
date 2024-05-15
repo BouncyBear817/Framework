@@ -34,7 +34,7 @@ namespace Runtime
             mObjectPoolManager = FrameworkEntry.GetModule<IObjectPoolManager>();
             if (mObjectPoolManager == null)
             {
-                Log.Error("Object pool manager is invalid.");
+                Log.Fatal("Object pool manager is invalid.");
             }
         }
 

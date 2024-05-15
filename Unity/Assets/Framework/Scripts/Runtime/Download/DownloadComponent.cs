@@ -98,7 +98,7 @@ namespace Runtime
             mDownloadManager = FrameworkEntry.GetModule<IDownloadManager>();
             if (mDownloadManager == null)
             {
-                Log.Error("Download manager is invalid.");
+                Log.Fatal("Download manager is invalid.");
                 return;
             }
 
@@ -115,7 +115,7 @@ namespace Runtime
             mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
-                Log.Error("Event component is invalid.");
+                Log.Fatal("Event component is invalid.");
                 return;
             }
 

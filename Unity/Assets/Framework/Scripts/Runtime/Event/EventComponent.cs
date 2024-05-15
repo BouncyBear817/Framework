@@ -38,7 +38,7 @@ namespace Runtime
             mEventManager = FrameworkEntry.GetModule<IEventManager>();
             if (mEventManager == null)
             {
-                Log.Error("Event manager is invalid.");
+                Log.Fatal("Event manager is invalid.");
             }
         }
 

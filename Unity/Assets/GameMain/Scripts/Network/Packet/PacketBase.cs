@@ -10,7 +10,9 @@ using Framework;
 
 public abstract class PacketBase : Packet
 {
- public abstract PacketType PacketType { get; }
-        
- public byte[] MessageBody { get; set; }
+    public abstract PacketType PacketType { get; }
+
+    public byte[] MessageBody { get; set; }
+    
+    public int MessageId { get; set; }
 }

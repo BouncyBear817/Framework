@@ -1,10 +1,10 @@
 /************************************************************
-* Unity Version: 2022.3.15f1c1
-* Author:        bear
-* CreateTime:    2024/01/09 14:39:14
-* Description:   
-* Modify Record: 
-*************************************************************/
+ * Unity Version: 2022.3.15f1c1
+ * Author:        bear
+ * CreateTime:    2024/01/09 14:39:14
+ * Description:
+ * Modify Record:
+ *************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -139,6 +139,24 @@ namespace Framework
         public TaskInfo[] GetTaskInfos(string tag)
         {
             var results = new List<TaskInfo>();
+            GetTaskInfos(tag, results);
+            return results.ToArray();
+        }
+
+        /// <summary>
+        /// 根据标签获取任务信息
+        /// </summary>
+        /// <param name="tag">任务标签</param>
+        /// <param name="results">任务信息</param>
+        /// <exception cref="Exception"></exception>
+        public void GetTaskInfos(string tag, List<TaskInfo> results)
+        {
+            if (results == null)
+            {
+                throw new Exception("Results is invalid.");
+            }
+
+            results.Clear();
             foreach (var workingAgent in mWorkingAgents)
             {
                 var workingTask = workingAgent.Task;
@@ -159,8 +177,6 @@ namespace Framework
                         TaskStatus.Todo, waitingTask.Description));
                 }
             }
-
-            return results.ToArray();
         }
 
         /// <summary>
@@ -392,7 +408,7 @@ namespace Framework
             {
                 var agent = mAvailableAgents.Pop();
                 var agentNode = mWorkingAgents.AddLast(agent);
-                
+
                 var task = current.Value;
                 var next = current.Next;
                 var status = agent.Start(task);

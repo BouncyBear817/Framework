@@ -35,6 +35,8 @@ public sealed partial class MainEntry : MonoBehaviour
 
     public static UIComponent UI { get; private set; }
 
+    public static WebRequestComponent WebRequest { get; private set; }
+
     private static void InitBuiltinComponents()
     {
         Base = MainEntryHelper.GetComponent<BaseComponent>();
@@ -60,5 +62,7 @@ public sealed partial class MainEntry : MonoBehaviour
         Sound = MainEntryHelper.GetComponent<SoundComponent>();
 
         UI = MainEntryHelper.GetComponent<UIComponent>();
+
+        WebRequest = MainEntryHelper.GetComponent<WebRequestComponent>();
     }
 }

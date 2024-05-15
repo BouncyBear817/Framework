@@ -8,13 +8,13 @@
 
 public class SCHeartBeat : SCPacketBase
 {
- public SCHeartBeat()
- {
- }
+    public SCHeartBeat()
+    {
+    }
 
- public override int Id => 2;
+    public override int Id => 1;
 
- public override void Clear()
- {
- }
+    public override void Clear()
+    {
+    }
 }

@@ -42,7 +42,7 @@ namespace Runtime
             mSceneManager = FrameworkEntry.GetModule<ISceneManager>();
             if (mSceneManager == null)
             {
-                Log.Error("Scene manager is invalid.");
+                Log.Fatal("Scene manager is invalid.");
                 return;
             }
 
@@ -73,14 +73,14 @@ namespace Runtime
             var baseComponent = MainEntryHelper.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
-                Log.Error("Base component is invalid.");
+                Log.Fatal("Base component is invalid.");
                 return;
             }
 
             mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
-                Log.Error("Event component is invalid.");
+                Log.Fatal("Event component is invalid.");
             }
 
             //TODO 设置资源管理器

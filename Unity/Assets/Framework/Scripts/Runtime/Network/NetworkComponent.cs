@@ -33,7 +33,7 @@ namespace Runtime
             mNetworkManager = FrameworkEntry.GetModule<INetworkManager>();
             if (mNetworkManager == null)
             {
-                Log.Error("Network manager is invalid.");
+                Log.Fatal("Network manager is invalid.");
                 return;
             }
 
@@ -49,7 +49,7 @@ namespace Runtime
             mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
-                Log.Error("Event component is invalid.");
+                Log.Fatal("Event component is invalid.");
             }
         }
 

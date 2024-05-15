@@ -10,15 +10,15 @@ using Framework;
 
 public class PacketHeader : IPacketHeader, IReference
 {
- public int Id { get; set; }
+    public int Id { get; set; }
 
- public int PacketLength { get; set; }
+    public int PacketLength { get; set; }
 
- public bool IsValid => Id > 0 && PacketLength >= 0;
+    public bool IsValid => Id > 0 && PacketLength >= 0;
 
- public void Clear()
- {
-  Id = 0;
-  PacketLength = 0;
- }
+    public void Clear()
+    {
+        Id = 0;
+        PacketLength = 0;
+    }
 }

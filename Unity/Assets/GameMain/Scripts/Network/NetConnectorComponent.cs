@@ -6,6 +6,7 @@
  * Modify Record:
  *************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.Net;
 using Framework;
@@ -74,6 +75,42 @@ public class NetConnectorComponent : FrameworkComponent
         {
             networkChannel.HeartBeatInterval = heartBeatInterval;
         }
+    }
+
+    public void RegisterHandler(string name, IPacketHandler handler)
+    {
+        var networkChannel = mNetworkChannels.GetValueOrDefault(name);
+        if (networkChannel == null)
+        {
+            Log.Error($"Close failed, channel name ({name}) is null.");
+            return;
+        }
+        
+        networkChannel.RegisterHandler(handler);
+    }
+    
+    public void RegisterHandler(string name, int id, EventHandler<Packet> handler)
+    {
+        var networkChannel = mNetworkChannels.GetValueOrDefault(name);
+        if (networkChannel == null)
+        {
+            Log.Error($"Close failed, channel name ({name}) is null.");
+            return;
+        }
+        
+        networkChannel.RegisterHandler(id, handler);
+    }
+
+    public void Send(string name, Packet packet)
+    {
+        var networkChannel = mNetworkChannels.GetValueOrDefault(name);
+        if (networkChannel == null)
+        {
+            Log.Error($"Send failed, channel name ({name}) is null.");
+            return;
+        }
+
+        networkChannel.Send(packet);
     }
 
     public void Send(string name, int messageId, byte[] messageBody)

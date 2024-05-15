@@ -49,7 +49,7 @@ namespace Runtime
             mConfigManager = FrameworkEntry.GetModule<IConfigManager>();
             if (mConfigManager == null)
             {
-                Log.Error("Config manager is invalid.");
+                Log.Fatal("Config manager is invalid.");
                 return;
             }
 
@@ -72,14 +72,14 @@ namespace Runtime
             var baseComponent = MainEntryHelper.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
-                Log.Error("Base component is invalid.");
+                Log.Fatal("Base component is invalid.");
                 return;
             }
 
             mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
-                Log.Error("Event component  is invalid.");
+                Log.Fatal("Event component is invalid.");
                 return;
             }
 

@@ -77,7 +77,7 @@ namespace Runtime
             mUIManager = FrameworkEntry.GetModule<IUIManager>();
             if (mUIManager == null)
             {
-                Log.Error("UI manager is invalid.");
+                Log.Fatal("UI manager is invalid.");
                 return;
             }
 
@@ -112,14 +112,14 @@ namespace Runtime
             var baseComponent = MainEntryHelper.GetComponent<BaseComponent>();
             if (baseComponent == null)
             {
-                Log.Error("Base component is invalid.");
+                Log.Fatal("Base component is invalid.");
                 return;
             }
 
             var eventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (eventComponent == null)
             {
-                Log.Error("Event component is invalid.");
+                Log.Fatal("Event component is invalid.");
                 return;
             }
 

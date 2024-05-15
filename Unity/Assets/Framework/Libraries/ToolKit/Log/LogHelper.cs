@@ -6,7 +6,5 @@
     public abstract class LogHelper : ILogHelper
     {
         public abstract void Log(LogLevel logLevel, object message);
-
-        public abstract void Log(LogLevel logLevel, string format, params object[] args);
     }
 }

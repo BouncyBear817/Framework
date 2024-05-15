@@ -28,7 +28,7 @@ namespace Runtime
             mFsmManager = FrameworkEntry.GetModule<IFsmManager>();
             if (mFsmManager == null)
             {
-                Log.Error("Fsm manager is invalid.");
+                Log.Fatal("Fsm manager is invalid.");
             }
         }
 

@@ -123,6 +123,38 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &14012959
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14012960}
+  m_Layer: 0
+  m_Name: Custom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &14012960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14012959}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 169545850}
+  m_Father: {fileID: 135966929}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &135966928
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +186,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 911095657}
+  - {fileID: 14012960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &135966930
@@ -168,6 +201,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97471a14edca424daa85a2d5ebe19e54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &169545849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169545850}
+  - component: {fileID: 169545851}
+  m_Layer: 0
+  m_Name: Net Connector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &169545850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169545849}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 14012960}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169545851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169545849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6dd256ca430428cb9a8df0a92a4ad04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mIsLittleEndian: 0
+  mDataTransferFormat: 1
 --- !u!1 &178417965
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +367,7 @@ GameObject:
   - component: {fileID: 455930091}
   - component: {fileID: 455930092}
   m_Layer: 0
-  m_Name: ReferencePool
+  m_Name: Reference Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eb420f81224f9e845214ff8a15256d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mEnableStrictCheck: 2
+  mEnableStrictCheck: 3
 --- !u!1 &460259504
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +581,7 @@ Transform:
   - {fileID: 913268823}
   - {fileID: 2081227517}
   - {fileID: 205652820}
+  - {fileID: 1304500209}
   m_Father: {fileID: 135966929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913268822
@@ -645,7 +725,7 @@ GameObject:
   - component: {fileID: 1263171991}
   - component: {fileID: 1263171992}
   m_Layer: 0
-  m_Name: DataTable
+  m_Name: Data Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,6 +763,55 @@ MonoBehaviour:
   mDataTableHelperTypeName: Runtime.DefaultDataTableHelper
   mCustomDataTableHelper: {fileID: 0}
   mCachedBytesSize: 0
+--- !u!1 &1304500208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1304500209}
+  - component: {fileID: 1304500210}
+  m_Layer: 0
+  m_Name: Web Request
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1304500209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304500208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 911095657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1304500210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304500208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fc08f8aadb459cb4b1e375a62c2e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mInstanceRoot: {fileID: 0}
+  mWebRequestAgentHelperTypeName: Runtime.UnityWebRequestAgentHelper
+  mCustomWebRequestAgentHelper: {fileID: 0}
+  mWebRequestAgentHelperCount: 1
+  mTimeout: 30
 --- !u!1 &1557808334
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +869,7 @@ GameObject:
   - component: {fileID: 1664022323}
   - component: {fileID: 1664022324}
   m_Layer: 0
-  m_Name: ObjectPool
+  m_Name: Object Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

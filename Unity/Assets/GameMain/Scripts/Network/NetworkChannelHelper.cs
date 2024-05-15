@@ -11,12 +11,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Framework;
-using Runtime;
-using NetworkClosedEventArgs = Framework.NetworkClosedEventArgs;
-using NetworkConnectedEventArgs = Framework.NetworkConnectedEventArgs;
-using NetworkCustomErrorEventArgs = Framework.NetworkCustomErrorEventArgs;
-using NetworkErrorEventArgs = Framework.NetworkErrorEventArgs;
-using NetworkMissHeartBeatEventArgs = Framework.NetworkMissHeartBeatEventArgs;
 
 public class NetworkChannelHelper : INetworkChannelHelper, IReference
 {
@@ -233,7 +227,22 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
             }
             else
             {
-                Log.Warning($"Can not deserialize packet for packet id ({scPacketHeader.Id}).");
+                packet = ReferencePool.Acquire<SCPacketBase>();
+                if (source is MemoryStream memoryStream)
+                {
+                    if (packet != null)
+                    {
+                        packet.MessageId = scPacketHeader.Id;
+                        packet.MessageBody = memoryStream.ToArray();
+                        Log.Info(
+                            $"Network channel ({mNetworkChannel.Name}) deserialize packet, packet length is {packet.MessageBody.Length}.");
+                    }
+                }
+                else
+                {
+                    Log.Warning(
+                        $"Network channel ({mNetworkChannel.Name}) deserialize packet for packet id ({scPacketHeader.Id}), source is null.");
+                }
             }
         }
         else

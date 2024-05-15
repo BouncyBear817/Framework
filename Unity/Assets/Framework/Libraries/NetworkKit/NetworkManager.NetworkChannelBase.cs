@@ -69,7 +69,7 @@ namespace Framework
                 NetworkChannelCustomError = null;
                 NetworkChannelError = null;
                 NetworkChannelMissHeartBeat = null;
-                
+
                 networkChannelHelper.Initialize(this);
             }
 
@@ -224,6 +224,21 @@ namespace Framework
                 }
 
                 mReceivePacketPool.Subscribe(handler.Id, handler.Handle);
+            }
+
+            /// <summary>
+            /// 注册消息包处理函数
+            /// </summary>
+            /// <param name="id">网络消息包协议编号</param>
+            /// <param name="handler">消息包处理函数</param>
+            public void RegisterHandler(int id, EventHandler<Packet> handler)
+            {
+                if (handler == null)
+                {
+                    throw new Exception("Packet handler is invalid.");
+                }
+
+                mReceivePacketPool.Subscribe(id, handler);
             }
 
             /// <summary>

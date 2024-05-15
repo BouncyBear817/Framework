@@ -32,7 +32,7 @@ namespace Runtime
             mProcedureManager = FrameworkEntry.GetModule<IProcedureManager>();
             if (mProcedureManager == null)
             {
-                Log.Error("Procedure manager is invalid.");
+                Log.Fatal("Procedure manager is invalid.");
             }
         }
 
@@ -76,7 +76,7 @@ namespace Runtime
             mFsmManager = FrameworkEntry.GetModule<IFsmManager>();
             if (mFsmManager == null)
             {
-                Log.Error("Fsm manager is invalid.");
+                Log.Fatal("Fsm manager is invalid.");
                 yield break;
             }
 
