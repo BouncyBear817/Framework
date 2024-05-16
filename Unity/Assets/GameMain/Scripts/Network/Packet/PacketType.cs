@@ -6,6 +6,9 @@
  * Modify Record:
  *************************************************************/
 
+/// <summary>
+/// 网络消息包类型
+/// </summary>
 public enum PacketType : byte
 {
     /// <summary>

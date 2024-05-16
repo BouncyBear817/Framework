@@ -8,11 +8,23 @@
 
 using Framework;
 
+/// <summary>
+/// 网络消息包基类
+/// </summary>
 public abstract class PacketBase : Packet
 {
+    /// <summary>
+    /// 网络消息包类型
+    /// </summary>
     public abstract PacketType PacketType { get; }
 
-    public byte[] MessageBody { get; set; }
-    
+    /// <summary>
+    /// 网络消息编号
+    /// </summary>
     public int MessageId { get; set; }
+
+    /// <summary>
+    /// 网络消息内容
+    /// </summary>
+    public byte[] MessageBody { get; set; }
 }

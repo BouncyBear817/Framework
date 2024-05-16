@@ -6,12 +6,24 @@
  * Modify Record:
  *************************************************************/
 
+/// <summary>
+/// 客户端至服务端网络消息包基类
+/// </summary>
 public class CSPacketBase : PacketBase
 {
+    /// <summary>
+    /// 网络消息包类型
+    /// </summary>
     public override PacketType PacketType => PacketType.ClientToServer;
 
+    /// <summary>
+    /// 事件编号
+    /// </summary>
     public override int Id => MessageId;
 
+    /// <summary>
+    /// 清理引用
+    /// </summary>
     public override void Clear()
     {
     }

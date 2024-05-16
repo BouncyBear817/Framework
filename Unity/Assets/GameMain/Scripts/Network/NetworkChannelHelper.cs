@@ -30,8 +30,14 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
         mNetworkChannel = null;
     }
 
+    /// <summary>
+    /// 判定是否为小端字节序
+    /// </summary>
     public bool IsLittleEndian { get; set; }
 
+    /// <summary>
+    /// 消息包头长度
+    /// </summary>
     public int PacketHeaderLength => sizeof(int) + sizeof(int);
 
     /// <summary>
