@@ -38,6 +38,8 @@ namespace Runtime
         [SerializeField] private string mLogHelperTypeName = "Runtime.DefaultLogHelper";
 
         [SerializeField] private string mJsonHelperTypeName = "Runtime.DefaultJsonHelper";
+        
+        [SerializeField] private string mCompressionHelperTypeName = "Runtime.DefaultCompressionHelper";
 
         /// <summary>
         /// 是否使用编辑器资源模式（仅编辑器内有效）
@@ -105,6 +107,7 @@ namespace Runtime
             InitLogHelper();
             InitVersionHelper();
             InitJsonHelper();
+            InitCompressionHelper();
 
             Log.Info($"Framework Version : {Framework.Version.FrameworkVersion}");
             Log.Info($"Game Version : {Framework.Version.GameVersion} ({Framework.Version.InternalGameVersion})");
@@ -254,6 +257,28 @@ namespace Runtime
             }
 
             Utility.Json.SetJsonHelper(jsonHelper);
+        }
+
+        private void InitCompressionHelper()
+        {
+            if (string.IsNullOrEmpty(mCompressionHelperTypeName))
+            {
+                return;
+            }
+
+            var compressionHelperType = Framework.Utility.Assembly.GetType(mCompressionHelperTypeName);
+            if (compressionHelperType == null)
+            {
+                throw new Exception($"Can not find compression helper type ({mCompressionHelperTypeName}).");
+            }
+
+            var compressionHelper = Activator.CreateInstance(compressionHelperType) as Utility.Compression.ICompressionHelper;
+            if (compressionHelper == null)
+            {
+                throw new Exception($"Can not create compression helper instance ({mCompressionHelperTypeName}).");
+            }
+
+            Utility.Compression.SetCompressionHelper(compressionHelper);
         }
 
         private void OnLowMemory()
