@@ -13,12 +13,12 @@ namespace Framework
     /// <summary>
     /// 加载数据流成功回调函数
     /// </summary>
-    public delegate void LoadBytesSuccessCallback(string fileUrl, byte[] bytes, float duration, object userData);
+    public delegate void LoadBytesSuccessCallback(string fileUri, byte[] bytes, float duration, object userData);
 
     /// <summary>
     /// 加载数据流失败回调函数
     /// </summary>
-    public delegate void LoadBytesFailureCallback(string fileUrl, string errorMessage, object userData);
+    public delegate void LoadBytesFailureCallback(string fileUri, string errorMessage, object userData);
 
     /// <summary>
     /// 加载数据流回调函数集

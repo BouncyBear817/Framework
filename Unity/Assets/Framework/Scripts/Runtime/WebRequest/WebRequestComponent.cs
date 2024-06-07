@@ -39,7 +39,7 @@ namespace Runtime
         /// <summary>
         /// Web请求空闲代理数量
         /// </summary>
-        public int FreeAgentCount => mWebRequestManager.FreeAgentCount;
+        public int FreeAgentCount => mWebRequestManager.AvailableAgentCount;
 
         /// <summary>
         /// Web请求工作中代理数量

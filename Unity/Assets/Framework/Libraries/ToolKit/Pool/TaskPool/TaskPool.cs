@@ -42,22 +42,22 @@ namespace Framework
         /// <summary>
         /// 可用的任务代理数量
         /// </summary>
-        public int AvailableAgentsCount => mAvailableAgents.Count;
+        public int AvailableAgentCount => mAvailableAgents.Count;
 
         /// <summary>
         /// 工作中的任务代理数量
         /// </summary>
-        public int WorkingAgentsCount => mWorkingAgents.Count;
+        public int WorkingAgentCount => mWorkingAgents.Count;
 
         /// <summary>
         /// 总的任务代理数量
         /// </summary>
-        public int TotalAgentsCount => AvailableAgentsCount + WorkingAgentsCount;
+        public int TotalAgentCount => AvailableAgentCount + WorkingAgentCount;
 
         /// <summary>
         /// 等待中的任务代理数量
         /// </summary>
-        public int WaitingTasksCount => mWaitingTasks.Count;
+        public int WaitingTaskCount => mWaitingTasks.Count;
 
         /// <summary>
         /// 任务池轮询
@@ -78,7 +78,7 @@ namespace Framework
         public void Shutdown()
         {
             RemoveAllTasks();
-            while (AvailableAgentsCount > 0)
+            while (AvailableAgentCount > 0)
             {
                 mAvailableAgents.Pop().Shutdown();
             }
@@ -404,7 +404,7 @@ namespace Framework
         private void ProcessWaitingTasks(float elapseSeconds, float realElapseSeconds)
         {
             var current = mWaitingTasks.First;
-            while (current != null && AvailableAgentsCount > 0)
+            while (current != null && AvailableAgentCount > 0)
             {
                 var agent = mAvailableAgents.Pop();
                 var agentNode = mWorkingAgents.AddLast(agent);

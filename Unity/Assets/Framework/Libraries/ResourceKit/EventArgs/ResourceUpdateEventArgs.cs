@@ -16,8 +16,8 @@ namespace Framework
         public ResourceUpdateStartEventArgs()
         {
             Name = null;
-            DownloadUrl = null;
             DownloadPath = null;
+            DownloadUri = null;
             CurrentLength = 0;
             CompressedLength = 0;
             RetryCount = 0;
@@ -27,17 +27,17 @@ namespace Framework
         /// 资源名称
         /// </summary>
         public string Name { get; private set; }
-
-        /// <summary>
-        /// 资源下载地址
-        /// </summary>
-        public string DownloadUrl { get; private set; }
-
+        
         /// <summary>
         /// 资源下载后存放路径
         /// </summary>
         public string DownloadPath { get; private set; }
-
+        
+        /// <summary>
+        /// 资源下载地址
+        /// </summary>
+        public string DownloadUri { get; private set; }
+        
         /// <summary>
         /// 当前下载大小
         /// </summary>
@@ -57,21 +57,20 @@ namespace Framework
         /// 创建资源更新开始事件
         /// </summary>
         /// <param name="name">资源名称</param>
-        /// <param name="downloadUrl">资源下载地址</param>
         /// <param name="downloadPath">资源下载后存放路径</param>
+        /// <param name="downloadUri">资源下载地址</param>
         /// <param name="currentLength">当前下载大小</param>
-        /// <param name="compressLength">压缩后大小</param>
+        /// <param name="compressedLength">压缩后大小</param>
         /// <param name="retryCount">已重试下载次数</param>
         /// <returns>资源更新开始事件</returns>
-        public static ResourceUpdateStartEventArgs Create(string name, string downloadUrl, string downloadPath,
-            int currentLength, int compressLength, int retryCount)
+        public static ResourceUpdateStartEventArgs Create(string name, string downloadPath, string downloadUri, int currentLength, int compressedLength, int retryCount)
         {
             var eventArgs = ReferencePool.Acquire<ResourceUpdateStartEventArgs>();
             eventArgs.Name = name;
-            eventArgs.DownloadUrl = downloadUrl;
+            eventArgs.DownloadUri = downloadUri;
             eventArgs.DownloadPath = downloadPath;
             eventArgs.CurrentLength = currentLength;
-            eventArgs.CompressedLength = compressLength;
+            eventArgs.CompressedLength = compressedLength;
             eventArgs.RetryCount = retryCount;
             return eventArgs;
         }
@@ -82,8 +81,8 @@ namespace Framework
         public override void Clear()
         {
             Name = null;
-            DownloadUrl = null;
             DownloadPath = null;
+            DownloadUri = null;
             CurrentLength = 0;
             CompressedLength = 0;
             RetryCount = 0;
@@ -98,8 +97,8 @@ namespace Framework
         public ResourceUpdateChangedEventArgs()
         {
             Name = null;
-            DownloadUrl = null;
             DownloadPath = null;
+            DownloadUri = null;
             CurrentLength = 0;
             CompressedLength = 0;
         }
@@ -110,14 +109,14 @@ namespace Framework
         public string Name { get; private set; }
 
         /// <summary>
-        /// 资源下载地址
-        /// </summary>
-        public string DownloadUrl { get; private set; }
-
-        /// <summary>
         /// 资源下载后存放路径
         /// </summary>
         public string DownloadPath { get; private set; }
+
+        /// <summary>
+        /// 资源下载地址
+        /// </summary>
+        public string DownloadUri { get; private set; }
 
         /// <summary>
         /// 当前下载大小
@@ -133,20 +132,19 @@ namespace Framework
         /// 创建资源更新改变事件
         /// </summary>
         /// <param name="name">资源名称</param>
-        /// <param name="downloadUrl">资源下载地址</param>
         /// <param name="downloadPath">资源下载后存放路径</param>
+        /// <param name="downloadUri">资源下载地址</param>
         /// <param name="currentLength">当前下载大小</param>
-        /// <param name="compressLength">压缩后大小</param>
+        /// <param name="compressedLength">压缩后大小</param>
         /// <returns>资源更新改变事件</returns>
-        public static ResourceUpdateChangedEventArgs Create(string name, string downloadUrl, string downloadPath,
-            int currentLength, int compressLength)
+        public static ResourceUpdateChangedEventArgs Create(string name, string downloadPath, string downloadUri, int currentLength, int compressedLength)
         {
             var eventArgs = ReferencePool.Acquire<ResourceUpdateChangedEventArgs>();
             eventArgs.Name = name;
-            eventArgs.DownloadUrl = downloadUrl;
+            eventArgs.DownloadUri = downloadUri;
             eventArgs.DownloadPath = downloadPath;
             eventArgs.CurrentLength = currentLength;
-            eventArgs.CompressedLength = compressLength;
+            eventArgs.CompressedLength = compressedLength;
             return eventArgs;
         }
 
@@ -156,8 +154,8 @@ namespace Framework
         public override void Clear()
         {
             Name = null;
-            DownloadUrl = null;
             DownloadPath = null;
+            DownloadUri = null;
             CurrentLength = 0;
             CompressedLength = 0;
         }
@@ -171,8 +169,8 @@ namespace Framework
         public ResourceUpdateSuccessEventArgs()
         {
             Name = null;
-            DownloadUrl = null;
             DownloadPath = null;
+            DownloadUri = null;
             Length = 0;
             CompressedLength = 0;
         }
@@ -181,16 +179,16 @@ namespace Framework
         /// 资源名称
         /// </summary>
         public string Name { get; private set; }
-
-        /// <summary>
-        /// 资源下载地址
-        /// </summary>
-        public string DownloadUrl { get; private set; }
-
+        
         /// <summary>
         /// 资源下载后存放路径
         /// </summary>
         public string DownloadPath { get; private set; }
+
+        /// <summary>
+        /// 资源下载地址
+        /// </summary>
+        public string DownloadUri { get; private set; }
 
         /// <summary>
         /// 资源大小
@@ -206,20 +204,19 @@ namespace Framework
         /// 创建资源更新成功事件
         /// </summary>
         /// <param name="name">资源名称</param>
-        /// <param name="downloadUrl">资源下载地址</param>
         /// <param name="downloadPath">资源下载后存放路径</param>
+        /// <param name="downloadUri">资源下载地址</param>
         /// <param name="length">资源大小</param>
-        /// <param name="compressLength">压缩后大小</param>
+        /// <param name="compressedLength">压缩后大小</param>
         /// <returns>资源更新成功事件</returns>
-        public static ResourceUpdateSuccessEventArgs Create(string name, string downloadUrl, string downloadPath,
-            int length, int compressLength)
+        public static ResourceUpdateSuccessEventArgs Create(string name, string downloadPath, string downloadUri, int length, int compressedLength)
         {
             var eventArgs = ReferencePool.Acquire<ResourceUpdateSuccessEventArgs>();
             eventArgs.Name = name;
-            eventArgs.DownloadUrl = downloadUrl;
+            eventArgs.DownloadUri = downloadUri;
             eventArgs.DownloadPath = downloadPath;
             eventArgs.Length = length;
-            eventArgs.CompressedLength = compressLength;
+            eventArgs.CompressedLength = compressedLength;
             return eventArgs;
         }
 
@@ -229,8 +226,8 @@ namespace Framework
         public override void Clear()
         {
             Name = null;
-            DownloadUrl = null;
             DownloadPath = null;
+            DownloadUri = null;
             Length = 0;
             CompressedLength = 0;
         }
@@ -244,7 +241,7 @@ namespace Framework
         public ResourceUpdateFailureEventArgs()
         {
             Name = null;
-            DownloadUrl = null;
+            DownloadUri = null;
             RetryCount = 0;
             TotalRetryCount = 0;
             ErrorMessage = null;
@@ -258,7 +255,7 @@ namespace Framework
         /// <summary>
         /// 资源下载地址
         /// </summary>
-        public string DownloadUrl { get; private set; }
+        public string DownloadUri { get; private set; }
 
         /// <summary>
         /// 已重试次数
@@ -279,17 +276,16 @@ namespace Framework
         /// 创建资源更新失败事件
         /// </summary>
         /// <param name="name">资源名称</param>
-        /// <param name="downloadUrl">资源下载地址</param>
+        /// <param name="downloadUri">资源下载地址</param>
         /// <param name="retryCount">已重试次数</param>
         /// <param name="totalRetryCount">设定的重试次数</param>
         /// <param name="errorMessage">失败信息</param>
         /// <returns>资源更新失败事件</returns>
-        public static ResourceUpdateFailureEventArgs Create(string name, string downloadUrl, int retryCount,
-            int totalRetryCount, string errorMessage)
+        public static ResourceUpdateFailureEventArgs Create(string name, string downloadUri, int retryCount, int totalRetryCount, string errorMessage)
         {
             var eventArgs = ReferencePool.Acquire<ResourceUpdateFailureEventArgs>();
             eventArgs.Name = name;
-            eventArgs.DownloadUrl = downloadUrl;
+            eventArgs.DownloadUri = downloadUri;
             eventArgs.RetryCount = retryCount;
             eventArgs.TotalRetryCount = totalRetryCount;
             eventArgs.ErrorMessage = errorMessage;
@@ -302,7 +298,7 @@ namespace Framework
         public override void Clear()
         {
             Name = null;
-            DownloadUrl = null;
+            DownloadUri = null;
             RetryCount = 0;
             TotalRetryCount = 0;
             ErrorMessage = null;

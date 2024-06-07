@@ -24,7 +24,7 @@ namespace Framework
         /// <summary>
         /// Web请求空闲代理数量
         /// </summary>
-        int FreeAgentCount { get; }
+        int AvailableAgentCount { get; }
 
         /// <summary>
         /// Web请求工作中代理数量

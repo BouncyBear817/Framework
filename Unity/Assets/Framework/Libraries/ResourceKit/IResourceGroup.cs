@@ -24,7 +24,7 @@ namespace Framework
         /// <summary>
         /// 资源组中已准备完成资源大小
         /// </summary>
-        int ReadyLength { get; }
+        long ReadyLength { get; }
         
         /// <summary>
         /// 资源组中已准备完成资源压缩后大小
@@ -55,7 +55,7 @@ namespace Framework
         /// 资源组包含的资源名称列表
         /// </summary>
         /// <returns>资源名称列表</returns>
-        string GetResourceNames();
+        string[] GetResourceNames();
 
         /// <summary>
         /// 资源组包含的资源名称列表

@@ -32,22 +32,22 @@ namespace Framework
         /// <summary>
         /// Web请求总代理数量
         /// </summary>
-        public int TotalAgentCount => mTaskPool.TotalAgentsCount;
+        public int TotalAgentCount => mTaskPool.TotalAgentCount;
 
         /// <summary>
         /// Web请求空闲代理数量
         /// </summary>
-        public int FreeAgentCount => mTaskPool.AvailableAgentsCount;
+        public int AvailableAgentCount => mTaskPool.AvailableAgentCount;
 
         /// <summary>
         /// Web请求工作中代理数量
         /// </summary>
-        public int WorkingAgentCount => mTaskPool.WorkingAgentsCount;
+        public int WorkingAgentCount => mTaskPool.WorkingAgentCount;
 
         /// <summary>
         /// 等待任务数量
         /// </summary>
-        public int WaitingTaskCount => mTaskPool.WaitingTasksCount;
+        public int WaitingTaskCount => mTaskPool.WaitingTaskCount;
 
         /// <summary>
         /// Web请求超时事件

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+
 namespace Framework
 {
     /// <summary>
@@ -92,6 +93,23 @@ namespace Framework
         /// </summary>
         /// <param name="stream">目标流</param>
         /// <param name="data">要序列化的数据</param>
+        /// <returns>是否序列化成功</returns>
+        /// <exception cref="Exception"></exception>
+        public bool Serialize(Stream stream, T data)
+        {
+            if (mSerializeCallbacks.Count <= 0)
+            {
+                throw new Exception("No serialize callback registered.");
+            }
+
+            return Serialize(stream, data, mLatestSerializeCallbackVersion);
+        }
+
+        /// <summary>
+        /// 序列化数据到目标流中
+        /// </summary>
+        /// <param name="stream">目标流</param>
+        /// <param name="data">要序列化的数据</param>
         /// <param name="version">序列化回调函数的版本</param>
         /// <returns>是否序列化成功</returns>
         /// <exception cref="Exception"></exception>
@@ -137,7 +155,7 @@ namespace Framework
 
             return callback(stream);
         }
-        
+
         /// <summary>
         /// 尝试从指定流获取指定键的值
         /// </summary>
@@ -160,7 +178,6 @@ namespace Framework
             var version = (byte)stream.ReadByte();
 
             return mTryGetValueCallbacks.TryGetValue(version, out var callback) && callback(stream, key, out value);
-
         }
 
         /// <summary>

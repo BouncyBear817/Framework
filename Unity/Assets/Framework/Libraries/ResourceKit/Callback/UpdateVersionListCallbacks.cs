@@ -13,7 +13,7 @@ namespace Framework
     /// <summary>
     /// 更新版本资源列表成功回调函数
     /// </summary>
-    public delegate void UpdateVersionListSuccessCallback(string downloadPath, string downloadUrl);
+    public delegate void UpdateVersionListSuccessCallback(string downloadPath, string downloadUri);
 
     /// <summary>
     /// 更新版本资源列表失败回调函数

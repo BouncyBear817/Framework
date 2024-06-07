@@ -35,7 +35,7 @@ namespace Framework
         /// <param name="count">要校验的资源数量</param>
         /// <param name="totalLength">要校验的资源总大小</param>
         /// <returns>资源校验开始事件</returns>
-        public static ResourceVerifyStartEventArgs Create(int count, int totalLength)
+        public static ResourceVerifyStartEventArgs Create(int count, long totalLength)
         {
             var eventArgs = ReferencePool.Acquire<ResourceVerifyStartEventArgs>();
             eventArgs.Count = count;

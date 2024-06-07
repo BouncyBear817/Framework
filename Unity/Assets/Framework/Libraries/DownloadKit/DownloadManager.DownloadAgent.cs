@@ -80,7 +80,7 @@ namespace Framework
             /// <returns></returns>
             private string GetDownloadFile()
             {
-                return $"{mTask.DownloadPath}/{mTask.Name}.download";
+                return $"{mTask.DownloadPath}.download";
             }
 
             /// <summary>

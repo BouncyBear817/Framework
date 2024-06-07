@@ -5,69 +5,57 @@
     /// </summary>
     public struct DownloadInfo
     {
-        private readonly string mName;
         private readonly string mDownloadPath;
         private readonly string mDownloadUri;
         private readonly string mTag;
         private readonly int mPriority;
         private readonly object mUserData;
 
-        public DownloadInfo(string name, string downloadPath, string downloadUri) : this()
+        public DownloadInfo(string downloadPath, string downloadUri) : this()
         {
-            mName = name;
             mDownloadPath = downloadPath;
             mDownloadUri = downloadUri;
         }
 
-        public DownloadInfo(string name, string downloadPath, string downloadUri, string tag) : this()
+        public DownloadInfo(string downloadPath, string downloadUri, string tag) : this()
         {
-            mName = name;
             mDownloadPath = downloadPath;
             mDownloadUri = downloadUri;
             mTag = tag;
         }
 
-        public DownloadInfo(string name, string downloadPath, string downloadUri, object userData) : this()
+        public DownloadInfo(string downloadPath, string downloadUri, object userData) : this()
         {
-            mName = name;
             mDownloadPath = downloadPath;
             mDownloadUri = downloadUri;
             mUserData = userData;
         }
 
-        public DownloadInfo(string name, string downloadPath, string downloadUri, string tag, int priority) : this()
+        public DownloadInfo(string downloadPath, string downloadUri, string tag, int priority) : this()
         {
-            mName = name;
             mDownloadPath = downloadPath;
             mDownloadUri = downloadUri;
             mTag = tag;
             mPriority = priority;
         }
 
-        public DownloadInfo(string name, string downloadPath, string downloadUri, string tag, object userData) : this()
+        public DownloadInfo(string downloadPath, string downloadUri, string tag, object userData) : this()
         {
-            mName = name;
             mDownloadPath = downloadPath;
             mDownloadUri = downloadUri;
             mTag = tag;
             mUserData = userData;
         }
 
-        public DownloadInfo(string name, string downloadPath, string downloadUri, string tag, int priority,
+        public DownloadInfo(string downloadPath, string downloadUri, string tag, int priority,
             object userData)
         {
-            mName = name;
             mDownloadPath = downloadPath;
             mDownloadUri = downloadUri;
             mTag = tag;
             mPriority = priority;
             mUserData = userData;
         }
-
-        /// <summary>
-        /// 下载文件名称
-        /// </summary>
-        public string Name => mName;
 
         /// <summary>
         /// 下载存放地址
@@ -97,7 +85,7 @@
         public override string ToString()
         {
             return
-                $"{nameof(Name)}: {Name}, {nameof(DownloadPath)}: {DownloadPath}, {nameof(DownloadUri)}: {DownloadUri}, {nameof(Tag)}: {Tag}, {nameof(Priority)}: {Priority}";
+                $"{nameof(DownloadPath)}: {DownloadPath}, {nameof(DownloadUri)}: {DownloadUri}, {nameof(Tag)}: {Tag}, {nameof(Priority)}: {Priority}";
         }
     }
 }

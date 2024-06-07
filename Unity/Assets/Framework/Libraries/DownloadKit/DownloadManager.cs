@@ -58,22 +58,22 @@ namespace Framework
         /// <summary>
         /// 下载代理总数量
         /// </summary>
-        public int TotalAgentCount => mTaskPool.TotalAgentsCount;
+        public int TotalAgentCount => mTaskPool.TotalAgentCount;
 
         /// <summary>
         /// 可用下载代理数量
         /// </summary>
-        public int AvailableAgentCount => mTaskPool.AvailableAgentsCount;
+        public int AvailableAgentCount => mTaskPool.AvailableAgentCount;
 
         /// <summary>
         /// 工作中下载代理数量
         /// </summary>
-        public int WorkingAgentCount => mTaskPool.WorkingAgentsCount;
+        public int WorkingAgentCount => mTaskPool.WorkingAgentCount;
 
         /// <summary>
         /// 等待下载任务数量
         /// </summary>
-        public int WaitingTaskCount => mTaskPool.WaitingTasksCount;
+        public int WaitingTaskCount => mTaskPool.WaitingTaskCount;
 
         /// <summary>
         /// 设置缓冲区写入磁盘的临界大小
@@ -224,7 +224,7 @@ namespace Framework
                 throw new Exception("You must add download agent first.");
             }
 
-            var task = DownloadTask.Create(downloadInfo.Name, downloadInfo.DownloadPath, downloadInfo.DownloadUri, downloadInfo.Tag,
+            var task = DownloadTask.Create(downloadInfo.DownloadPath, downloadInfo.DownloadUri, downloadInfo.Tag,
                 downloadInfo.Priority, mFlushSize, mTimeout, downloadInfo.UserData);
             mTaskPool.AddTask(task);
             return task.SerialId;

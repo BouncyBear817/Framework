@@ -33,7 +33,7 @@ namespace Framework
         /// <summary>
         /// 应用资源总大小
         /// </summary>
-        public int TotalLength { get; private set; }
+        public long TotalLength { get; private set; }
         
         /// <summary>
         /// 创建资源应用开始事件
@@ -42,7 +42,7 @@ namespace Framework
         /// <param name="count">应用资源数量</param>
         /// <param name="totalCount">应用资源总大小</param>
         /// <returns>资源应用开始事件</returns>
-        public static ResourceApplyStartEventArgs Create(string resourcePackPath, int count, int totalCount)
+        public static ResourceApplyStartEventArgs Create(string resourcePackPath, int count, long totalCount)
         {
             var eventArgs = ReferencePool.Acquire<ResourceApplyStartEventArgs>();
             eventArgs.ResourcePackPath = resourcePackPath;
