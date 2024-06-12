@@ -15,7 +15,7 @@ namespace Runtime
 {
     [DisallowMultipleComponent]
     [AddComponentMenu("Framework/Fsm")]
-    public class FsmComponent : FrameworkComponent
+    public sealed class FsmComponent : FrameworkComponent
     {
         private IFsmManager mFsmManager;
 

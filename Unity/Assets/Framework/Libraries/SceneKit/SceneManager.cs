@@ -11,6 +11,9 @@ using System.Collections.Generic;
 
 namespace Framework
 {
+    /// <summary>
+    /// 场景管理器
+    /// </summary>
     public class SceneManager : FrameworkModule, ISceneManager
     {
         private readonly List<string> mLoadedSceneAssetNames;
@@ -32,8 +35,7 @@ namespace Framework
             mLoadedSceneAssetNames = new List<string>();
             mLoadingSceneAssetNames = new List<string>();
             mUnloadingSceneAssetNames = new List<string>();
-            mLoadSceneCallbacks = new LoadSceneCallbacks(LoadSceneSuccessCallback, LoadSceneFailureCallback,
-                LoadSceneUpdateCallback, LoadSceneDependencyAssetCallback);
+            mLoadSceneCallbacks = new LoadSceneCallbacks(LoadSceneSuccessCallback, LoadSceneFailureCallback, LoadSceneUpdateCallback, LoadSceneDependencyAssetCallback);
             mUnloadSceneCallbacks = new UnloadSceneCallbacks(UnloadSceneSuccessCallback, UnloadSceneFailureCallback);
 
             mResourceManager = null;
@@ -278,7 +280,7 @@ namespace Framework
             {
                 throw new Exception("Scene asset name is invalid.");
             }
-            
+
             if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
             {
                 throw new Exception($"Scene asset name is invalid.");
@@ -299,7 +301,7 @@ namespace Framework
             {
                 throw new Exception("Scene asset name is invalid.");
             }
-            
+
             if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
             {
                 throw new Exception($"Scene asset name is invalid.");
@@ -340,7 +342,7 @@ namespace Framework
             {
                 throw new Exception("Scene asset name is invalid.");
             }
-            
+
             if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
             {
                 throw new Exception($"Scene asset name is invalid.");
@@ -388,8 +390,7 @@ namespace Framework
         {
             mLoadingSceneAssetNames.Remove(sceneAssetName);
 
-            var error =
-                $"Load scene failure, scene asset name ({sceneAssetName}), status ({status}),error message ({errorMessage}).";
+            var error = $"Load scene failure, scene asset name ({sceneAssetName}), status ({status}),error message ({errorMessage}).";
             if (mLoadSceneFailureEventHandler != null)
             {
                 var eventArgs = LoadSceneFailureEventArgs.Create(sceneAssetName, error, userData);
@@ -411,14 +412,11 @@ namespace Framework
             }
         }
 
-        private void LoadSceneDependencyAssetCallback(string sceneAssetName, string dependencyAssetName,
-            int loadedCount,
-            int totalCount, object userData)
+        private void LoadSceneDependencyAssetCallback(string sceneAssetName, string dependencyAssetName, int loadedCount, int totalCount, object userData)
         {
             if (mLoadSceneDependencyAssetEventHandler != null)
             {
-                var eventArgs = LoadSceneDependencyAssetEventArgs.Create(sceneAssetName, dependencyAssetName,
-                    loadedCount, totalCount, userData);
+                var eventArgs = LoadSceneDependencyAssetEventArgs.Create(sceneAssetName, dependencyAssetName, loadedCount, totalCount, userData);
                 mLoadSceneDependencyAssetEventHandler(this, eventArgs);
                 ReferencePool.Release(eventArgs);
             }
@@ -428,7 +426,7 @@ namespace Framework
         {
             mUnloadingSceneAssetNames.Remove(sceneAssetName);
             mLoadedSceneAssetNames.Remove(sceneAssetName);
-            
+
             if (mUnloadSceneSuccessEventHandler != null)
             {
                 var eventArgs = UnloadSceneSuccessEventArgs.Create(sceneAssetName, userData);
@@ -437,21 +435,19 @@ namespace Framework
             }
         }
 
-        private void UnloadSceneFailureCallback(string sceneAssetName, string errorMessage, object userData)
+        private void UnloadSceneFailureCallback(string sceneAssetName, object userData)
         {
             mUnloadingSceneAssetNames.Remove(sceneAssetName);
-            
-            var error =
-                $"Unload scene failure, scene asset name ({sceneAssetName}), error message ({errorMessage}).";
+
             if (mUnloadSceneFailureEventHandler != null)
             {
-                var eventArgs = UnloadSceneFailureEventArgs.Create(sceneAssetName, error, userData);
+                var eventArgs = UnloadSceneFailureEventArgs.Create(sceneAssetName, userData);
                 mUnloadSceneFailureEventHandler(this, eventArgs);
                 ReferencePool.Release(eventArgs);
                 return;
             }
 
-            throw new Exception(error);
+            throw new Exception($"Unload scene failure, scene asset name ({sceneAssetName}).");
         }
     }
 }

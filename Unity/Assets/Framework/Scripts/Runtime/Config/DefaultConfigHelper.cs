@@ -19,8 +19,8 @@ namespace Runtime
         private static readonly string[] sColumnSplitSeparator = new string[] { "\t" };
         private static readonly string sBytesAssetExtension = ".bytes";
         private const int ColumnCount = 4;
-        
-        //TODO: need resource component
+
+        private ResourceComponent mResourceComponent = null;
 
         public override bool ReadData(IConfigManager dataProviderOwner, string dataAssetName, object dataAsset,
             object userData)
@@ -131,7 +131,16 @@ namespace Runtime
 
         public override void ReleaseDataAsset(IConfigManager dataProviderOwner, object dataAsset)
         {
-            //TODO need resource component
+            mResourceComponent.UnloadAsset(dataAsset);
+        }
+
+        private void Start()
+        {
+            mResourceComponent = MainEntryHelper.GetComponent<ResourceComponent>();
+            if (mResourceComponent == null)
+            {
+                Log.Fatal("Resource component is invalid.");
+            }
         }
     }
 }

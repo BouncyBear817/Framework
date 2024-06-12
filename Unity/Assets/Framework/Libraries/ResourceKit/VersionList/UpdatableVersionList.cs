@@ -29,13 +29,13 @@ namespace Framework
 
         private readonly bool mIsValid;
         private readonly string mApplicableVersion;
-        private readonly string mInternalResourceVersion;
+        private readonly int mInternalResourceVersion;
         private readonly Asset[] mAssets;
         private readonly Resource[] mResources;
         private readonly FileSystem[] mFileSystems;
         private readonly ResourceGroup[] mResourceGroups;
 
-        public UpdatableVersionList(string applicableVersion, string internalResourceVersion, Asset[] assets,
+        public UpdatableVersionList(string applicableVersion, int internalResourceVersion, Asset[] assets,
             Resource[] resources, FileSystem[] fileSystems, ResourceGroup[] resourceGroups) : this()
         {
             mIsValid = true;
@@ -61,7 +61,7 @@ namespace Framework
         /// <summary>
         /// 资源的内部版本号
         /// </summary>
-        public string InternalResourceVersion => mIsValid
+        public int InternalResourceVersion => mIsValid
             ? mInternalResourceVersion
             : throw new Exception("UpdatableVersionList data is invalid.");
 

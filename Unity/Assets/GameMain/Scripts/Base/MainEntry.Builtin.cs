@@ -19,6 +19,9 @@ public sealed partial class MainEntry : MonoBehaviour
 
     public static EventComponent Event { get; private set; }
 
+
+    public static FileSystemComponent FileSystem { get; private set; }
+
     public static FsmComponent Fsm { get; private set; }
 
     public static NetworkComponent Network { get; private set; }
@@ -28,6 +31,8 @@ public sealed partial class MainEntry : MonoBehaviour
     public static ProcedureComponent Procedure { get; private set; }
 
     public static ReferencePoolComponent ReferencePool { get; private set; }
+
+    public static ResourceComponent Resource { get; private set; }
 
     public static SceneComponent Scene { get; private set; }
 
@@ -47,6 +52,8 @@ public sealed partial class MainEntry : MonoBehaviour
 
         Event = MainEntryHelper.GetComponent<EventComponent>();
 
+        FileSystem = MainEntryHelper.GetComponent<FileSystemComponent>();
+
         Fsm = MainEntryHelper.GetComponent<FsmComponent>();
 
         Network = MainEntryHelper.GetComponent<NetworkComponent>();
@@ -56,6 +63,8 @@ public sealed partial class MainEntry : MonoBehaviour
         Procedure = MainEntryHelper.GetComponent<ProcedureComponent>();
 
         ReferencePool = MainEntryHelper.GetComponent<ReferencePoolComponent>();
+
+        Resource = MainEntryHelper.GetComponent<ResourceComponent>();
 
         Scene = MainEntryHelper.GetComponent<SceneComponent>();
 

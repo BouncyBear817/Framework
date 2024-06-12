@@ -18,7 +18,7 @@ namespace Framework
     /// <summary>
     /// 卸载场景失败回调函数
     /// </summary>
-    public delegate void UnloadSceneFailureCallback(string sceneAssetName, string errorMessage, object userData);
+    public delegate void UnloadSceneFailureCallback(string sceneAssetName, object userData);
 
     /// <summary>
     /// 卸载场景回调函数集

@@ -61,7 +61,6 @@ namespace Framework
         public UnloadSceneFailureEventArgs()
         {
             SceneAssetName = null;
-            ErrorMessage = null;
             UserData = null;
         }
 
@@ -69,11 +68,6 @@ namespace Framework
         /// 场景资源名称
         /// </summary>
         public string SceneAssetName { get; private set; }
-
-        /// <summary>
-        /// 错误信息
-        /// </summary>
-        public string ErrorMessage { get; private set; }
 
         /// <summary>
         /// 用户自定义数据
@@ -84,14 +78,12 @@ namespace Framework
         /// 创建卸载场景失败事件
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称</param>
-        /// <param name="errorMessage">错误信息</param>
         /// <param name="userData">用户自定义数据</param>
         /// <returns>卸载场景成功事件</returns>
-        public static UnloadSceneFailureEventArgs Create(string sceneAssetName, string errorMessage, object userData)
+        public static UnloadSceneFailureEventArgs Create(string sceneAssetName, object userData)
         {
             var eventArgs = ReferencePool.Acquire<UnloadSceneFailureEventArgs>();
             eventArgs.SceneAssetName = sceneAssetName;
-            eventArgs.ErrorMessage = errorMessage;
             eventArgs.UserData = userData;
             return eventArgs;
         }
@@ -102,7 +94,6 @@ namespace Framework
         public override void Clear()
         {
             SceneAssetName = null;
-            ErrorMessage = null;
             UserData = null;
         }
     }

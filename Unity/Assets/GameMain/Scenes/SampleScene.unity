@@ -573,11 +573,13 @@ Transform:
   - {fileID: 1263171991}
   - {fileID: 2022161672}
   - {fileID: 1987410740}
+  - {fileID: 1259301726}
   - {fileID: 178417966}
   - {fileID: 460259505}
   - {fileID: 1664022323}
   - {fileID: 1557808335}
   - {fileID: 455930091}
+  - {fileID: 952652012}
   - {fileID: 913268823}
   - {fileID: 2081227517}
   - {fileID: 205652820}
@@ -631,6 +633,69 @@ MonoBehaviour:
   mMainCamera: {fileID: 0}
   mEnableLoadSceneUpdateEvent: 0
   mEnableLoadSceneDependencyAssetEvent: 0
+--- !u!1 &952652011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952652012}
+  - component: {fileID: 952652013}
+  m_Layer: 0
+  m_Name: Resource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &952652012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952652011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 911095657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &952652013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952652011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95df73b4c43f46ae97715585005f4581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mResourceMode: 1
+  mReadWritePathType: 0
+  mMinUnloadUnusedAssetsInterval: 60
+  mMaxUnloadUnusedAssetsInterval: 300
+  mAssetAutoReleaseInterval: 60
+  mAssetCapacity: 64
+  mAssetPriority: 0
+  mResourceAutoReleaseInterval: 60
+  mResourceCapacity: 64
+  mResourcePriority: 0
+  mUpdatePrefixUri: 
+  mGenerateReadWriteVersionListLength: 1048576
+  mUpdateRetryCount: 3
+  mInstanceRoot: {fileID: 0}
+  mResourceHelperTypeName: Runtime.DefaultResourceHelper
+  mCustomResourceHelper: {fileID: 0}
+  mLoadResourceAgentHelperTypeName: Runtime.DefaultLoadResourceAgentHelper
+  mCustomLoadResourceAgentHelper: {fileID: 0}
+  mLoadResourceAgentHelperCount: 3
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +779,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1259301725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1259301726}
+  - component: {fileID: 1259301727}
+  m_Layer: 0
+  m_Name: File System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1259301726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259301725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 911095657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1259301727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259301725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da873eff0ae45039d8820f5de8fd807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mFileSystemHelperTypeName: Runtime.DefaultFileSystemHelper
+  mCustomFileSystemHelper: {fileID: 0}
 --- !u!1 &1263171990
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +1065,7 @@ MonoBehaviour:
   mVersionHelperTypeName: Runtime.DefaultVersionHelper
   mLogHelperTypeName: Runtime.DefaultLogHelper
   mJsonHelperTypeName: Runtime.DefaultJsonHelper
+  mCompressionHelperTypeName: Runtime.DefaultCompressionHelper
 --- !u!1 &1847502400
 GameObject:
   m_ObjectHideFlags: 0

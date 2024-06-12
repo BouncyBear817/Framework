@@ -17,7 +17,7 @@ namespace Runtime
     /// </summary>
     [DisallowMultipleComponent]
     [AddComponentMenu("Framework/Network")]
-    public class NetworkComponent : FrameworkComponent
+    public sealed class NetworkComponent : FrameworkComponent
     {
         private INetworkManager mNetworkManager = null;
         private EventComponent mEventComponent = null;

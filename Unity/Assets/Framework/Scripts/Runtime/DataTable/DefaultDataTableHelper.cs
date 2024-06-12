@@ -2,8 +2,8 @@
  * Unity Version: 2022.3.15f1c1
  * Author:        bear
  * CreateTime:    2024/02/02 16:46:20
- * Description:   
- * Modify Record: 
+ * Description:
+ * Modify Record:
  *************************************************************/
 
 using System;
@@ -17,8 +17,8 @@ namespace Runtime
     public class DefaultDataTableHelper : DataTableHelperBase
     {
         private static readonly string sBytesAssetExtension = ".byte";
-        
-        //TODO: need resource component
+
+        private ResourceComponent mResourceComponent = null;
 
         /// <summary>
         /// 读取数据
@@ -158,6 +158,16 @@ namespace Runtime
         /// <param name="dataAsset">内容资源</param>
         public override void ReleaseDataAsset(DataTableBase dataProviderOwner, object dataAsset)
         {
+            mResourceComponent.UnloadAsset(dataAsset);
+        }
+
+        private void Start()
+        {
+            mResourceComponent = MainEntryHelper.GetComponent<ResourceComponent>();
+            if (mResourceComponent == null)
+            {
+                Log.Fatal("Resource component is invalid.");
+            }
         }
     }
 }

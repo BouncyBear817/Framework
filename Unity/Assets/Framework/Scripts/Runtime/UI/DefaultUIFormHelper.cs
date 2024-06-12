@@ -16,7 +16,7 @@ namespace Runtime
     /// </summary>
     public class DefaultUIFormHelper : UIFormHelperBase
     {
-        //TODO: need resource component
+        private ResourceComponent mResourceComponent = null;
 
         /// <summary>
         /// 实例化界面
@@ -58,9 +58,18 @@ namespace Runtime
         /// <param name="uiFormInstance">界面实例</param>
         public override void ReleaseUIForm(object uiFormAsset, object uiFormInstance)
         {
-            //TODO need resource manager
+            mResourceComponent.UnloadAsset(uiFormAsset);
 
             Destroy(uiFormInstance as Object);
+        }
+
+        private void Start()
+        {
+            mResourceComponent = MainEntryHelper.GetComponent<ResourceComponent>();
+            if (mResourceComponent == null)
+            {
+                Log.Fatal("Resource component is invalid.");
+            }
         }
     }
 }

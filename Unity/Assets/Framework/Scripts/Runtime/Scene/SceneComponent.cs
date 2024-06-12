@@ -20,7 +20,7 @@ namespace Runtime
     /// </summary>
     [DisallowMultipleComponent]
     [AddComponentMenu("Framework/Scene")]
-    public class SceneComponent : FrameworkComponent
+    public sealed class SceneComponent : FrameworkComponent
     {
         private const int DefaultPriority = 0;
 
@@ -245,8 +245,7 @@ namespace Runtime
                 return;
             }
 
-            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) ||
-                !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
+            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
             {
                 Log.Error($"Scene asset name is invalid.");
                 return;
@@ -342,7 +341,7 @@ namespace Runtime
 
         private void OnLoadSceneFailure(object sender, Framework.LoadSceneFailureEventArgs e)
         {
-            Log.Warning($"Load scene failure, scene asset name ({e.SceneAssetName}), error message ({e.ErrorMessage})");
+            Log.Warning($"Load scene failure, scene asset name ({e.SceneAssetName}), error message ({e.ErrorMessage}).");
             mEventComponent.Fire(this, LoadSceneFailureEventArgs.Create(e));
         }
 
@@ -365,8 +364,7 @@ namespace Runtime
 
         private void OnUnloadSceneFailure(object sender, Framework.UnloadSceneFailureEventArgs e)
         {
-            Log.Warning(
-                $"Unload scene failure, scene asset name ({e.SceneAssetName}), error message ({e.ErrorMessage})");
+            Log.Warning($"Unload scene failure, scene asset name ({e.SceneAssetName}).");
             mEventComponent.Fire(this, UnloadSceneFailureEventArgs.Create(e));
         }
     }

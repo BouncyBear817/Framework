@@ -38,7 +38,7 @@ namespace Runtime
         [SerializeField] private string mLogHelperTypeName = "Runtime.DefaultLogHelper";
 
         [SerializeField] private string mJsonHelperTypeName = "Runtime.DefaultJsonHelper";
-        
+
         [SerializeField] private string mCompressionHelperTypeName = "Runtime.DefaultCompressionHelper";
 
         /// <summary>
@@ -49,6 +49,11 @@ namespace Runtime
             get => mEditorResourceMode;
             set => mEditorResourceMode = value;
         }
+
+        /// <summary>
+        /// 编辑器资源辅助器
+        /// </summary>
+        public IResourceManager EditorResourceHelper { get; set; }
 
         /// <summary>
         /// 游戏帧率
@@ -99,6 +104,7 @@ namespace Runtime
                 Screen.sleepTimeout = value ? SleepTimeout.NeverSleep : SleepTimeout.SystemSetting;
             }
         }
+
 
         protected override void Awake()
         {
@@ -289,6 +295,12 @@ namespace Runtime
             if (objectPoolComponent != null)
             {
                 objectPoolComponent.Release();
+            }
+
+            var resourceComponent = MainEntryHelper.GetComponent<ResourceComponent>();
+            if (resourceComponent != null)
+            {
+                resourceComponent.ForceUnloadUnusedAssets(true);
             }
         }
     }

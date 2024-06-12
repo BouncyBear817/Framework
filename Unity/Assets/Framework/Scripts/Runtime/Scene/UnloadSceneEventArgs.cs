@@ -71,7 +71,6 @@ namespace Runtime
         public UnloadSceneFailureEventArgs()
         {
             SceneAssetName = null;
-            ErrorMessage = null;
             UserData = null;
         }
 
@@ -84,11 +83,6 @@ namespace Runtime
         /// 场景资源名称
         /// </summary>
         public string SceneAssetName { get; private set; }
-
-        /// <summary>
-        /// 错误信息
-        /// </summary>
-        public string ErrorMessage { get; private set; }
 
         /// <summary>
         /// 用户自定义数据
@@ -104,7 +98,6 @@ namespace Runtime
         {
             var eventArgs = ReferencePool.Acquire<UnloadSceneFailureEventArgs>();
             eventArgs.SceneAssetName = e.SceneAssetName;
-            eventArgs.ErrorMessage = e.ErrorMessage;
             eventArgs.UserData = e.UserData;
             return eventArgs;
         }
@@ -115,7 +108,6 @@ namespace Runtime
         public override void Clear()
         {
             SceneAssetName = null;
-            ErrorMessage = null;
             UserData = null;
         }
     }

@@ -17,7 +17,7 @@ namespace Runtime
     /// </summary>
     [DisallowMultipleComponent]
     [AddComponentMenu("Framework/Config")]
-    public class ConfigComponent : FrameworkComponent
+    public sealed class ConfigComponent : FrameworkComponent
     {
         private IConfigManager mConfigManager = null;
         private EventComponent mEventComponent = null;
