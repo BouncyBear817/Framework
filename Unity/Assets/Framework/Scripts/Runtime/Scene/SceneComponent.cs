@@ -83,7 +83,14 @@ namespace Runtime
                 Log.Fatal("Event component is invalid.");
             }
 
-            //TODO 设置资源管理器
+            if (baseComponent.EditorResourceMode)
+            {
+                mSceneManager.SetResourceManager(baseComponent.EditorResourceHelper);
+            }
+            else
+            {
+                mSceneManager.SetResourceManager(FrameworkEntry.GetModule<IResourceManager>());
+            }
         }
 
         /// <summary>

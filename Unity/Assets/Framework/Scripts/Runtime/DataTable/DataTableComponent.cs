@@ -52,38 +52,45 @@ namespace Runtime
 
         private void Start()
         {
+            var baseComponent = MainEntryHelper.GetComponent<BaseComponent>();
+            if (baseComponent == null)
+            {
+                Log.Fatal("Base component is invalid.");
+                return;
+            }
+
             mEventComponent = MainEntryHelper.GetComponent<EventComponent>();
             if (mEventComponent == null)
             {
                 Log.Fatal("Event component is invalid.");
+                return;
             }
-        }
 
-        /// <summary>
-        /// 设置资源管理器
-        /// </summary>
-        /// <param name="resourceManager">资源管理器</param>
-        public void SetResourceManager(IResourceManager resourceManager)
-        {
-            mDataTableManager.SetResourceManager(resourceManager);
-        }
+            if (baseComponent.EditorResourceMode)
+            {
+                mDataTableManager.SetResourceManager(baseComponent.EditorResourceHelper);
+            }
+            else
+            {
+                mDataTableManager.SetResourceManager(FrameworkEntry.GetModule<IResourceManager>());
+            }
 
-        /// <summary>
-        /// 设置数据表数据提供者辅助器
-        /// </summary>
-        /// <param name="dataProviderHelper">数据表数据提供者辅助器</param>
-        public void SetDataProviderHelper(IDataProviderHelper<DataTableBase> dataProviderHelper)
-        {
-            mDataTableManager.SetDataProviderHelper(dataProviderHelper);
-        }
+            var dataTableHelper = Helper.CreateHelper(mDataTableHelperTypeName, mCustomDataTableHelper);
+            if (dataTableHelper == null)
+            {
+                Log.Error("Can not create data helper.");
+                return;
+            }
 
-        /// <summary>
-        /// 设置数据表辅助器
-        /// </summary>
-        /// <param name="dataTableHelper">数据表辅助器</param>
-        public void SetDataTableHelper(IDataTableHelper dataTableHelper)
-        {
+            dataTableHelper.gameObject.SetHelperTransform("Data Table Helper", transform);
+
+            mDataTableManager.SetDataProviderHelper(dataTableHelper);
             mDataTableManager.SetDataTableHelper(dataTableHelper);
+
+            if (mCachedBytesSize > 0)
+            {
+                EnsureCachedBytesSize(mCachedBytesSize);
+            }
         }
 
         /// <summary>

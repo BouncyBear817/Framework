@@ -90,6 +90,15 @@ namespace Runtime
                 Log.Fatal("Event component is invalid.");
                 return;
             }
+            
+            if (baseComponent.EditorResourceMode)
+            {
+                mSoundManager.SetResourceManager(baseComponent.EditorResourceHelper);
+            }
+            else
+            {
+                mSoundManager.SetResourceManager(FrameworkEntry.GetModule<IResourceManager>());
+            }
 
             var soundHelper = Helper.CreateHelper(mSoundHelperTypeName, mCustomSoundHelper);
             if (soundHelper == null)
@@ -98,10 +107,7 @@ namespace Runtime
                 return;
             }
 
-            soundHelper.name = "Sound Helper";
-            var soundHelperTrans = soundHelper.transform;
-            soundHelperTrans.SetParent(transform);
-            soundHelperTrans.localScale = Vector3.one;
+            soundHelper.gameObject.SetHelperTransform("Sound Helper", transform);
 
             mSoundManager.SetSoundHelper(soundHelper);
 

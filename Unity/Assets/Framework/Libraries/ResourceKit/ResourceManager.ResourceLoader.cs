@@ -162,7 +162,7 @@ namespace Framework
                 }
 
                 var agent = new LoadResourceAgent(loadResourceAgentHelper, resourceHelper, this, readOnlyPath,
-                    readWritePath, decryptResourceCallback);
+                    readWritePath, decryptResourceCallback ?? DefaultDecryptResourceCallback);
                 mTaskPool.AddAgent(agent);
             }
 

@@ -83,18 +83,23 @@ namespace Runtime
                 return;
             }
 
+            if (baseComponent.EditorResourceMode)
+            {
+                mConfigManager.SetResourceManager(baseComponent.EditorResourceHelper);
+            }
+            else
+            {
+                mConfigManager.SetResourceManager(FrameworkEntry.GetModule<IResourceManager>());
+            }
+
             var configHelper = Helper.CreateHelper(mConfigHelperTypeName, mCustomConfigHelper);
             if (configHelper == null)
             {
-                Log.Error(
-                    $"Can not create config helper, please check config helper type name ({mConfigHelperTypeName}).");
+                Log.Error($"Can not create config helper, please check config helper type name ({mConfigHelperTypeName}).");
                 return;
             }
 
-            configHelper.name = "Config Helper";
-            var configHelperTransform = configHelper.transform;
-            configHelperTransform.SetParent(this.transform);
-            configHelperTransform.localScale = Vector3.one;
+            configHelper.gameObject.SetHelperTransform("Config Helper", transform);
 
             mConfigManager.SetDataProviderHelper(configHelper);
             mConfigManager.SetConfigHelper(configHelper);

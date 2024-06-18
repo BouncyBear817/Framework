@@ -125,6 +125,7 @@ namespace Runtime
 
             if (baseComponent.EditorResourceMode)
             {
+                mUIManager.SetResourceManager(baseComponent.EditorResourceHelper);
             }
             else
             {
@@ -143,10 +144,7 @@ namespace Runtime
                 return;
             }
 
-            uiFormHelper.name = "UI Form Helper";
-            var trans = uiFormHelper.transform;
-            trans.SetParent(this.transform);
-            trans.localScale = Vector3.one;
+            uiFormHelper.gameObject.SetHelperTransform("UI Form Helper", transform);
             mUIManager.SetUIFormHelper(uiFormHelper);
 
             if (mInstanceRoot == null)
@@ -449,7 +447,7 @@ namespace Runtime
         {
             return mUIManager.OpenUIForm(uiFormAssetName, uiGroupName, priority, PauseCoveredUIForm, userData);
         }
-        
+
         /// <summary>
         /// 关闭界面
         /// </summary>
@@ -459,7 +457,7 @@ namespace Runtime
         {
             mUIManager.CloseUIForm(serialId, userData);
         }
-        
+
         /// <summary>
         /// 关闭界面
         /// </summary>
