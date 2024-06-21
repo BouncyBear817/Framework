@@ -339,11 +339,11 @@ MonoBehaviour:
   mEnablePlaySoundDependencyEvent: 0
   mInstanceRoot: {fileID: 0}
   mAudioMixer: {fileID: 24100000, guid: 1ffd8e9e7d1c7b14aa1e1ae2f0c464cf, type: 2}
-  mSoundHelperTypeName: Runtime.DefaultSoundHelper
+  mSoundHelperTypeName: Framework.Runtime.DefaultSoundHelper
   mCustomSoundHelper: {fileID: 0}
-  mSoundGroupHelperTypeName: Runtime.DefaultSoundGroupHelper
+  mSoundGroupHelperTypeName: Framework.Runtime.DefaultSoundGroupHelper
   mCustomSoundGroupHelper: {fileID: 0}
-  mSoundAgentHelperTypeName: Runtime.DefaultSoundAgentHelper
+  mSoundAgentHelperTypeName: Framework.Runtime.DefaultSoundAgentHelper
   mCustomSoundAgentHelper: {fileID: 0}
   mSoundGroups:
   - mName: UI Sound
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1175ab9cb0e84f9e854636cb902fb7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mSettingHelperTypeName: Runtime.DefaultSettingHelper
+  mSettingHelperTypeName: Framework.Runtime.DefaultSettingHelper
   mCustomSettingHelper: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
@@ -738,9 +738,9 @@ MonoBehaviour:
   mGenerateReadWriteVersionListLength: 1048576
   mUpdateRetryCount: 3
   mInstanceRoot: {fileID: 0}
-  mResourceHelperTypeName: Runtime.DefaultResourceHelper
+  mResourceHelperTypeName: Framework.Runtime.DefaultResourceHelper
   mCustomResourceHelper: {fileID: 0}
-  mLoadResourceAgentHelperTypeName: Runtime.DefaultLoadResourceAgentHelper
+  mLoadResourceAgentHelperTypeName: Framework.Runtime.DefaultLoadResourceAgentHelper
   mCustomLoadResourceAgentHelper: {fileID: 0}
   mLoadResourceAgentHelperCount: 3
 --- !u!1 &963194225
@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da873eff0ae45039d8820f5de8fd807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mFileSystemHelperTypeName: Runtime.DefaultFileSystemHelper
+  mFileSystemHelperTypeName: Framework.Runtime.DefaultFileSystemHelper
   mCustomFileSystemHelper: {fileID: 0}
 --- !u!1 &1263171990
 GameObject:
@@ -918,7 +918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mEnableLoadDataTableUpdateEvent: 0
   mEnableLoadDataTableDependencyAssetEvent: 0
-  mDataTableHelperTypeName: Runtime.DefaultDataTableHelper
+  mDataTableHelperTypeName: Framework.Runtime.DefaultDataTableHelper
   mCustomDataTableHelper: {fileID: 0}
   mCachedBytesSize: 0
 --- !u!1 &1304500208
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mInstanceRoot: {fileID: 0}
-  mWebRequestAgentHelperTypeName: Runtime.UnityWebRequestAgentHelper
+  mWebRequestAgentHelperTypeName: Framework.Runtime.UnityWebRequestAgentHelper
   mCustomWebRequestAgentHelper: {fileID: 0}
   mWebRequestAgentHelperCount: 1
   mTimeout: 30
@@ -1110,10 +1110,10 @@ MonoBehaviour:
   mGameSpeed: 1
   mRunInBackground: 1
   mNeverSleep: 1
-  mVersionHelperTypeName: Runtime.DefaultVersionHelper
-  mLogHelperTypeName: Runtime.DefaultLogHelper
-  mJsonHelperTypeName: Runtime.DefaultJsonHelper
-  mCompressionHelperTypeName: Runtime.DefaultCompressionHelper
+  mVersionHelperTypeName: Framework.Runtime.DefaultVersionHelper
+  mLogHelperTypeName: Framework.Runtime.DefaultLogHelper
+  mJsonHelperTypeName: Framework.Runtime.DefaultJsonHelper
+  mCompressionHelperTypeName: Framework.Runtime.DefaultCompressionHelper
 --- !u!114 &1797556188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mEnableLoadConfigUpdateEvent: 0
   mEnableLoadConfigDependencyAssetEvent: 0
-  mConfigHelperTypeName: Runtime.DefaultConfigHelper
+  mConfigHelperTypeName: Framework.Runtime.DefaultConfigHelper
   mCustomConfigHelper: {fileID: 0}
   mCachedBytesSize: 0
 --- !u!1 &1987410739
@@ -1419,9 +1419,9 @@ MonoBehaviour:
   mInstanceCapacity: 16
   mInstancePriority: 0
   mInstanceRoot: {fileID: 0}
-  mUIFormHelperTypeName: Runtime.DefaultUIFormHelper
+  mUIFormHelperTypeName: Framework.Runtime.DefaultUIFormHelper
   mCustomUIFormHelper: {fileID: 0}
-  mUIGroupHelperTypeName: Runtime.DefaultUIGroupHelper
+  mUIGroupHelperTypeName: Framework.Runtime.DefaultUIGroupHelper
   mCustomUIGroupHelper: {fileID: 0}
   mUIGroups: []
 --- !u!1660057539 &9223372036854775807
