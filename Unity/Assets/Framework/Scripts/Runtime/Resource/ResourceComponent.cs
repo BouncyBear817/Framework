@@ -12,7 +12,7 @@ using Framework;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 资源组件
@@ -48,9 +48,9 @@ namespace Runtime
         [SerializeField] private int mGenerateReadWriteVersionListLength = OneMegaBytes;
         [SerializeField] private int mUpdateRetryCount = 3;
         [SerializeField] private Transform mInstanceRoot = null;
-        [SerializeField] private string mResourceHelperTypeName = "Runtime.DefaultResourceHelper";
+        [SerializeField] private string mResourceHelperTypeName = "Framework.Runtime.DefaultResourceHelper";
         [SerializeField] private ResourceHelperBase mCustomResourceHelper = null;
-        [SerializeField] private string mLoadResourceAgentHelperTypeName = "Runtime.DefaultLoadResourceAgentHelper";
+        [SerializeField] private string mLoadResourceAgentHelperTypeName = "Framework.Runtime.DefaultLoadResourceAgentHelper";
         [SerializeField] private LoadResourceAgentHelperBase mCustomLoadResourceAgentHelper = null;
         [SerializeField] private int mLoadResourceAgentHelperCount = 3;
 

@@ -1,7 +1,6 @@
-using System;
 using System.Collections;
 using Framework;
-using Runtime;
+using Framework.Runtime;
 using UnityEngine;
 
 namespace Example.Download

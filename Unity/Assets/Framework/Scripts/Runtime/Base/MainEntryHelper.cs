@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 主入口辅助器

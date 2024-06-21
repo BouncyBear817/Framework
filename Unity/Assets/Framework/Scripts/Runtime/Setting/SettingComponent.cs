@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
    /// <summary>
    /// 游戏配置组件
@@ -22,7 +22,7 @@ namespace Runtime
     {
         private ISettingManager mSettingManager;
 
-        [SerializeField] private string mSettingHelperTypeName = "Runtime.DefaultSettingHelper";
+        [SerializeField] private string mSettingHelperTypeName = "Framework.Runtime.DefaultSettingHelper";
         [SerializeField] private SettingHelperBase mCustomSettingHelper = null;
 
         /// <summary>

@@ -11,7 +11,7 @@ using System.IO;
 using Framework;
 using ICSharpCode.SharpZipLib.GZip;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认压缩解压缩辅助器

@@ -8,7 +8,7 @@
 
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 播放声音成功事件

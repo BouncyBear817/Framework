@@ -7,10 +7,9 @@
  *************************************************************/
 
 using System;
-using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 事件组件

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 数据表组件
@@ -26,7 +26,7 @@ namespace Runtime
         [SerializeField] private bool mEnableLoadDataTableUpdateEvent = false;
         [SerializeField] private bool mEnableLoadDataTableDependencyAssetEvent = false;
 
-        [SerializeField] private string mDataTableHelperTypeName = "Runtime.DefaultDataTableHelper";
+        [SerializeField] private string mDataTableHelperTypeName = "Framework.Runtime.DefaultDataTableHelper";
         [SerializeField] private DataTableHelperBase mCustomDataTableHelper = null;
         [SerializeField] private int mCachedBytesSize = 0;
 

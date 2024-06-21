@@ -9,7 +9,7 @@
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 界面组辅助器基类

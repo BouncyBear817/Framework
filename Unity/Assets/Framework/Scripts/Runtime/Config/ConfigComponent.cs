@@ -10,7 +10,7 @@ using System;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 全局配置组件
@@ -26,7 +26,7 @@ namespace Runtime
 
         [SerializeField] private bool mEnableLoadConfigDependencyAssetEvent = false;
 
-        [SerializeField] private string mConfigHelperTypeName = "Runtime.DefaultConfigHelper";
+        [SerializeField] private string mConfigHelperTypeName = "Framework.Runtime.DefaultConfigHelper";
 
         [SerializeField] private ConfigHelperBase mCustomConfigHelper = null;
 

@@ -8,7 +8,7 @@
 
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     public static class ObjectExtension
     {

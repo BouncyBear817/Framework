@@ -9,7 +9,7 @@
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     public sealed class PlaySoundInfo : IReference
     {

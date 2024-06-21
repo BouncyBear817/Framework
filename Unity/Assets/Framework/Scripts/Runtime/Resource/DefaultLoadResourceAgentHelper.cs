@@ -7,13 +7,11 @@
 //  *************************************************************/
 
 using System;
-using Framework;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认加载资源代理辅助器
@@ -235,7 +233,7 @@ namespace Runtime
                 }
 
                 var sceneName = assetName.Substring(sceneNamePositionStart + 1, sceneNamePositionEnd - sceneNamePositionStart - 1);
-                mAsyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+                mAsyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             }
             else
             {

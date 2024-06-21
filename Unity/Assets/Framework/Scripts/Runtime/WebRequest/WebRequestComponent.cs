@@ -12,7 +12,7 @@ using System.Text;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// Web请求组件
@@ -25,7 +25,7 @@ namespace Runtime
         private EventComponent mEventComponent = null;
 
         [SerializeField] private Transform mInstanceRoot = null;
-        [SerializeField] private string mWebRequestAgentHelperTypeName = "Runtime.UnityWebRequestAgentHelper";
+        [SerializeField] private string mWebRequestAgentHelperTypeName = "Framework.Runtime.UnityWebRequestAgentHelper";
         [SerializeField] private WebRequestAgentHelperBase mCustomWebRequestAgentHelper = null;
         [SerializeField] private int mWebRequestAgentHelperCount = 1;
         [SerializeField] private float mTimeout = 30f;

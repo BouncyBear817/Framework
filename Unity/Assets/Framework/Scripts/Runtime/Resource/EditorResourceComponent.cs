@@ -9,13 +9,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 编辑器资源组件
@@ -758,7 +756,7 @@ namespace Runtime
                 return;
             }
 
-            var asyncOperation = SceneManager.LoadSceneAsync(loadSceneInfo.SceneAssetName, LoadSceneMode.Additive);
+            var asyncOperation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(loadSceneInfo.SceneAssetName, LoadSceneMode.Additive);
             if (asyncOperation == null)
             {
                 return;
@@ -801,7 +799,7 @@ namespace Runtime
                 return;
             }
 
-            var asyncOperation = SceneManager.UnloadSceneAsync(sceneAssetName);
+            var asyncOperation = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(sceneAssetName);
             if (asyncOperation == null)
             {
                 return;

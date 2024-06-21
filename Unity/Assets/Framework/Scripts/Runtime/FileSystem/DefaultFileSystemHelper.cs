@@ -9,7 +9,7 @@
 using System;
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认文件系统辅助器

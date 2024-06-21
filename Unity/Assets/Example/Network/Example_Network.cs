@@ -26,7 +26,7 @@ public class Example_Network : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        MainEntry.Event.Subscribe(Runtime.NetworkConnectedEventArgs.EventId, NetworkConnectedHandler);
+        MainEntry.Event.Subscribe(Framework.Runtime.NetworkConnectedEventArgs.EventId, NetworkConnectedHandler);
     }
 
     void Connect(string ip, string port, string channelName)
@@ -37,7 +37,7 @@ public class Example_Network : MonoBehaviour
 
     private void NetworkConnectedHandler(object sender, BaseEventArgs e)
     {
-        var eventArgs = e as Runtime.NetworkConnectedEventArgs;
+        var eventArgs = e as Framework.Runtime.NetworkConnectedEventArgs;
         if (eventArgs != null)
         {
             Debug.Log(eventArgs.NetworkChannel.Name);

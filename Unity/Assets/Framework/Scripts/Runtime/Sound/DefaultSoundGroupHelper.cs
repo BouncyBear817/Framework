@@ -6,7 +6,7 @@
  * Modify Record:
  *************************************************************/
 
-namespace Runtime
+namespace Framework.Runtime
 {
     public class DefaultSoundGroupHelper : SoundGroupHelperBase
     {

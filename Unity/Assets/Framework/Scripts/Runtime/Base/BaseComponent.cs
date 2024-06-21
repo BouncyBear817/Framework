@@ -10,7 +10,7 @@ using System;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 基础组件
@@ -33,13 +33,13 @@ namespace Runtime
 
         [SerializeField] private bool mNeverSleep = true;
 
-        [SerializeField] private string mVersionHelperTypeName = "Runtime.DefaultVersionHelper";
+        [SerializeField] private string mVersionHelperTypeName = "Framework.Runtime.DefaultVersionHelper";
 
-        [SerializeField] private string mLogHelperTypeName = "Runtime.DefaultLogHelper";
+        [SerializeField] private string mLogHelperTypeName = "Framework.Runtime.DefaultLogHelper";
 
-        [SerializeField] private string mJsonHelperTypeName = "Runtime.DefaultJsonHelper";
+        [SerializeField] private string mJsonHelperTypeName = "Framework.Runtime.DefaultJsonHelper";
 
-        [SerializeField] private string mCompressionHelperTypeName = "Runtime.DefaultCompressionHelper";
+        [SerializeField] private string mCompressionHelperTypeName = "Framework.Runtime.DefaultCompressionHelper";
 
         /// <summary>
         /// 是否使用编辑器资源模式（仅编辑器内有效）

@@ -7,8 +7,7 @@
  *************************************************************/
 
 using System.Collections;
-using Framework;
-using Runtime;
+using Framework.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 

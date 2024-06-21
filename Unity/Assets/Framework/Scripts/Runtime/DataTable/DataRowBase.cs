@@ -8,7 +8,7 @@
 
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 数据表行基类

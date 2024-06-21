@@ -8,7 +8,7 @@
 
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 打开界面成功事件

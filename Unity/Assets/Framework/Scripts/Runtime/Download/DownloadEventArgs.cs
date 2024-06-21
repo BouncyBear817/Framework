@@ -8,7 +8,7 @@
 
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 下载开始事件

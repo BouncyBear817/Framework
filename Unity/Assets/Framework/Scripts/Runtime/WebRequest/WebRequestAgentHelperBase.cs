@@ -10,7 +10,7 @@ using System;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// Web请求代理辅助器基类

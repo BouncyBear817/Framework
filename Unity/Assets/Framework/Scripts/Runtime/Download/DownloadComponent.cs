@@ -6,13 +6,10 @@
  * Modify Record: 
  *************************************************************/
 
-using System;
 using System.Collections.Generic;
-using Framework;
-using Runtime;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 下载组件

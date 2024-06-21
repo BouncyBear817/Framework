@@ -8,7 +8,7 @@
 
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 资源更新开始事件

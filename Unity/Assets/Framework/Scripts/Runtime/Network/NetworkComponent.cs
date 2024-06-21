@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 网络组件

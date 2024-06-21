@@ -9,7 +9,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 内置版本资源列表序列化器

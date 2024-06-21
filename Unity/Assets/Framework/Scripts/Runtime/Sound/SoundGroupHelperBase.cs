@@ -10,7 +10,7 @@ using Framework;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 声音组辅助器基类

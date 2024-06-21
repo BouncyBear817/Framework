@@ -8,12 +8,10 @@
 
 using System;
 using System.Collections;
-using Framework;
 using UnityEngine;
 using UnityEngine.Networking;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认资源辅助器
@@ -45,7 +43,7 @@ namespace Runtime
             }
             else
             {
-                SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName(sceneAssetName));
+                UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetSceneByName(sceneAssetName));
             }
         }
 
@@ -88,7 +86,7 @@ namespace Runtime
 
         private IEnumerator UnloadSceneCo(string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks, object userData)
         {
-            var asyncOperation = SceneManager.UnloadSceneAsync(SceneComponent.GetSceneName(sceneAssetName));
+            var asyncOperation = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(SceneComponent.GetSceneName(sceneAssetName));
             if (asyncOperation == null)
             {
                 yield break;

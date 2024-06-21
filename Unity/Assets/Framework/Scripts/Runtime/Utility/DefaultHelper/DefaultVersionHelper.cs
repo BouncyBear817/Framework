@@ -9,7 +9,7 @@
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认版本号辅助器

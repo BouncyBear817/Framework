@@ -6,10 +6,9 @@
  * Modify Record:
  *************************************************************/
 
-using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 引用池组件

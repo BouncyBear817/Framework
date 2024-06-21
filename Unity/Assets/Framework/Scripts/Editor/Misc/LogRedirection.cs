@@ -43,7 +43,7 @@ namespace Framework.Editor
                 return false;
             }
 
-            if (!selectedStackTrace.Contains("Runtime.DefaultLogHelper:Log"))
+            if (!selectedStackTrace.Contains("Framework.Runtime.DefaultLogHelper:Log"))
             {
                 return false;
             }

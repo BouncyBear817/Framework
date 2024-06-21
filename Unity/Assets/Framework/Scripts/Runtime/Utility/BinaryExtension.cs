@@ -10,7 +10,7 @@ using System;
 using System.IO;
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 对BinaryReader与BinaryWriter的扩展方法

@@ -9,7 +9,7 @@
 using System;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     public sealed partial class SoundComponent : FrameworkComponent
     {

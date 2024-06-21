@@ -12,7 +12,7 @@ using Framework;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     [DisallowMultipleComponent]
     [AddComponentMenu("Framework/UI")]
@@ -32,9 +32,9 @@ namespace Runtime
         [SerializeField] private int mInstancePriority = 0;
         [SerializeField] private Transform mInstanceRoot = null;
 
-        [SerializeField] private string mUIFormHelperTypeName = "Runtime.DefaultUIFormHelper";
+        [SerializeField] private string mUIFormHelperTypeName = "Framework.Runtime.DefaultUIFormHelper";
         [SerializeField] private UIFormHelperBase mCustomUIFormHelper = null;
-        [SerializeField] private string mUIGroupHelperTypeName = "Runtime.DefaultUIGroupHelper";
+        [SerializeField] private string mUIGroupHelperTypeName = "Framework.Runtime.DefaultUIGroupHelper";
         [SerializeField] private UIGroupHelperBase mCustomUIGroupHelper = null;
         [SerializeField] private UIGroup[] mUIGroups = null;
 

@@ -8,12 +8,10 @@
 
 using System;
 using System.Collections.Generic;
-using Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 场景组件
@@ -61,7 +59,7 @@ namespace Runtime
             mSceneManager.UnloadSceneSuccess += OnUnloadSceneSuccess;
             mSceneManager.UnloadSceneFailure += OnUnloadSceneFailure;
 
-            mFrameworkScene = SceneManager.GetSceneAt(MainEntryHelper.FrameworkSceneId);
+            mFrameworkScene = UnityEngine.SceneManagement.SceneManager.GetSceneAt(MainEntryHelper.FrameworkSceneId);
             if (!mFrameworkScene.IsValid())
             {
                 Log.Error("Framework scene is invalid.");
@@ -312,7 +310,7 @@ namespace Runtime
                     return;
                 }
 
-                var scene = SceneManager.GetSceneByName(GetSceneName(maxSceneName));
+                var scene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(GetSceneName(maxSceneName));
                 if (!scene.IsValid())
                 {
                     Log.Error($"Active scene ({maxSceneName}) is invalid.");
@@ -329,10 +327,10 @@ namespace Runtime
 
         private void SetActiveScene(Scene scene)
         {
-            var lastActiveScene = SceneManager.GetActiveScene();
+            var lastActiveScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             if (lastActiveScene != scene)
             {
-                SceneManager.SetActiveScene(scene);
+                UnityEngine.SceneManagement.SceneManager.SetActiveScene(scene);
                 mEventComponent.Fire(this, ActiveSceneChangedEventArgs.Create(lastActiveScene, scene));
             }
 

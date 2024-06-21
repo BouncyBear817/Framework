@@ -84,11 +84,11 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
             }
         }
 
-        MainEntry.Event.Subscribe(Runtime.NetworkConnectedEventArgs.EventId, OnNetworkConnected);
-        MainEntry.Event.Subscribe(Runtime.NetworkClosedEventArgs.EventId, OnNetworkClosed);
-        MainEntry.Event.Subscribe(Runtime.NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
-        MainEntry.Event.Subscribe(Runtime.NetworkErrorEventArgs.EventId, OnNetworkError);
-        MainEntry.Event.Subscribe(Runtime.NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
+        MainEntry.Event.Subscribe(Framework.Runtime.NetworkConnectedEventArgs.EventId, OnNetworkConnected);
+        MainEntry.Event.Subscribe(Framework.Runtime.NetworkClosedEventArgs.EventId, OnNetworkClosed);
+        MainEntry.Event.Subscribe(Framework.Runtime.NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
+        MainEntry.Event.Subscribe(Framework.Runtime.NetworkErrorEventArgs.EventId, OnNetworkError);
+        MainEntry.Event.Subscribe(Framework.Runtime.NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
     }
 
     /// <summary>
@@ -96,11 +96,11 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
     /// </summary>
     public void Shutdown()
     {
-        MainEntry.Event.UnSubscribe(Runtime.NetworkConnectedEventArgs.EventId, OnNetworkConnected);
-        MainEntry.Event.UnSubscribe(Runtime.NetworkClosedEventArgs.EventId, OnNetworkClosed);
-        MainEntry.Event.UnSubscribe(Runtime.NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
-        MainEntry.Event.UnSubscribe(Runtime.NetworkErrorEventArgs.EventId, OnNetworkError);
-        MainEntry.Event.UnSubscribe(Runtime.NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
+        MainEntry.Event.UnSubscribe(Framework.Runtime.NetworkConnectedEventArgs.EventId, OnNetworkConnected);
+        MainEntry.Event.UnSubscribe(Framework.Runtime.NetworkClosedEventArgs.EventId, OnNetworkClosed);
+        MainEntry.Event.UnSubscribe(Framework.Runtime.NetworkCustomErrorEventArgs.EventId, OnNetworkCustomError);
+        MainEntry.Event.UnSubscribe(Framework.Runtime.NetworkErrorEventArgs.EventId, OnNetworkError);
+        MainEntry.Event.UnSubscribe(Framework.Runtime.NetworkMissHeartBeatEventArgs.EventId, OnNetworkMissHeartBeat);
 
         mSCPacketTypes.Clear();
         mCachedStream.Close();
@@ -267,7 +267,7 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
 
     private void OnNetworkConnected(object sender, BaseEventArgs e)
     {
-        var eventArgs = e as Runtime.NetworkConnectedEventArgs;
+        var eventArgs = e as Framework.Runtime.NetworkConnectedEventArgs;
         if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
         {
             return;
@@ -279,7 +279,7 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
 
     private void OnNetworkClosed(object sender, BaseEventArgs e)
     {
-        var eventArgs = e as Runtime.NetworkClosedEventArgs;
+        var eventArgs = e as Framework.Runtime.NetworkClosedEventArgs;
         if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
         {
             return;
@@ -290,7 +290,7 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
 
     private void OnNetworkCustomError(object sender, BaseEventArgs e)
     {
-        var eventArgs = e as Runtime.NetworkCustomErrorEventArgs;
+        var eventArgs = e as Framework.Runtime.NetworkCustomErrorEventArgs;
         if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
         {
             return;
@@ -299,7 +299,7 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
 
     private void OnNetworkError(object sender, BaseEventArgs e)
     {
-        var eventArgs = e as Runtime.NetworkErrorEventArgs;
+        var eventArgs = e as Framework.Runtime.NetworkErrorEventArgs;
         if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
         {
             return;
@@ -313,7 +313,7 @@ public class NetworkChannelHelper : INetworkChannelHelper, IReference
 
     private void OnNetworkMissHeartBeat(object sender, BaseEventArgs e)
     {
-        var eventArgs = e as Runtime.NetworkMissHeartBeatEventArgs;
+        var eventArgs = e as Framework.Runtime.NetworkMissHeartBeatEventArgs;
         if (eventArgs == null || eventArgs.NetworkChannel != mNetworkChannel)
         {
             return;

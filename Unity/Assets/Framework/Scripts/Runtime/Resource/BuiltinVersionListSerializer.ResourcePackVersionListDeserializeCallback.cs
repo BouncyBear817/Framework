@@ -10,7 +10,7 @@ using System.IO;
 using System.Text;
 using Framework;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     public static partial class BuiltinVersionListSerializer
     {

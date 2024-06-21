@@ -6,10 +6,9 @@
  * Modify Record: 
  *************************************************************/
 
-using System;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     public abstract class FrameworkComponent : MonoBehaviour
     {

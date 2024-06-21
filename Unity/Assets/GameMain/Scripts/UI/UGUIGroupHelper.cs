@@ -6,8 +6,7 @@
 //  * Modify Record:
 //  *************************************************************/
 
-using System;
-using Runtime;
+using Framework.Runtime;
 using UnityEngine;
 using UnityEngine.UI;
 

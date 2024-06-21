@@ -9,7 +9,7 @@
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认界面辅助器

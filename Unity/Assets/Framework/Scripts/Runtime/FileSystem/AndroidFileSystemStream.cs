@@ -11,7 +11,7 @@ using System.IO;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// Android文件系统流

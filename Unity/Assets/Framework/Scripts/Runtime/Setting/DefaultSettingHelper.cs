@@ -12,7 +12,7 @@ using System.IO;
 using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认游戏配置辅助器

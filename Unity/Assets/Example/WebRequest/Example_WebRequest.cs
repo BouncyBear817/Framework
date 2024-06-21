@@ -6,7 +6,6 @@
 //  * Modify Record:
 //  *************************************************************/
 
-using System;
 using System.Collections;
 using Framework;
 using UnityEngine;
@@ -18,8 +17,8 @@ namespace Example.WebRequest
         private IEnumerator Start()
         {
             yield return new WaitForSeconds(2f);
-            
-            MainEntry.Event.Subscribe(Runtime.WebRequestSuccessEventArgs.EventId, Handler);
+
+            MainEntry.Event.Subscribe(Framework.Runtime.WebRequestSuccessEventArgs.EventId, Handler);
 
             var webRequestInfo = WebRequestInfo.Create("https://car-web-api.autohome.com.cn/car/series/seires_city", null, 0, null, null);
             var wwwForm = new WWWForm();
@@ -30,7 +29,7 @@ namespace Example.WebRequest
 
         private void Handler(object sender, BaseEventArgs e)
         {
-            var eventArgs = e as Runtime.WebRequestSuccessEventArgs;
+            var eventArgs = e as Framework.Runtime.WebRequestSuccessEventArgs;
             if (eventArgs != null)
             {
                 Debug.Log(Utility.Converter.GetString(eventArgs.WebResponseBytes));

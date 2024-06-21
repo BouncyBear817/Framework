@@ -6,7 +6,7 @@
 //  * Modify Record:
 //  *************************************************************/
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 读写区路径类型

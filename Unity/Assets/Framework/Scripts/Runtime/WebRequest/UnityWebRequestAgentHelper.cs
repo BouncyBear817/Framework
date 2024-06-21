@@ -11,7 +11,7 @@ using Framework;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     public class UnityWebRequestAgentHelper : WebRequestAgentHelperBase, IDisposable
     {

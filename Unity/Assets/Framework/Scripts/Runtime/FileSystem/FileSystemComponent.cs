@@ -7,10 +7,9 @@
 //  *************************************************************/
 
 using System.Collections.Generic;
-using Framework;
 using UnityEngine;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 文件系统组件
@@ -21,7 +20,7 @@ namespace Runtime
     {
         private IFileSystemManager mFileSystemManager = null;
 
-        [SerializeField] private string mFileSystemHelperTypeName = "Runtime.DefaultFileSystemHelper";
+        [SerializeField] private string mFileSystemHelperTypeName = "Framework.Runtime.DefaultFileSystemHelper";
         [SerializeField] private FileSystemHelperBase mCustomFileSystemHelper = null;
 
         /// <summary>

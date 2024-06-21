@@ -9,7 +9,7 @@
 using Framework;
 using UnityEngine.SceneManagement;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 激活场景被改变事件

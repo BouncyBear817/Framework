@@ -12,7 +12,7 @@ using Framework;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 默认声音代理辅助器

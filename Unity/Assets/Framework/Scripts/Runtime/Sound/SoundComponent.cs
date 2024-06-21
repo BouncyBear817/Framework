@@ -6,15 +6,12 @@
  * Modify Record:
  *************************************************************/
 
-using System;
 using System.Collections.Generic;
-using Framework;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
-namespace Runtime
+namespace Framework.Runtime
 {
     /// <summary>
     /// 声音组件
@@ -31,11 +28,11 @@ namespace Runtime
         [SerializeField] private bool mEnablePlaySoundDependencyEvent = false;
         [SerializeField] private Transform mInstanceRoot = null;
         [SerializeField] private AudioMixer mAudioMixer = null;
-        [SerializeField] private string mSoundHelperTypeName = "Runtime.DefaultSoundHelper";
+        [SerializeField] private string mSoundHelperTypeName = "Framework.Runtime.DefaultSoundHelper";
         [SerializeField] private SoundHelperBase mCustomSoundHelper = null;
-        [SerializeField] private string mSoundGroupHelperTypeName = "Runtime.DefaultSoundGroupHelper";
+        [SerializeField] private string mSoundGroupHelperTypeName = "Framework.Runtime.DefaultSoundGroupHelper";
         [SerializeField] private SoundGroupHelperBase mCustomSoundGroupHelper = null;
-        [SerializeField] private string mSoundAgentHelperTypeName = "Runtime.DefaultSoundAgentHelper";
+        [SerializeField] private string mSoundAgentHelperTypeName = "Framework.Runtime.DefaultSoundAgentHelper";
         [SerializeField] private SoundAgentHelperBase mCustomSoundAgentHelper = null;
         [SerializeField] private SoundGroup[] mSoundGroups = null;
 
@@ -71,8 +68,8 @@ namespace Runtime
 
             mAudioListener = gameObject.GetOrAddComponent<AudioListener>();
 
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            SceneManager.sceneUnloaded += OnSceneUnloaded;
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
 
         private void Start()
@@ -130,8 +127,8 @@ namespace Runtime
 
         private void OnDestroy()
         {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+            UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
         /// <summary>
