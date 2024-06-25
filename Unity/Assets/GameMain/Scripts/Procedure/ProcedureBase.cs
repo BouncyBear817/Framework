@@ -6,6 +6,8 @@
 //  * Modify Record:
 //  *************************************************************/
 
+using UnityEngine;
+
 public abstract class ProcedureBase : Framework.ProcedureBase
 {
     public virtual bool UseNativeDialog => false;

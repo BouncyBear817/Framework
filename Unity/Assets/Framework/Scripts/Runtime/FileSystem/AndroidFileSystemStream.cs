@@ -97,7 +97,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 文件系统流的位置
         /// </summary>
-        protected internal override long Position
+        protected override long Position
         {
             get => throw new Exception("Get position is not supported in AndroidFileSystemStream.");
             set => Seek(value, SeekOrigin.Begin);
@@ -106,13 +106,13 @@ namespace Framework.Runtime
         /// <summary>
         /// 文件系统流的长度
         /// </summary>
-        protected internal override long Length => InternalAvailable();
+        protected override long Length => InternalAvailable();
 
         /// <summary>
         /// 设置文件系统流的长度
         /// </summary>
         /// <param name="length">文件系统流的长度</param>
-        protected internal override void SetLength(long length)
+        protected override void SetLength(long length)
         {
             throw new Exception("SetLength is not supported in AndroidFileSystemStream.");
         }
@@ -122,7 +122,7 @@ namespace Framework.Runtime
         /// </summary>
         /// <param name="offset">文件系统流位置的偏移</param>
         /// <param name="origin">文件系统流位置的方式</param>
-        protected internal override void Seek(long offset, SeekOrigin origin)
+        protected override void Seek(long offset, SeekOrigin origin)
         {
             if (origin == SeekOrigin.End)
             {
@@ -151,7 +151,7 @@ namespace Framework.Runtime
         /// 从文件系统中读取一个字节
         /// </summary>
         /// <returns>读取的字节，若到达文件末尾，返回-1</returns>
-        protected internal override int ReadByte()
+        protected override int ReadByte()
         {
             return InternalRead();
         }
@@ -163,7 +163,7 @@ namespace Framework.Runtime
         /// <param name="startIndex">二进制流的起始位置</param>
         /// <param name="length">二进制流的长度</param>
         /// <returns>实际读取了多少字节</returns>
-        protected internal override int Read(byte[] buffer, int startIndex, int length)
+        protected override int Read(byte[] buffer, int startIndex, int length)
         {
             var bytesRead = InternalRead(length, out var result);
             Array.Copy(result, 0, buffer, startIndex, bytesRead);
@@ -174,7 +174,7 @@ namespace Framework.Runtime
         /// 向文件系统流中写入一个字节
         /// </summary>
         /// <param name="value">写入的字节</param>
-        protected internal override void WriteByte(byte value)
+        protected override void WriteByte(byte value)
         {
             throw new Exception("WriteByte is not supported in AndroidFileSystemStream.");
         }
@@ -185,7 +185,7 @@ namespace Framework.Runtime
         /// <param name="buffer">二进制流</param>
         /// <param name="startIndex">二进制流的起始位置</param>
         /// <param name="length">二进制流的长度</param>
-        protected internal override void Write(byte[] buffer, int startIndex, int length)
+        protected override void Write(byte[] buffer, int startIndex, int length)
         {
             throw new Exception("Write is not supported in AndroidFileSystemStream.");
         }
@@ -193,7 +193,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 将文件系统流更新到存储介质中
         /// </summary>
-        protected internal override void Flush()
+        protected override void Flush()
         {
             throw new Exception("Flush is not supported in AndroidFileSystemStream.");
         }
@@ -201,7 +201,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 关闭文件系统流
         /// </summary>
-        protected internal override void Close()
+        protected override void Close()
         {
             InternalClose();
             mFileStream.Dispose();

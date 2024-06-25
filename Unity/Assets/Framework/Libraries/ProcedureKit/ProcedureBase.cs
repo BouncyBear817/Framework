@@ -6,6 +6,8 @@
  * Modify Record: 
  *************************************************************/
 
+using ProcedureOwner = Framework.IFsm<Framework.IProcedureManager>;
+
 namespace Framework
 {
     /// <summary>
@@ -16,50 +18,50 @@ namespace Framework
         /// <summary>
         /// 有限状态机状态初始化调用
         /// </summary>
-        /// <param name="fsm">流程持有者</param>
-        protected internal override void OnInit(IFsm<IProcedureManager> fsm)
+        /// <param name="procedureOwner">流程持有者</param>
+        protected internal override void OnInit(ProcedureOwner procedureOwner)
         {
-            base.OnInit(fsm);
+            base.OnInit(procedureOwner);
         }
 
         /// <summary>
         /// 有限状态机状态进入时调用
         /// </summary>
-        /// <param name="fsm">流程持有者</param>
-        protected internal override void OnEnter(IFsm<IProcedureManager> fsm)
+        /// <param name="procedureOwner">流程持有者</param>
+        protected internal override void OnEnter(ProcedureOwner procedureOwner)
         {
-            base.OnEnter(fsm);
+            base.OnEnter(procedureOwner);
         }
 
         /// <summary>
         /// 有限状态机状态轮询时调用
         /// </summary>
-        /// <param name="fsm">流程持有者</param>
+        /// <param name="procedureOwner">流程持有者</param>
         /// <param name="elapseSeconds">逻辑流逝时间</param>
         /// <param name="realElapseSeconds">真实流逝时间</param>
-        protected internal override void OnUpdate(IFsm<IProcedureManager> fsm, float elapseSeconds,
+        protected internal override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds,
             float realElapseSeconds)
         {
-            base.OnUpdate(fsm, elapseSeconds, realElapseSeconds);
+            base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
         }
 
         /// <summary>
         /// 有限状态机状态离开时调用
         /// </summary>
-        /// <param name="fsm">流程持有者</param>
+        /// <param name="procedureOwner">流程持有者</param>
         /// <param name="isShutdown">是否关闭有限状态机</param>
-        protected internal override void OnLeave(IFsm<IProcedureManager> fsm, bool isShutdown)
+        protected internal override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
         {
-            base.OnLeave(fsm, isShutdown);
+            base.OnLeave(procedureOwner, isShutdown);
         }
 
         /// <summary>
         /// 有限状态机状态销毁时调用
         /// </summary>
-        /// <param name="fsm">流程持有者</param>
-        protected internal override void OnDestroy(IFsm<IProcedureManager> fsm)
+        /// <param name="procedureOwner">流程持有者</param>
+        protected internal override void OnDestroy(ProcedureOwner procedureOwner)
         {
-            base.OnDestroy(fsm);
+            base.OnDestroy(procedureOwner);
         }
     }
 }

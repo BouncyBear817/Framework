@@ -2,12 +2,14 @@
  * Unity Version: 2022.3.15f1c1
  * Author:        bear
  * CreateTime:    2024/01/30 16:12:06
- * Description:   
- * Modify Record: 
+ * Description:
+ * Modify Record:
  *************************************************************/
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Framework.Runtime
@@ -71,7 +73,7 @@ namespace Framework.Runtime
                 Log.Error($"Entrance Procedure is invalid.");
                 yield break;
             }
-            
+
             mFsmManager = FrameworkEntry.GetModule<IFsmManager>();
             if (mFsmManager == null)
             {
@@ -163,5 +165,33 @@ namespace Framework.Runtime
         {
             return mProcedureManager.GetProcedure(procedureType);
         }
+
+#if UNITY_EDITOR
+        [ContextMenu("Insert Type Names")]
+        private void InsertTypeNames()
+        {
+            mAvailableProcedureTypeNames = null;
+            var results = new List<string>();
+            foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (var type in assembly.GetTypes())
+                {
+                    if (type.IsSubclassOf(typeof(ProcedureBase)) && !type.IsAbstract)
+                    {
+                        results.Add(type.FullName);
+                    }
+                }
+            }
+
+            mAvailableProcedureTypeNames = results.ToArray();
+            
+        }
+
+        [ContextMenu("Clear Type Names")]
+        private void ClearTypeNames()
+        {
+            mAvailableProcedureTypeNames = null;
+        }
+#endif
     }
 }

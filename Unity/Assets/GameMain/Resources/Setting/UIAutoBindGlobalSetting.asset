@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c86dd8dfad14079ad3aac2017b67689, type: 3}
   m_Name: UIAutoBindGlobalSetting
   m_EditorClassIdentifier: 
-  mNamespace: 
+  mNamespace: GameMain.UI
   mComponentCodePath: 
   mMountCodePath: 
   mMountScriptAssemblyList:
   - Framework
-  - Runtime
+  - Framework.Runtime
   mPrefixRuleList:
   - Prefix: B
     FullName: Button

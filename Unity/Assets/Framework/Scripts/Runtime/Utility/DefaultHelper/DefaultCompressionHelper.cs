@@ -50,7 +50,7 @@ namespace Framework.Runtime
                 ProcessHeader(compressStream);
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -82,7 +82,7 @@ namespace Framework.Runtime
                 ProcessHeader(compressStream);
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -127,7 +127,7 @@ namespace Framework.Runtime
                     return true;
                 }
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -167,7 +167,7 @@ namespace Framework.Runtime
 
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
