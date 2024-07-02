@@ -93,7 +93,7 @@ namespace Framework
                     Directory.Delete(directoryName);
                     return true;
                 }
-                catch (Exception e)
+                catch
                 {
                     return false;
                 }

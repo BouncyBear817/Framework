@@ -24,10 +24,6 @@ namespace Framework.Editor
         private SerializedProperty mGameSpeed = null;
         private SerializedProperty mRunInBackground = null;
         private SerializedProperty mNeverSleep = null;
-        private SerializedProperty mVersionHelperTypeName = null;
-        private SerializedProperty mLogHelperTypeName = null;
-        private SerializedProperty mJsonHelperTypeName = null;
-        private SerializedProperty mCompressionHelperTypeName = null;
 
         private HelperInfo mVersionHelperInfo = new HelperInfo("Version", typeof(Version.IVersionHelper));
         private HelperInfo mLogHelperInfo = new HelperInfo("Log", typeof(ILogHelper));
@@ -129,35 +125,7 @@ namespace Framework.Editor
             serializedObject.ApplyModifiedProperties();
         }
 
-
-        protected override void OnCompileComplete()
-        {
-            base.OnCompileComplete();
-
-            RefreshTypeNames();
-        }
-
-        private void OnEnable()
-        {
-            mEditorResourceMode = serializedObject.FindProperty("mEditorResourceMode");
-            mFrameRate = serializedObject.FindProperty("mFrameRate");
-            mGameSpeed = serializedObject.FindProperty("mGameSpeed");
-            mRunInBackground = serializedObject.FindProperty("mRunInBackground");
-            mNeverSleep = serializedObject.FindProperty("mNeverSleep");
-            mVersionHelperTypeName = serializedObject.FindProperty("mVersionHelperTypeName");
-            mLogHelperTypeName = serializedObject.FindProperty("mLogHelperTypeName");
-            mJsonHelperTypeName = serializedObject.FindProperty("mJsonHelperTypeName");
-            mCompressionHelperTypeName = serializedObject.FindProperty("mCompressionHelperTypeName");
-
-            mVersionHelperInfo.Init(serializedObject);
-            mLogHelperInfo.Init(serializedObject);
-            mJsonHelperInfo.Init(serializedObject);
-            mCompressionHelperInfo.Init(serializedObject);
-
-            RefreshTypeNames();
-        }
-
-        private void RefreshTypeNames()
+        protected override void OnRefreshTypeNames()
         {
             mVersionHelperInfo.Refresh();
             mLogHelperInfo.Refresh();
@@ -166,7 +134,23 @@ namespace Framework.Editor
 
             serializedObject.ApplyModifiedProperties();
         }
+        
+        private void OnEnable()
+        {
+            mEditorResourceMode = serializedObject.FindProperty("mEditorResourceMode");
+            mFrameRate = serializedObject.FindProperty("mFrameRate");
+            mGameSpeed = serializedObject.FindProperty("mGameSpeed");
+            mRunInBackground = serializedObject.FindProperty("mRunInBackground");
+            mNeverSleep = serializedObject.FindProperty("mNeverSleep");
 
+            mVersionHelperInfo.Init(serializedObject);
+            mLogHelperInfo.Init(serializedObject);
+            mJsonHelperInfo.Init(serializedObject);
+            mCompressionHelperInfo.Init(serializedObject);
+
+            OnRefreshTypeNames();
+        }
+        
         private float GetGameSpeed(int selectedGameSpeed)
         {
             if (selectedGameSpeed < 0)

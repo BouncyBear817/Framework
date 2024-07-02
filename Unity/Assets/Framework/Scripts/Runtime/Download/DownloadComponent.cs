@@ -26,8 +26,7 @@ namespace Framework.Runtime
 
         [SerializeField] private Transform mInstanceRoot = null;
 
-        [SerializeField] private string mDownloadAgentHelperTypeName =
-            "Framework.UnityWebRequestDownloadAgentHelper";
+        [SerializeField] private string mDownloadAgentHelperTypeName = "Framework.UnityWebRequestDownloadAgentHelper";
 
         [SerializeField] private DownloadAgentHelperBase mCustomDownloadAgentHelper = null;
 

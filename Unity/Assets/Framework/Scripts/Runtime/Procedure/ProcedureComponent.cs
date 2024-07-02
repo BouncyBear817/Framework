@@ -26,6 +26,21 @@ namespace Framework.Runtime
 
         [SerializeField] private string mEntranceProcedureTypeName = null;
 
+        /// <summary>
+        /// 当前流程
+        /// </summary>
+        public ProcedureBase CurrentProcedure => mProcedureManager.CurrentProcedure;
+
+        /// <summary>
+        /// 当前流程持续时间
+        /// </summary>
+        public float CurrentProcedureTime => mProcedureManager.CurrentProcedureTime;
+
+        /// <summary>
+        /// 有限状态机管理器
+        /// </summary>
+        public IFsmManager FsmManager => mFsmManager;
+
         protected override void Awake()
         {
             base.Awake();
@@ -89,44 +104,6 @@ namespace Framework.Runtime
         }
 
         /// <summary>
-        /// 当前流程
-        /// </summary>
-        public ProcedureBase CurrentProcedure => mProcedureManager.CurrentProcedure;
-
-        /// <summary>
-        /// 当前流程持续时间
-        /// </summary>
-        public float CurrentProcedureTime => mProcedureManager.CurrentProcedureTime;
-
-        /// <summary>
-        /// 初始化流程管理器
-        /// </summary>
-        /// <param name="fsmManager"></param>
-        /// <param name="procedures"></param>
-        public void Initialize(IFsmManager fsmManager, params ProcedureBase[] procedures)
-        {
-            mProcedureManager.Initialize(fsmManager, procedures);
-        }
-
-        /// <summary>
-        /// 开始流程
-        /// </summary>
-        /// <typeparam name="T">流程类型</typeparam>
-        public void StartProcedure<T>() where T : ProcedureBase
-        {
-            mProcedureManager.StartProcedure<T>();
-        }
-
-        /// <summary>
-        /// 开始流程
-        /// </summary>
-        /// <param name="procedureType">流程类型</param>
-        public void StartProcedure(Type procedureType)
-        {
-            mProcedureManager.StartProcedure(procedureType);
-        }
-
-        /// <summary>
         /// 是否存在流程
         /// </summary>
         /// <typeparam name="T">流程类型</typeparam>
@@ -184,7 +161,6 @@ namespace Framework.Runtime
             }
 
             mAvailableProcedureTypeNames = results.ToArray();
-            
         }
 
         [ContextMenu("Clear Type Names")]

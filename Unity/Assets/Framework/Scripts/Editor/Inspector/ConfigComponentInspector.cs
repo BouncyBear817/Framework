@@ -49,11 +49,10 @@ namespace Framework.Editor
             Repaint();
         }
 
-        protected override void OnCompileComplete()
+        protected override void OnRefreshTypeNames()
         {
-            base.OnCompileComplete();
-
-            RefreshTypeNames();
+            mConfigHelperInfo.Refresh();
+            serializedObject.ApplyModifiedProperties();
         }
 
         private void OnEnable()
@@ -64,13 +63,7 @@ namespace Framework.Editor
 
             mConfigHelperInfo.Init(serializedObject);
 
-            RefreshTypeNames();
-        }
-
-        private void RefreshTypeNames()
-        {
-            mConfigHelperInfo.Refresh();
-            serializedObject.ApplyModifiedProperties();
+            OnRefreshTypeNames();
         }
     }
 }

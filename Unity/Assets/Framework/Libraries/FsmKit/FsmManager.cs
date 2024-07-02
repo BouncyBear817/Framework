@@ -182,9 +182,9 @@ namespace Framework
         {
             int index = 0;
             var results = new FsmBase[mFsms.Count];
-            foreach (var fsm in results)
+            foreach (var fsm in mFsms)
             {
-                results[index++] = fsm;
+                results[index++] = fsm.Value;
             }
 
             return results;

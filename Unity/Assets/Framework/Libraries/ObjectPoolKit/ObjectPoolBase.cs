@@ -1,10 +1,10 @@
 /************************************************************
-* Unity Version: 2022.3.0f1c1
-* Author:        bear
-* CreateTime:    2023/12/18 11:05:26
-* Description:   对象池基类
-* Modify Record: 
-*************************************************************/
+ * Unity Version: 2022.3.0f1c1
+ * Author:        bear
+ * CreateTime:    2023/12/18 11:05:26
+ * Description:   对象池基类
+ * Modify Record:
+ *************************************************************/
 
 using System;
 
@@ -16,14 +16,14 @@ namespace Framework
     public abstract class ObjectPoolBase : IComparable<ObjectPoolBase>
     {
         private readonly string mName;
-        
+
         /// <summary>
         /// 初始化对象池基类的实例
         /// </summary>
         public ObjectPoolBase() : this(null)
         {
         }
-        
+
         /// <summary>
         /// 初始化对象池基类的实例
         /// </summary>
@@ -39,6 +39,11 @@ namespace Framework
         public string Name => mName;
 
         /// <summary>
+        /// 对象池完整名称
+        /// </summary>
+        public string FullName => new TypeNamePair(ObjectType, mName).ToString();
+
+        /// <summary>
         /// 对象池中对象类型
         /// </summary>
         public abstract Type ObjectType { get; }
@@ -52,7 +57,7 @@ namespace Framework
         /// 对象池中可被释放的对象数量
         /// </summary>
         public abstract int CanReleaseCount { get; }
-        
+
         /// <summary>
         /// 是否允许对象被多次生成
         /// </summary>

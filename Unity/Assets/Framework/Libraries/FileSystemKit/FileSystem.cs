@@ -137,7 +137,7 @@ namespace Framework
                 stream.SetLength(fileSystem.mFileDataOffset);
                 return fileSystem;
             }
-            catch (Exception e)
+            catch
             {
                 fileSystem.Shutdown();
                 return null;
@@ -1271,7 +1271,7 @@ namespace Framework
                 {
                     mStream.SetLength(fileLength + length);
                 }
-                catch (Exception e)
+                catch
                 {
                     return -1;
                 }

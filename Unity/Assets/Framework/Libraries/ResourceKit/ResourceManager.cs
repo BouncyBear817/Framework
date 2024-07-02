@@ -1099,7 +1099,7 @@ namespace Framework
 
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }
@@ -1717,7 +1717,7 @@ namespace Framework
                             fileSystem = mFileSystemManager.CreateFileSystem(fullPath, FileSystemAccess.ReadWrite, FileSystemMaxFileCount, FileSystemMaxBlockCount);
                         }
 
-                        mReadOnlyFileSystems.Add(fileSystemName, fileSystem);
+                        mReadWriteFileSystems.Add(fileSystemName, fileSystem);
                     }
                 }
             }

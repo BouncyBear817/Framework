@@ -17,12 +17,14 @@ namespace Framework.Editor
     {
         private static readonly string[] RuntimeAssemblyNames =
         {
+            "Framework",
             "Framework.Runtime",
             "Assembly-CSharp"
         };
 
         private static readonly string[] RuntimeOrEditorAssemblyNames =
         {
+            "Framework",
             "Framework.Runtime",
             "Assembly-CSharp",
             "Framework.Editor",
@@ -93,7 +95,6 @@ namespace Framework.Editor
                 {
                     if (type.IsClass && !type.IsAbstract && typeBase.IsAssignableFrom(type))
                     {
-                        
                         typeNames.Add(type.FullName);
                     }
                 }

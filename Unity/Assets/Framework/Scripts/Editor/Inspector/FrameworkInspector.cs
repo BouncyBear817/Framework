@@ -6,6 +6,7 @@
 //  * Modify Record:
 //  *************************************************************/
 
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -44,6 +45,12 @@ namespace Framework.Editor
         /// </summary>
         protected virtual void OnCompileComplete()
         {
+            OnRefreshTypeNames();
+        }
+
+        protected virtual void OnRefreshTypeNames()
+        {
+            
         }
 
         protected bool IsPrefabInHierarchy(UnityEngine.Object obj)
