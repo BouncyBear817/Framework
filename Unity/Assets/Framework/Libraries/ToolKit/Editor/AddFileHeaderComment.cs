@@ -28,7 +28,7 @@ public class AddFileHeaderComment : AssetModificationProcessor
         AddHeaderComment(filePath);
     }
 
-    [MenuItem("Assets/Add Header Comment On Script")]
+    [MenuItem("Assets/Framework/Add Header Comment On Script", priority = 1)]
     static void AddHeaderComment()
     {
         var objs = Selection.GetFiltered<TextAsset>(SelectionMode.DeepAssets);

@@ -15,7 +15,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadConfigSuccessEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadConfigSuccessEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadConfigSuccessEventArgs).GetHashCode();
 
         public LoadConfigSuccessEventArgs()
         {
@@ -27,7 +27,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称
@@ -74,7 +74,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadConfigFailureEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadConfigFailureEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadConfigFailureEventArgs).GetHashCode();
 
         public LoadConfigFailureEventArgs()
         {
@@ -86,7 +86,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称
@@ -133,7 +133,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadConfigUpdateEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadConfigUpdateEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadConfigUpdateEventArgs).GetHashCode();
 
         public LoadConfigUpdateEventArgs()
         {
@@ -145,7 +145,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称
@@ -192,7 +192,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadConfigDependencyAssetEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadConfigDependencyAssetEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadConfigDependencyAssetEventArgs).GetHashCode();
 
         public LoadConfigDependencyAssetEventArgs()
         {
@@ -206,7 +206,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称

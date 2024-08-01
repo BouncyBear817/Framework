@@ -15,7 +15,7 @@ namespace Framework.Runtime
     /// </summary>
     public class OpenUIFormSuccessEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(OpenUIFormSuccessEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(OpenUIFormSuccessEventArgs).GetHashCode();
 
         public OpenUIFormSuccessEventArgs()
         {
@@ -27,7 +27,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 界面
@@ -74,7 +74,7 @@ namespace Framework.Runtime
     /// </summary>
     public class OpenUIFormFailureEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(OpenUIFormFailureEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(OpenUIFormFailureEventArgs).GetHashCode();
 
         public OpenUIFormFailureEventArgs()
         {
@@ -89,7 +89,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 界面序列号
@@ -157,7 +157,7 @@ namespace Framework.Runtime
     /// </summary>
     public class OpenUIFormUpdateEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(OpenUIFormUpdateEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(OpenUIFormUpdateEventArgs).GetHashCode();
 
         public OpenUIFormUpdateEventArgs()
         {
@@ -172,7 +172,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 界面序列号
@@ -240,7 +240,7 @@ namespace Framework.Runtime
     /// </summary>
     public class OpenUIFormDependencyAssetEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(OpenUIFormDependencyAssetEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(OpenUIFormDependencyAssetEventArgs).GetHashCode();
 
         public OpenUIFormDependencyAssetEventArgs()
         {
@@ -256,7 +256,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 界面序列号
@@ -331,7 +331,7 @@ namespace Framework.Runtime
     /// </summary>
     public class CloseUIFormCompleteEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(CloseUIFormCompleteEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(CloseUIFormCompleteEventArgs).GetHashCode();
 
         public CloseUIFormCompleteEventArgs()
         {
@@ -344,7 +344,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 界面序列号

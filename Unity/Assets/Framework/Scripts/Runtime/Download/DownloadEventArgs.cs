@@ -15,7 +15,7 @@ namespace Framework.Runtime
     /// </summary>
     public sealed class DownloadStartEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(DownloadStartEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(DownloadStartEventArgs).GetHashCode();
 
         public DownloadStartEventArgs()
         {
@@ -29,7 +29,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 下载任务的序列编号
@@ -90,7 +90,7 @@ namespace Framework.Runtime
     /// </summary>
     public sealed class DownloadUpdateEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(DownloadUpdateEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(DownloadUpdateEventArgs).GetHashCode();
 
         public DownloadUpdateEventArgs()
         {
@@ -104,7 +104,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 下载任务的序列编号
@@ -165,7 +165,7 @@ namespace Framework.Runtime
     /// </summary>
     public sealed class DownloadSuccessEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(DownloadSuccessEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(DownloadSuccessEventArgs).GetHashCode();
 
         public DownloadSuccessEventArgs()
         {
@@ -179,7 +179,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 下载任务的序列编号
@@ -240,7 +240,7 @@ namespace Framework.Runtime
     /// </summary>
     public sealed class DownloadFailureEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(DownloadFailureEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(DownloadFailureEventArgs).GetHashCode();
 
         public DownloadFailureEventArgs()
         {
@@ -254,7 +254,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 下载任务的序列编号

@@ -298,7 +298,7 @@ namespace Framework
                 try
                 {
                     var dataRow = new T();
-                    if (!dataRow.ParseData(dataRowBytes, startIndex, length, userData))
+                    if (!dataRow.ParseDataRow(dataRowBytes, startIndex, length, userData))
                     {
                         return false;
                     }

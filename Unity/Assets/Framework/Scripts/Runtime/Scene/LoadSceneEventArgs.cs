@@ -15,7 +15,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadSceneSuccessEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadSceneSuccessEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadSceneSuccessEventArgs).GetHashCode();
 
         public LoadSceneSuccessEventArgs()
         {
@@ -28,7 +28,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 场景资源名称
@@ -75,7 +75,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadSceneFailureEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadSceneFailureEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadSceneFailureEventArgs).GetHashCode();
 
         public LoadSceneFailureEventArgs()
         {
@@ -87,7 +87,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 场景资源名称
@@ -134,7 +134,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadSceneUpdateEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadSceneUpdateEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadSceneUpdateEventArgs).GetHashCode();
 
         public LoadSceneUpdateEventArgs()
         {
@@ -146,7 +146,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 场景资源名称
@@ -193,7 +193,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadSceneDependencyAssetEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadSceneDependencyAssetEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadSceneDependencyAssetEventArgs).GetHashCode();
 
         public LoadSceneDependencyAssetEventArgs()
         {
@@ -207,7 +207,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 场景资源名称

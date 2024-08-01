@@ -15,7 +15,7 @@ namespace Framework.Runtime
     /// </summary>
     public class UnloadSceneSuccessEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadSceneDependencyAssetEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadSceneDependencyAssetEventArgs).GetHashCode();
 
         public UnloadSceneSuccessEventArgs()
         {
@@ -26,7 +26,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 场景资源名称
@@ -66,7 +66,7 @@ namespace Framework.Runtime
     /// </summary>
     public class UnloadSceneFailureEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadSceneDependencyAssetEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadSceneDependencyAssetEventArgs).GetHashCode();
 
         public UnloadSceneFailureEventArgs()
         {
@@ -77,7 +77,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 场景资源名称

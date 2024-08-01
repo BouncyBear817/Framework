@@ -118,13 +118,16 @@ namespace Framework
         {
             if (mDictionary.TryGetValue(key, out var linkedList))
             {
-                for (var current = linkedList.First;
-                     current != null && current != linkedList.Last;
-                     current = current.Next)
+                for (var current = linkedList.First; current != null; current = current.Next)
                 {
                     if (current.Value.Equals(value))
                     {
                         linkedList.Remove(current);
+                        var next = current.Next;
+                        if (next == null)
+                        {
+                            mDictionary.Remove(key);
+                        }
                         return true;
                     }
                 }
@@ -164,10 +167,9 @@ namespace Framework
         /// </summary>
         /// <returns>循环访问集合的枚举数</returns>
         /// <exception cref="NotImplementedException"></exception>
-        IEnumerator<KeyValuePair<TKey, LinkedList<TValue>>> IEnumerable<KeyValuePair<TKey, LinkedList<TValue>>>.
-            GetEnumerator()
+        IEnumerator<KeyValuePair<TKey, LinkedList<TValue>>> IEnumerable<KeyValuePair<TKey, LinkedList<TValue>>>.GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            return GetEnumerator();
         }
 
         /// <summary>

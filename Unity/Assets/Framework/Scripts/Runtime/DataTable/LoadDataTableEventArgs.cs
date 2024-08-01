@@ -15,7 +15,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadDataTableSuccessEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadDataTableSuccessEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadDataTableSuccessEventArgs).GetHashCode();
 
         public LoadDataTableSuccessEventArgs()
         {
@@ -27,7 +27,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称
@@ -74,7 +74,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadDataTableFailureEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadDataTableFailureEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadDataTableFailureEventArgs).GetHashCode();
 
         public LoadDataTableFailureEventArgs()
         {
@@ -86,7 +86,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称
@@ -133,7 +133,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadDataTableUpdateEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadDataTableUpdateEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadDataTableUpdateEventArgs).GetHashCode();
 
         public LoadDataTableUpdateEventArgs()
         {
@@ -145,7 +145,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称
@@ -192,7 +192,7 @@ namespace Framework.Runtime
     /// </summary>
     public class LoadDataTableDependencyAssetEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(LoadDataTableDependencyAssetEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(LoadDataTableDependencyAssetEventArgs).GetHashCode();
 
         public LoadDataTableDependencyAssetEventArgs()
         {
@@ -206,7 +206,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 数据表资源名称

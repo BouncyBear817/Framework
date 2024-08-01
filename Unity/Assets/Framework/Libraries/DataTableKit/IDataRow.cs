@@ -29,11 +29,11 @@ namespace Framework
         /// <summary>
         /// 解析数据表行
         /// </summary>
-        /// <param name="dataBytes">数据表行二进制流</param>
+        /// <param name="dataRowBytes">数据表行二进制流</param>
         /// <param name="startIndex">二进制流起始位置</param>
         /// <param name="length">二进制流长度</param>
         /// <param name="userData">自定义数据</param>
         /// <returns>是否解析成功</returns>
-        public bool ParseData(byte[] dataBytes, int startIndex, int length, object userData);
+        public bool ParseDataRow(byte[] dataRowBytes, int startIndex, int length, object userData);
     }
 }

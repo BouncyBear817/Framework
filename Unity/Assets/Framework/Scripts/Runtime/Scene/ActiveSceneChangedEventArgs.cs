@@ -16,7 +16,7 @@ namespace Framework.Runtime
     /// </summary>
     public class ActiveSceneChangedEventArgs : BaseEventArgs
     {
-        private static readonly int sEventId = typeof(ActiveSceneChangedEventArgs).GetHashCode();
+        public static readonly int EventId = typeof(ActiveSceneChangedEventArgs).GetHashCode();
 
         public ActiveSceneChangedEventArgs()
         {
@@ -27,7 +27,7 @@ namespace Framework.Runtime
         /// <summary>
         /// 事件编号
         /// </summary>
-        public override int Id => sEventId;
+        public override int Id => EventId;
 
         /// <summary>
         /// 上一个被激活的场景
