@@ -8,10 +8,14 @@
 
 namespace Framework.Editor
 {
-    public class Constant
+    public static class Constant
     {
         public const string CustomOptionName = "<Custom>";
         
+        public const string UnknownOptionName = "<UnKnown>";
+        
         public const string NoneOptionName = "<None>";
+
+        public const string NAOptionName = "N/A";
     }
 }

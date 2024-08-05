@@ -81,7 +81,7 @@ namespace Framework.Editor
                             objectPool.AllowMultiSpawn ? "Locked\tCount\tFlag\tPriority" : "Locked\tIn Use\tFlag\tPriority");
                         foreach (var objectInfo in objectInfos)
                         {
-                            var label1 = string.IsNullOrEmpty(objectInfo.Name) ? "<None>" : objectInfo.Name;
+                            var label1 = string.IsNullOrEmpty(objectInfo.Name) ? Constant.NoneOptionName : objectInfo.Name;
                             var label2 = objectPool.AllowMultiSpawn
                                 ? $"{objectInfo.Locked}\t{objectInfo.SpawnCount}\t{objectInfo.CanReleaseFlag}\t{objectInfo.Priority}"
                                 : $"{objectInfo.Locked}\t{objectInfo.IsInUse}\t{objectInfo.CanReleaseFlag}\t{objectInfo.Priority}";

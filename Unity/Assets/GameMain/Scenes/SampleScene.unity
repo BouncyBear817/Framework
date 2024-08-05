@@ -967,7 +967,7 @@ MonoBehaviour:
   mInstanceRoot: {fileID: 0}
   mWebRequestAgentHelperTypeName: Framework.Runtime.UnityWebRequestAgentHelper
   mCustomWebRequestAgentHelper: {fileID: 0}
-  mWebRequestAgentHelperCount: 1
+  mWebRequestAgentHelperCount: 3
   mTimeout: 30
 --- !u!1 &1557808334
 GameObject:
