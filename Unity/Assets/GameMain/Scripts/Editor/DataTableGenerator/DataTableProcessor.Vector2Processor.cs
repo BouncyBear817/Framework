@@ -23,13 +23,7 @@ namespace GameMain.Editor
 
             public override Vector2 Parse(string value)
             {
-                var splitValue = value.Split(',');
-                if (splitValue.Length == 2)
-                {
-                    return new Vector2(float.Parse(splitValue[0]), float.Parse(splitValue[1]));
-                }
-
-                return new Vector2();
+                return DataTableExtension.ParseVector2(value);
             }
 
             public override void WriteToStream(DataTableProcessor dataTableProcessor, BinaryWriter binaryWriter, string value)

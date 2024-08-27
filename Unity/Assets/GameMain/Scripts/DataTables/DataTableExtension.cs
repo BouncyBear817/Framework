@@ -52,5 +52,82 @@ namespace GameMain
             var dataTable = dataTableComponent.CreateDataTable(dataRowType, name);
             dataTable.ReadData(dataTableAssetName, Constant.AssetPriority.DataTableAsset, userData);
         }
+        
+        public static Color32 ParseColor32(string value)
+        {
+            var splitValue = value.Split(',');
+            if (splitValue.Length == 4)
+            {
+                return new Color32(byte.Parse(splitValue[0]), byte.Parse(splitValue[1]), byte.Parse(splitValue[2]), byte.Parse(splitValue[3]));
+            }
+
+            return new Color32();
+        }
+        
+        public static Color ParseColor(string value)
+        {
+            var splitValue = value.Split(',');
+            if (splitValue.Length == 4)
+            {
+                return new Color(float.Parse(splitValue[0]), float.Parse(splitValue[1]), float.Parse(splitValue[2]), float.Parse(splitValue[3]));
+            }
+
+            return Color.white;
+        }
+        
+        public static Quaternion ParseQuaternion(string value)
+        {
+            var splitValue = value.Split(',');
+            if (splitValue.Length == 4)
+            {
+                return new Quaternion(float.Parse(splitValue[0]), float.Parse(splitValue[1]), float.Parse(splitValue[2]), float.Parse(splitValue[3]));
+            }
+
+            return new Quaternion();
+        }
+        
+        public static Rect ParseRect(string value)
+        {
+            var splitValue = value.Split(',');
+            if (splitValue.Length == 4)
+            {
+                return new Rect(float.Parse(splitValue[0]), float.Parse(splitValue[1]), float.Parse(splitValue[2]), float.Parse(splitValue[3]));
+            }
+
+            return new Rect();
+        }
+        
+        public static Vector2 ParseVector2(string value)
+        {
+            var splitValue = value.Split(',');
+            if (splitValue.Length == 2)
+            {
+                return new Vector2(float.Parse(splitValue[0]), float.Parse(splitValue[1]));
+            }
+
+            return new Vector2();
+        }
+        
+        public static Vector3 ParseVector3(string value)
+        {
+            var splitValue = value.Split(',');
+            if (splitValue.Length == 3)
+            {
+                return new Vector3(float.Parse(splitValue[0]), float.Parse(splitValue[1]), float.Parse(splitValue[2]));
+            }
+
+            return new Vector3();
+        }
+        
+        public static Vector4 ParseVector4(string value)
+        {
+            var splitValue = value.Split(',');
+            if (splitValue.Length == 4)
+            {
+                return new Vector4(float.Parse(splitValue[0]), float.Parse(splitValue[1]), float.Parse(splitValue[2]), float.Parse(splitValue[3]));
+            }
+
+            return new Vector4();
+        }
     }
 }

@@ -23,13 +23,7 @@ namespace GameMain.Editor
 
             public override Color32 Parse(string value)
             {
-                var splitValue = value.Split(',');
-                if (splitValue.Length == 4)
-                {
-                    return new Color32(byte.Parse(splitValue[0]), byte.Parse(splitValue[1]), byte.Parse(splitValue[2]), byte.Parse(splitValue[3]));
-                }
-
-                return new Color32();
+                return DataTableExtension.ParseColor32(value);
             }
 
             public override void WriteToStream(DataTableProcessor dataTableProcessor, BinaryWriter binaryWriter, string value)
